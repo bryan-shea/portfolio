@@ -91,9 +91,9 @@ export const BackgroundShowcase: React.FC = () => {
             Background Options
           </Heading>
           <Text maxW="2xl" fontSize="lg" color="fg.muted" lineHeight="1.6">
-            Choose from elegant, subtle animations that enhance your portfolio
-            without overwhelming the content. Each background adapts beautifully
-            to both light and dark modes.
+            Choose from custom background animations that enhance your experience
+			while viewing my portfolio. Each background was designed and implemented from scratch and
+			adapts beautifully to both light and dark modes.
           </Text>
         </VStack>
 
@@ -108,7 +108,7 @@ export const BackgroundShowcase: React.FC = () => {
               position="relative"
               overflow="hidden"
               minH="400px"
-              bg="bg.panel"
+              bg="bg.subtle/20"
               border="1px solid"
               borderColor="border.subtle"
               _hover={{
@@ -144,38 +144,6 @@ export const BackgroundShowcase: React.FC = () => {
             </Card.Root>
           ))}
         </Grid>
-
-        {/* Implementation Note */}
-        <Box
-          mt="16"
-          p="6"
-          bg="bg.emphasized"
-          borderRadius="lg"
-          border="1px solid"
-          borderColor="border.subtle"
-        >
-          <VStack gap="3" textAlign="center">
-            <Heading size="md" color="fg.emphasized">
-              Implementation
-            </Heading>
-            <Text color="fg.muted" maxW="3xl" lineHeight="1.6">
-              Each background can be easily applied to individual sections using
-              the{" "}
-              <Text
-                as="code"
-                px="1"
-                py="0.5"
-                bg="bg.muted"
-                borderRadius="sm"
-                fontSize="sm"
-              >
-                BackgroundManager
-              </Text>{" "}
-              component. They automatically adapt to your theme's light and dark
-              modes, maintaining optimal contrast and visual hierarchy.
-            </Text>
-          </VStack>
-        </Box>
       </Container>
     </Box>
   );

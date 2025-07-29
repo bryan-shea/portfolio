@@ -109,6 +109,7 @@ function App() {
           key={id}
           id={id}
           w="full"
+		  minW="100vw"
           mt={20}
           justifyContent="center"
           position="relative"
