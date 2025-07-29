@@ -1,4 +1,4 @@
-import { Box, Flex, Button } from "@chakra-ui/react";
+import { Box, Flex, Button, Text } from "@chakra-ui/react";
 import { type ComponentType, useState } from "react";
 import { Hero, About, Skills, Projects, Contact } from "./sections";
 import { AnimatedSection } from "./components/common";
@@ -43,6 +43,7 @@ function App() {
     useState<BackgroundType>("none");
 
   const handleBackgroundChange = (newBackground: BackgroundType) => {
+    console.log("Changing background to:", newBackground);
     setGlobalBackground(newBackground);
   };
 
@@ -104,6 +105,22 @@ function App() {
         View All Backgrounds
       </Button>
 
+      {/* Debug Info - Remove in production */}
+      <Text
+        position="fixed"
+        bottom="4"
+        left="4"
+        fontSize="xs"
+        color="fg.muted"
+        bg="bg.panel"
+        px="2"
+        py="1"
+        borderRadius="sm"
+        zIndex={1000}
+      >
+        Current Background: {globalBackground}
+      </Text>
+
       {PORTFOLIO_SECTIONS.map(({ id, component: Component }) => (
         <Flex
           key={id}
@@ -121,4 +138,5 @@ function App() {
     </Box>
   );
 }
+
 export default App;
