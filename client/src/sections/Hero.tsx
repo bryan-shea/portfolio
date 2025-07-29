@@ -8,6 +8,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { LuArrowRight, LuCode, LuPalette } from "react-icons/lu";
+import { ProfilePicture } from "../components/common";
 
 export const Hero = () => {
   return (
@@ -33,6 +34,7 @@ export const Hero = () => {
           </HStack>
 
           <Stack gap={{ base: "6", md: "8" }}>
+			<ProfilePicture />
             <Heading
               size={{ base: "4xl", md: "6xl" }}
               lineHeight="shorter"
