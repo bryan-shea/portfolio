@@ -9,6 +9,8 @@
     "client"
   ],
   "scripts": {
+	"start": "npm run start --workspace=server",
+	"dev": "npm run dev --workspaces",
     "install-all": "npm install --workspaces",
 	"lint": "eslint . --ext .ts,.tsx",
 	"typegen": "npx @chakra-ui/cli typegen ./client/src/theme/index.ts",

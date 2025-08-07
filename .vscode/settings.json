@@ -1,0 +1,11 @@
+{
+  "chat.mcp.serverSampling": {
+    "portfolio/.vscode/mcp.json: chakra-ui": {
+      "allowedModels": [
+        "copilot/claude-sonnet-4",
+        "copilot/gpt-4.1",
+        "copilot/gpt-5"
+      ]
+    }
+  }
+}

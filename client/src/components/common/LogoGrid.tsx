@@ -21,7 +21,7 @@ export const LogoGrid = () => (
       w="full"
       flex="1"
     >
-      <Stack gap="8" flex="1" maxW="full" align="flex-start">
+      <Stack gap="8" flex="1" maxW="full" align="flex-start" w="100%">
         <Heading size="3xl" fontWeight="medium">
           Skills & Technologies
         </Heading>
@@ -41,11 +41,11 @@ export const LogoGrid = () => (
             key={name}
           >
             <Center>
-              <Tooltip showArrow content={name} positioning={{ placement: "bottom" }}>
+              <Tooltip showArrow content={name} positioning={{ placement: "top" }}>
                 <Icon
                   boxSize="28"
                   color={name === "TypeScript" ? "#3178C6" : "current"}
-                  p="6"
+                  p="5"
                   cursor="pointer"
                   transition="all 0.2s"
                   _hover={{ transform: "scale(1.05)" }}

@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/react-mcp"]
+    },
+    "motion": {
+      "command": "npx",
+      "args": ["-y", "motion-ai"]
+    }
+  }
+}

@@ -9,8 +9,8 @@ import {
 } from "@chakra-ui/react";
 import {
   FloatingParticles,
-  GeometricGrid,
-  WaveAnimation,
+  DotPattern,
+  FadeLines,
   GradientOrbs,
   NetworkNodes,
   type BackgroundType,
@@ -42,18 +42,18 @@ const SHOWCASE_SECTIONS: ShowcaseSection[] = [
     component: FloatingParticles,
   },
   {
-    background: "grid",
-    title: "Geometric Grid",
+    background: "dots",
+    title: "Dot Pattern",
     description:
-      "Clean geometric patterns with pulsing elements and subtle lines. Ideal for technical or minimalist design aesthetics.",
-    component: GeometricGrid,
+      "Simple dot pattern with varying opacity for a clean, minimalist aesthetic. Subtle and unobtrusive while adding visual texture.",
+    component: DotPattern,
   },
   {
-    background: "waves",
-    title: "Wave Animation",
+    background: "lines",
+    title: "Fade Lines",
     description:
-      "Flowing wave patterns with layered SVG animations. Creates a sense of movement and fluidity throughout the interface.",
-    component: WaveAnimation,
+      "Minimal vertical lines with gradient fade effects. Perfect for creating structured layouts with subtle visual depth.",
+    component: FadeLines,
   },
   {
     background: "orbs",
@@ -91,9 +91,10 @@ export const BackgroundShowcase: React.FC = () => {
             Background Options
           </Heading>
           <Text maxW="2xl" fontSize="lg" color="fg.muted" lineHeight="1.6">
-            Choose from custom background animations that enhance your experience
-			while viewing my portfolio. Each background was designed and implemented from scratch and
-			adapts beautifully to both light and dark modes.
+            Choose from custom background animations that enhance your
+            experience while viewing my portfolio. Each background was designed
+            and implemented from scratch and adapts beautifully to both light
+            and dark modes.
           </Text>
         </VStack>
 

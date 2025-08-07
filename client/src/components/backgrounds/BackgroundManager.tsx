@@ -2,8 +2,8 @@ import { Box, Button, HStack, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import {
   FloatingParticles,
-  GeometricGrid,
-  WaveAnimation,
+  DotPattern,
+  FadeLines,
   GradientOrbs,
   NetworkNodes,
 } from "./index";
@@ -14,8 +14,8 @@ import {
 export type BackgroundType =
   | "none"
   | "particles"
-  | "grid"
-  | "waves"
+  | "dots"
+  | "lines"
   | "orbs"
   | "network";
 
@@ -62,16 +62,16 @@ const BACKGROUND_OPTIONS: BackgroundOption[] = [
     component: FloatingParticles,
   },
   {
-    type: "grid",
-    name: "Geometric Grid",
-    description: "Minimalist grid pattern with pulsing elements",
-    component: GeometricGrid,
+    type: "dots",
+    name: "Dot Pattern",
+    description: "Simple dot pattern with varying opacity",
+    component: DotPattern,
   },
   {
-    type: "waves",
-    name: "Wave Animation",
-    description: "Flowing wave patterns with layered motion",
-    component: WaveAnimation,
+    type: "lines",
+    name: "Fade Lines",
+    description: "Minimal vertical lines with gradient fade",
+    component: FadeLines,
   },
   {
     type: "orbs",

@@ -4,8 +4,8 @@
  */
 
 export { FloatingParticles } from './FloatingParticles';
-export { GeometricGrid } from './GeometricGrid';
-export { WaveAnimation } from './WaveAnimation';
+export { DotPattern } from './DotPattern';
+export { FadeLines } from './FadeLines';
 export { GradientOrbs } from './GradientOrbs';
 export { NetworkNodes } from './NetworkNodes';
 export { BackgroundManager, type BackgroundType } from './BackgroundManager';

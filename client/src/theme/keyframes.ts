@@ -79,4 +79,28 @@ export const keyframes = {
 			strokeDasharray: "100 0",
 		},
 	},
+	float: {
+		"0%, 100%": {
+			transform: "translate(0, 0) rotate(0deg)",
+		},
+		"25%": {
+			transform: "translate(2px, -2px) rotate(0.5deg)",
+		},
+		"50%": {
+			transform: "translate(-1px, 1px) rotate(-0.3deg)",
+		},
+		"75%": {
+			transform: "translate(1px, -1px) rotate(0.2deg)",
+		},
+	},
+	pulse: {
+		"0%, 100%": {
+			opacity: "0.4",
+			transform: "translate(-50%, -50%) scale(1)",
+		},
+		"50%": {
+			opacity: "0.8",
+			transform: "translate(-50%, -50%) scale(1.1)",
+		},
+	},
 };

@@ -1,12 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "./components/ui/provider";
+import { ColorProvider } from "./contexts";
 import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider>
-      <App />
+      <ColorProvider>
+        <App />
+      </ColorProvider>
     </Provider>
   </StrictMode>
 );

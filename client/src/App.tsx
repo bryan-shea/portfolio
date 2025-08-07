@@ -1,11 +1,13 @@
-import { Box, Flex, Button } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { type ComponentType, useState } from "react";
-import { Hero, About, Skills, Projects, Contact, CallToAction } from "./sections";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Hero, Skills, Projects, Journey } from "./sections";
+import { BackgroundsPage } from "./pages";
 import { AnimatedSection } from "./components/common";
 import { GlobalControls } from "./components/ui";
+import { useColors, type ColorScheme } from "./contexts";
 import {
   BackgroundManager,
-  BackgroundShowcase,
   type BackgroundType,
 } from "./components/backgrounds";
 
@@ -27,48 +29,27 @@ interface SectionConfig {
  */
 const PORTFOLIO_SECTIONS: SectionConfig[] = [
   { id: "hero", component: Hero, defaultBackground: "particles" },
-  { id: "about", component: About, defaultBackground: "grid" },
-  { id: "skills", component: Skills, defaultBackground: "waves" },
+  { id: "skills", component: Skills, defaultBackground: "lines" },
   { id: "projects", component: Projects, defaultBackground: "orbs" },
-  { id: "cta", component: CallToAction, defaultBackground: "network" },
-  { id: "contact", component: Contact, defaultBackground: "network" },
+  { id: "journey", component: Journey, defaultBackground: "dots" },
 ];
 
 /**
- * Main portfolio application component
+ * Main portfolio component
  * Renders all portfolio sections with background options and consistent animations
  */
-function App() {
-  const [showShowcase, setShowShowcase] = useState(false);
+const Portfolio = () => {
   const [globalBackground, setGlobalBackground] =
     useState<BackgroundType>("none");
+  const { colorScheme, setColorScheme } = useColors();
 
   const handleBackgroundChange = (newBackground: BackgroundType) => {
     setGlobalBackground(newBackground);
   };
 
-  if (showShowcase) {
-    return (
-      <Box as="main" minH="100vh" minW="99vw" bg="bg.default" overflow="hidden">
-        <GlobalControls
-          currentBackground={globalBackground}
-          onBackgroundChange={handleBackgroundChange}
-        />
-        <Button
-          position="fixed"
-          top="4"
-          left="4"
-          onClick={() => setShowShowcase(false)}
-          size="sm"
-          variant="outline"
-          zIndex={1001}
-        >
-          Back to Portfolio
-        </Button>
-        <BackgroundShowcase />
-      </Box>
-    );
-  }
+  const handleColorsChange = (colors: ColorScheme) => {
+    setColorScheme(colors);
+  };
 
   return (
     <Box
@@ -86,31 +67,20 @@ function App() {
         showSelector={false}
       />
 
-      {/* Global Controls - Color Mode + Background Selector */}
+      {/* Global Controls - Color Mode + Background Selector + Personalization */}
       <GlobalControls
         currentBackground={globalBackground}
         onBackgroundChange={handleBackgroundChange}
+        currentColors={colorScheme}
+        onColorsChange={handleColorsChange}
       />
-
-      {/* Showcase Toggle */}
-      <Button
-        position="fixed"
-        top="4"
-        left="4"
-        onClick={() => setShowShowcase(true)}
-        size="sm"
-        variant="outline"
-        zIndex={1001}
-      >
-        View All Backgrounds
-      </Button>
 
       {PORTFOLIO_SECTIONS.map(({ id, component: Component }) => (
         <Flex
           key={id}
           id={id}
           w="full"
-		  minW="100vw"
+          minW="100vw"
           mt={20}
           justifyContent="center"
           position="relative"
@@ -122,5 +92,20 @@ function App() {
       ))}
     </Box>
   );
+};
+
+/**
+ * Main application component with routing
+ */
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route path="/backgrounds" element={<BackgroundsPage />} />
+      </Routes>
+    </Router>
+  );
 }
+
 export default App;
