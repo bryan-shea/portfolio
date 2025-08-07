@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { type ComponentType, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Hero, Skills, Projects, Journey } from "./sections";
@@ -55,7 +55,7 @@ const Portfolio = () => {
     <Box
       as="main"
       minH="100vh"
-      minW="99vw"
+      w="full"
       bg="bg.default"
       overflow="hidden"
       position="relative"
@@ -75,20 +75,22 @@ const Portfolio = () => {
         onColorsChange={handleColorsChange}
       />
 
-      {PORTFOLIO_SECTIONS.map(({ id, component: Component }) => (
-        <Flex
+      {PORTFOLIO_SECTIONS.map(({ id, component: Component }, index) => (
+        <Box
           key={id}
           id={id}
           w="full"
-          minW="100vw"
-          mt={20}
-          justifyContent="center"
+          py={
+            index === 0
+              ? { base: "0", md: "0" }
+              : { base: "20", md: "24", lg: "32" }
+          }
           position="relative"
         >
           <AnimatedSection key={id}>
             <Component />
           </AnimatedSection>
-        </Flex>
+        </Box>
       ))}
     </Box>
   );

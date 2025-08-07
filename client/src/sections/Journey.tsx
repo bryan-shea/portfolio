@@ -8,11 +8,11 @@ import {
   Badge,
   Icon,
   SimpleGrid,
-  Card,
+  Timeline,
 } from "@chakra-ui/react";
-import { LuCalendar, LuGraduationCap, LuCode, LuTrophy } from "react-icons/lu";
+import { LuGraduationCap, LuCode, LuTrophy } from "react-icons/lu";
+import { motion } from "framer-motion";
 
-// Journey milestones data
 const journeyMilestones = [
   {
     id: "foundations",
@@ -23,7 +23,6 @@ const journeyMilestones = [
       "Introduction to computer science and programming with C, Python, SQL, and web development fundamentals.",
     skills: ["C Programming", "Python", "SQL", "Data Structures", "Algorithms"],
     achievement: "CS50x Certificate",
-    certificate: "/src/assets/certs/CS50x_certtt.png",
     color: "blue",
   },
   {
@@ -41,8 +40,6 @@ const journeyMilestones = [
       "Accessibility",
     ],
     achievement: "UX Design Certificate",
-    certificate:
-      "/src/assets/certs/Foundations of User Experience_Coursera 2HVCVN2N5YLC.pdf",
     color: "purple",
   },
   {
@@ -59,8 +56,6 @@ const journeyMilestones = [
       "Design Systems",
     ],
     achievement: "UX Process Certificate",
-    certificate:
-      "/src/assets/certs/UX Design Process_Coursera Z6WPAH6J2HNC.pdf",
     color: "purple",
   },
   {
@@ -78,7 +73,6 @@ const journeyMilestones = [
       "Binary Trees",
     ],
     achievement: "DSA Mastery",
-    certificate: "/src/assets/certs/DSA_IMG.jpg",
     color: "green",
   },
   {
@@ -96,7 +90,6 @@ const journeyMilestones = [
       "Resolvers",
     ],
     achievement: "Apollo Graph Associate",
-    certificate: "/src/assets/certs/pdf-apollo-graph-associate-cert-a4.pdf",
     color: "indigo",
   },
   {
@@ -114,8 +107,6 @@ const journeyMilestones = [
       "Schema Stitching",
     ],
     achievement: "API Orchestration Associate",
-    certificate:
-      "/src/assets/certs/pdf-apollo-api-archestration-associate-cert.pdf",
     color: "indigo",
   },
 ];
@@ -166,228 +157,208 @@ const techCategories = [
 
 export const Journey = () => {
   return (
-    <Container maxW="7xl" py={{ base: "20", md: "32" }}>
-      {/* Header Section */}
-      <VStack gap="8" textAlign="center" mb="20">
-        <Badge
-          px="4"
-          py="2"
-          borderRadius="full"
-          bg="primary.500"
-          color="white"
-          fontSize="sm"
-          fontWeight="semibold"
-          letterSpacing="wide"
-          textTransform="uppercase"
+    <Container
+      maxW="6xl"
+      py={{ base: "16", md: "20", lg: "24" }}
+      px={{ base: "4", md: "6", lg: "8" }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <VStack gap="6" textAlign="center" mb="12">
+          <Badge
+            px="4"
+            py="2"
+            borderRadius="full"
+            colorPalette="primary"
+            variant="solid"
+            fontSize="sm"
+            fontWeight="semibold"
+            letterSpacing="wide"
+            textTransform="uppercase"
+          >
+            Developer Journey
+          </Badge>
+
+          <Heading
+            size={{ base: "2xl", md: "4xl" }}
+            color="fg"
+            letterSpacing="tight"
+            bgGradient="linear(to-r, primary.500, purple.500)"
+            bgClip="text"
+            fontWeight="bold"
+          >
+            Self-Taught Tech Stack Evolution
+          </Heading>
+
+          <Text
+            fontSize={{ base: "lg", md: "xl" }}
+            color="fg.muted"
+            maxW="3xl"
+            lineHeight="relaxed"
+          >
+            From computer science fundamentals to full-stack development
+            mastery—a timeline of continuous learning, hands-on projects, and
+            professional certifications that shaped my technical expertise.
+          </Text>
+        </VStack>
+      </motion.div>
+
+      <VStack gap="8" mb="12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Developer Journey
-        </Badge>
+          <Heading size="xl" color="fg" textAlign="center">
+            Technical Expertise Areas
+          </Heading>
+        </motion.div>
 
-        <Heading
-          size={{ base: "2xl", md: "4xl" }}
-          color="fg"
-          letterSpacing="tight"
-          bgGradient="linear(to-r, primary.500, purple.500)"
-          bgClip="text"
-          fontWeight="bold"
-        >
-          Self-Taught Tech Stack Evolution
-        </Heading>
-
-        <Text
-          fontSize={{ base: "lg", md: "xl" }}
-          color="fg.muted"
-          maxW="4xl"
-          lineHeight="relaxed"
-        >
-          From computer science fundamentals to full-stack development mastery—a
-          timeline of continuous learning, hands-on projects, and professional
-          certifications that shaped my technical expertise.
-        </Text>
-      </VStack>
-
-      {/* Tech Categories Overview */}
-      <VStack gap="12" mb="20">
-        <Heading size="xl" color="fg" textAlign="center">
-          Technical Expertise Areas
-        </Heading>
-
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap="6" w="full">
-          {techCategories.map((category) => (
-            <Card.Root
+        <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap="4" w="full">
+          {techCategories.map((category, index) => (
+            <motion.div
               key={category.name}
-              variant="elevated"
-              bg={{
-                _light: "white",
-                _dark: "gray.800",
-              }}
-              border="1px solid"
-              borderColor={{
-                _light: "gray.200",
-                _dark: "gray.700",
-              }}
-              p="6"
-              textAlign="center"
-              transition="all 0.3s ease"
-              _hover={{
-                transform: "translateY(-4px)",
-                borderColor: `${category.color}.500`,
-                boxShadow: "lg",
-              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <VStack gap="4">
-                <Box
-                  p="3"
-                  borderRadius="lg"
-                  bg={`${category.color}.50`}
-                  color={`${category.color}.600`}
-                  _dark={{
-                    bg: `${category.color}.900/50`,
-                    color: `${category.color}.300`,
-                  }}
-                >
-                  <Icon as={LuCode} boxSize="6" />
-                </Box>
+              <Box
+                bg="bg.panel"
+                border="1px solid"
+                borderColor="border.muted"
+                borderRadius="xl"
+                p={{ base: "4", md: "6" }}
+                textAlign="center"
+                transition="all 0.3s ease"
+                _hover={{
+                  transform: "translateY(-4px)",
+                  borderColor: `${category.color}.500`,
+                  boxShadow: "lg",
+                }}
+              >
+                <VStack gap="4">
+                  <Box
+                    p="3"
+                    borderRadius="lg"
+                    bg={`${category.color}.50`}
+                    color={`${category.color}.600`}
+                    _dark={{
+                      bg: `${category.color}.900/50`,
+                      color: `${category.color}.300`,
+                    }}
+                  >
+                    <Icon as={LuCode} boxSize="6" />
+                  </Box>
 
-                <Heading size="md" color="fg">
-                  {category.name}
-                </Heading>
+                  <Heading size="md" color="fg">
+                    {category.name}
+                  </Heading>
 
-                <VStack gap="2" align="stretch">
-                  {category.technologies.map((tech) => (
-                    <Badge
-                      key={tech}
-                      size="sm"
-                      variant="outline"
-                      colorPalette={category.color}
-                      fontSize="xs"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
+                  <VStack gap="2" align="stretch">
+                    {category.technologies.map((tech) => (
+                      <Badge
+                        key={tech}
+                        size="sm"
+                        variant="outline"
+                        colorPalette={category.color}
+                        fontSize="xs"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </VStack>
                 </VStack>
-              </VStack>
-            </Card.Root>
+              </Box>
+            </motion.div>
           ))}
         </SimpleGrid>
       </VStack>
 
-      {/* Learning Timeline */}
-      <VStack gap="12">
-        <Heading size="xl" color="fg" textAlign="center">
-          Learning & Certification Timeline
-        </Heading>
+      <VStack gap="8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <Heading size="xl" color="fg" textAlign="center">
+            Learning & Certification Timeline
+          </Heading>
+        </motion.div>
 
-        <VStack gap="8" w="full" align="stretch">
+        <Timeline.Root
+          size={{ base: "md", lg: "lg" }}
+          variant="outline"
+          maxW="4xl"
+          w="full"
+        >
           {journeyMilestones.map((milestone, index) => (
-            <Box key={milestone.id} position="relative" w="full">
-              {/* Timeline Line */}
-              {index < journeyMilestones.length - 1 && (
-                <Box
-                  position="absolute"
-                  left="50%"
-                  top="100%"
-                  w="2px"
-                  h="8"
-                  bg="gray.300"
-                  _dark={{ bg: "gray.600" }}
-                  transform="translateX(-50%)"
-                  zIndex="0"
-                />
-              )}
-
-              {/* Timeline Node */}
-              <Box
-                position="absolute"
-                left="50%"
-                top="6"
-                w="4"
-                h="4"
-                borderRadius="full"
-                bg={`${milestone.color}.500`}
-                transform="translateX(-50%)"
-                zIndex="1"
-              />
-
-              {/* Milestone Card */}
-              <Card.Root
-                variant="elevated"
-                bg={{
-                  _light: "white",
-                  _dark: "gray.800",
-                }}
-                border="1px solid"
-                borderColor={{
-                  _light: "gray.200",
-                  _dark: "gray.700",
-                }}
-                p="8"
-                borderRadius="xl"
-                transition="all 0.3s ease"
-                _hover={{
-                  transform: "translateY(-2px)",
-                  borderColor: `${milestone.color}.500`,
-                  boxShadow: "lg",
-                }}
-                mx={{ base: "0", md: index % 2 === 0 ? "0" : "auto" }}
-                mr={{ base: "0", md: index % 2 === 0 ? "50%" : "0" }}
-                ml={{ base: "0", md: index % 2 === 0 ? "0" : "50%" }}
-                maxW={{ base: "full", md: "45%" }}
-              >
-                <VStack gap="6" align="start">
-                  <HStack
-                    gap="4"
-                    w="full"
-                    justify="space-between"
-                    align="start"
-                  >
-                    <VStack gap="2" align="start" flex="1">
-                      <HStack gap="3">
-                        <Icon
-                          as={LuCalendar}
-                          color={`${milestone.color}.500`}
-                        />
-                        <Text
-                          fontSize="sm"
-                          fontWeight="semibold"
-                          color={`${milestone.color}.500`}
-                        >
-                          {milestone.year}
-                        </Text>
-                        <Badge
-                          size="sm"
-                          colorPalette={milestone.color}
-                          variant="subtle"
-                        >
-                          {milestone.category}
-                        </Badge>
-                      </HStack>
-
-                      <Heading size="lg" color="fg" lineHeight="shorter">
-                        {milestone.title}
-                      </Heading>
-                    </VStack>
-
-                    <Box
-                      p="2"
-                      borderRadius="lg"
-                      bg={`${milestone.color}.50`}
-                      color={`${milestone.color}.600`}
-                      _dark={{
-                        bg: `${milestone.color}.900/50`,
-                        color: `${milestone.color}.300`,
-                      }}
+            <Timeline.Item key={milestone.id}>
+              <Timeline.Content w="auto" minW={{ base: "20", md: "24" }}>
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <VStack gap="1" align="start">
+                    <Text
+                      fontSize="sm"
+                      fontWeight="bold"
+                      color={`${milestone.color}.500`}
                     >
-                      <Icon as={LuGraduationCap} boxSize="5" />
-                    </Box>
-                  </HStack>
+                      {milestone.year}
+                    </Text>
+                    <Badge
+                      size="xs"
+                      colorPalette={milestone.color}
+                      variant="subtle"
+                    >
+                      {milestone.category}
+                    </Badge>
+                  </VStack>
+                </motion.div>
+              </Timeline.Content>
 
-                  <Text color="fg.muted" lineHeight="relaxed">
-                    {milestone.description}
-                  </Text>
+              <Timeline.Connector>
+                <Timeline.Separator />
+                <Timeline.Indicator colorPalette={milestone.color}>
+                  <Icon as={LuGraduationCap} boxSize="4" />
+                </Timeline.Indicator>
+              </Timeline.Connector>
 
+              <Timeline.Content>
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
                   <VStack gap="4" align="start" w="full">
                     <VStack gap="2" align="start">
+                      <Timeline.Title
+                        fontSize={{ base: "md", lg: "lg" }}
+                        fontWeight="bold"
+                        color="fg"
+                      >
+                        {milestone.title}
+                      </Timeline.Title>
+                      <Timeline.Description
+                        color="fg.muted"
+                        lineHeight="relaxed"
+                        fontSize={{ base: "sm", md: "md" }}
+                      >
+                        {milestone.description}
+                      </Timeline.Description>
+                    </VStack>
+
+                    <VStack gap="3" align="start" w="full">
                       <Text fontSize="sm" fontWeight="semibold" color="fg">
                         Skills Acquired:
                       </Text>
@@ -406,44 +377,26 @@ export const Journey = () => {
                       </HStack>
                     </VStack>
 
-                    <HStack
-                      gap="3"
-                      w="full"
-                      justify="space-between"
-                      align="center"
-                    >
-                      <HStack gap="2">
-                        <Icon
-                          as={LuTrophy}
-                          color={`${milestone.color}.500`}
-                          boxSize="4"
-                        />
-                        <Text
-                          fontSize="sm"
-                          fontWeight="semibold"
-                          color={`${milestone.color}.500`}
-                        >
-                          {milestone.achievement}
-                        </Text>
-                      </HStack>
-
-                      <Badge
-                        size="sm"
-                        colorPalette={milestone.color}
-                        variant="solid"
-                        cursor="pointer"
-                        _hover={{ transform: "scale(1.05)" }}
-                        transition="transform 0.2s ease"
+                    <HStack gap="2" align="center">
+                      <Icon
+                        as={LuTrophy}
+                        color={`${milestone.color}.500`}
+                        boxSize="4"
+                      />
+                      <Text
+                        fontSize="sm"
+                        fontWeight="semibold"
+                        color={`${milestone.color}.500`}
                       >
-                        View Certificate
-                      </Badge>
+                        {milestone.achievement}
+                      </Text>
                     </HStack>
                   </VStack>
-                </VStack>
-              </Card.Root>
-            </Box>
+                </motion.div>
+              </Timeline.Content>
+            </Timeline.Item>
           ))}
-        </VStack>
+        </Timeline.Root>
       </VStack>
     </Container>
   );

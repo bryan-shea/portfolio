@@ -10,7 +10,7 @@ import {
   Stack,
   Heading,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { LuPalette, LuCheck } from "react-icons/lu";
 
 /**
@@ -90,6 +90,7 @@ export const Personalize: React.FC<PersonalizeProps> = ({
   onClose,
 }) => {
   const [tempColors, setTempColors] = useState(currentColors);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setTempColors(currentColors);
@@ -153,6 +154,7 @@ export const Personalize: React.FC<PersonalizeProps> = ({
           boxShadow="2xl"
           borderRadius="xl"
           onClick={(e) => e.stopPropagation()}
+          ref={modalRef}
         >
           <Box p="6">
             <VStack gap="6" align="stretch">
@@ -206,6 +208,7 @@ export const Personalize: React.FC<PersonalizeProps> = ({
                   description="Main brand color used for buttons and highlights"
                   value={tempColors.primary}
                   onChange={(color) => handleColorChange("primary", color)}
+                  portalContainer={modalRef}
                 />
 
                 {/* Secondary Color */}
@@ -214,6 +217,7 @@ export const Personalize: React.FC<PersonalizeProps> = ({
                   description="Supporting color for hover states and accents"
                   value={tempColors.secondary}
                   onChange={(color) => handleColorChange("secondary", color)}
+                  portalContainer={modalRef}
                 />
 
                 {/* Accent Color */}
@@ -222,6 +226,7 @@ export const Personalize: React.FC<PersonalizeProps> = ({
                   description="Light accent color for backgrounds and highlights"
                   value={tempColors.accent}
                   onChange={(color) => handleColorChange("accent", color)}
+                  portalContainer={modalRef}
                 />
               </VStack>
 
@@ -255,6 +260,7 @@ interface ColorPickerItemProps {
   description: string;
   value: string;
   onChange: (color: string) => void;
+  portalContainer: React.RefObject<HTMLDivElement | null>;
 }
 
 const ColorPickerItem: React.FC<ColorPickerItemProps> = ({
@@ -262,6 +268,7 @@ const ColorPickerItem: React.FC<ColorPickerItemProps> = ({
   description,
   value,
   onChange,
+  portalContainer,
 }) => {
   return (
     <HStack gap="3" align="flex-start">
@@ -283,9 +290,23 @@ const ColorPickerItem: React.FC<ColorPickerItemProps> = ({
             <ColorPicker.ValueSwatch boxSize="8" />
           </ColorPicker.Trigger>
         </ColorPicker.Control>
-        <Portal>
+
+        <Portal container={portalContainer}>
           <ColorPicker.Positioner>
-            <ColorPicker.Content>
+            <ColorPicker.Content
+              bg={{
+                _light: "white",
+                _dark: "gray.800",
+              }}
+              border="1px solid"
+              borderColor={{
+                _light: "gray.200",
+                _dark: "gray.600",
+              }}
+              boxShadow="2xl"
+              borderRadius="lg"
+              p="3"
+            >
               <ColorPicker.Area />
               <HStack>
                 <ColorPicker.EyeDropper size="xs" variant="outline" />

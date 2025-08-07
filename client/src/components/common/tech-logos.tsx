@@ -11,8 +11,8 @@ export const MongoDB = ({ monochrome, ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
-    width="1em"
-    height="1em"
+    width="100%"
+    height="100%"
     {...props}
   >
     <g fill="none">
@@ -40,8 +40,8 @@ export const React = ({ monochrome, ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
-    width="1em"
-    height="1em"
+    width="100%"
+    height="100%"
     {...props}
   >
     <g fill="none">
@@ -79,8 +79,8 @@ export const Vite = ({ monochrome, ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
-    width="1em"
-    height="1em"
+    width="100%"
+    height="100%"
     {...props}
   >
     <g fill="none">
@@ -129,8 +129,8 @@ export const GraphQL = ({ monochrome, ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
-    width="1em"
-    height="1em"
+    width="100%"
+    height="100%"
     {...props}
   >
     <g fill="none">
@@ -172,8 +172,8 @@ export const TypeScript = ({ monochrome, ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
-    width="1em"
-    height="1em"
+    width="100%"
+    height="100%"
     {...props}
   >
     <path
@@ -194,8 +194,8 @@ export const ChakraUI = ({ monochrome, ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 128 128"
-    width="1em"
-    height="1em"
+    width="100%"
+    height="100%"
     {...props}
   >
     <defs>
@@ -226,8 +226,8 @@ export const AWS = ({ monochrome, ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
-    width="1em"
-    height="1em"
+    width="100%"
+    height="100%"
     {...props}
   >
     <g fill="none">
