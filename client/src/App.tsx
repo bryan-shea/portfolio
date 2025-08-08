@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Hero, Skills, Projects, Journey } from "./sections";
 import { BackgroundsPage } from "./pages";
 import { AnimatedSection } from "./components/common";
-import { GlobalControls } from "./components/ui";
+import { GlobalControls, NavigationMenu } from "./components/ui";
 import { useColors, type ColorScheme } from "./contexts";
 import {
   BackgroundManager,
@@ -75,6 +75,9 @@ const Portfolio = () => {
         onColorsChange={handleColorsChange}
       />
 
+      {/* Navigation Menu - Fixed position navigation for sections */}
+      <NavigationMenu />
+
       {PORTFOLIO_SECTIONS.map(({ id, component: Component }, index) => (
         <Box
           key={id}
@@ -83,7 +86,7 @@ const Portfolio = () => {
           py={
             index === 0
               ? { base: "0", md: "0" }
-              : { base: "20", md: "24", lg: "32" }
+              : { base: "6", md: "12", lg: "24" }
           }
           position="relative"
         >

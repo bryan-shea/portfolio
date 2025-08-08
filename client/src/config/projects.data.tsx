@@ -1,124 +1,117 @@
-// /C:/Codebase 2.0/portfolio/client/src/config/projects.data.tsx
-
-import React from "react"
 import { FaCar, FaShieldAlt, FaRobot, FaTree } from "react-icons/fa"
 
 export const projects = [
-	{
-		id: "myprojectcar",
-		title: "MyProjectCar Marketplace",
-		subtitle: "AI-Driven Car Restoration Platform",
-		description: `
-			A marketplace connecting car-restoration enthusiasts. Buyers can request parts,
-			set up alerts for matching listings, and communicate directly with sellers.
-			Sellers create free listings with photos and details and receive notifications
-			when buyers express interest. The platform uses AI to optimize searches by
-			make, model, and year and includes a virtual garage for browsing thousands
-			of parts.
-		`,
-		tech: ["React", "Node.js", "Chakra UI", "TypeScript", "PostgreSQL", "AWS"],
-		category: "Automotive Marketplace",
-		status: "Production",
-		timeline: "≈8 months",
-		team: "Lead Full-Stack Developer",
-		icon: FaCar,
-		metrics: [
-			"57 vehicle makes available",
-			"2,700 models",
-			"155,000+ car parts in database"
-		],
-		highlights: [
-			"AI-optimized search by make, model & year",
-			"Buyer/seller alert system",
-			"Free listings & virtual garage"
-		]
-	},
-	{
-		id: "spscyber",
-		title: "Silent Partner Solutions",
-		subtitle: "People-Centered Cybersecurity & AI",
-		description: `
-			A cybersecurity and AI consultancy focused on people-first solutions. The site
-			highlights their mission to deliver tailored security, AI, and compliance
-			strategies, showcases cross-industry expertise in defense, IT, finance,
-			education, and consumer products, and emphasizes a collaborative approach
-			that accelerates adoption and embeds compliance.
-		`,
-		tech: ["React", "Next.js", "TypeScript", "Chakra UI", "Vite", "AWS"],
-		category: "Corporate Website / Cybersecurity Consulting",
-		status: "Production",
-		timeline: "≈6 months",
-		team: "UI/UX Designer & Developer",
-		icon: FaShieldAlt,
-		metrics: [
-			"25% of U.S. industries served",
-			"140+ skills adopted",
-			"300+ innovations operationalized",
-			"1,200+ solutions delivered"
-		],
-		highlights: [
-			"People-first mission & partnerships",
-			"Multi-industry expertise",
-			"Research-backed strategies",
-			"Compliance & innovation focus"
-		]
-	},
-	{
-		id: "fencegpt",
-		title: "FenceGPT AI Assistant",
-		subtitle: "Generative AI for Fence Professionals",
-		description: `
-			An AI assistant tailored to fence professionals, offering a curated knowledge
-			base, live industry updates, and a free 7-day trial for premium features.
-			Supports tiered subscriptions (Free, Pro, Teams) with unlimited daily prompts,
-			chat retention, how-to guides, and exportable usage data.
-		`,
-		tech: ["React", "Node.js", "Chakra UI", "Python", "LangChain", "Stripe", "AWS"],
-		category: "AI SaaS Platform",
-		status: "Production",
-		timeline: "≈7 months",
-		team: "Lead Developer",
-		icon: FaRobot,
-		metrics: [
-			"98% data accuracy",
-			"50% faster implementation",
-			"3.5M+ data points processed",
-			"100% custom-built for fence professionals"
-		],
-		highlights: [
-			"Curated knowledge base",
-			"Education-driven resources",
-			"Live industry updates",
-			"7-day free trial & flexible plans"
-		]
-	},
-	{
-		id: "waysidefence",
-		title: "Wayside Fence Company",
-		subtitle: "Beyond Fence, Beyond Boundaries",
-		description: `
-			An online storefront for professional fence materials and services. Showcases a
-			wide range of options—from pool and pet fences to privacy and vinyl styles—
-			and offers durable products in vinyl, wood, and aluminum, plus gates, posts,
-			and caps.
-		`,
-		tech: ["React", "Next.js", "TypeScript", "Chakra UI", "Stripe", "AWS"],
-		category: "E-Commerce & Services",
-		status: "Production",
-		timeline: "≈6 months",
-		team: "Full-Stack Developer",
-		icon: FaTree,
-		metrics: [
-			"2 physical locations (Bay Shore, NY & Newington, CT)",
-			"Professional wood, PVC & welding shops",
-			"Wide range of fence styles",
-			"Durable materials: vinyl, wood & aluminum"
-		],
-		highlights: [
-			"Meticulous construction services",
-			"Diverse fencing options",
-			"High-quality products & accessories",
-			"Easy online shopping & quote requests"
-		]
-	}
+  {
+    id: "myprojectcar",
+    title: "MyProjectCar Marketplace",
+    subtitle: "Marketplace for Project Cars & Parts", // Consider matching the site's exact tagline if different
+    description: `
+      A marketplace built for car-restoration enthusiasts. Shoppers can browse project cars
+      and parts with filters like make, model, and year; save searches; set alerts; and
+      message sellers. Sellers create listings with photos and details and get notified
+      when buyers show interest. Includes tools for organizing finds and tracking listings.
+    `,
+    tech: ["React", "Node.js", "Chakra UI", "TypeScript", "PostgreSQL", "AWS"],
+    category: "Automotive Marketplace",
+    status: "Production",
+    timeline: "≈8 months",
+    team: "Lead Full-Stack Developer",
+    icon: FaCar,
+    metrics: [
+      // Replace these with site-verifiable stats if you want hard numbers shown in UI:
+      "Search by make, model & year",
+      "Saved searches & alerts",
+      "Buyer–seller messaging"
+    ],
+    highlights: [
+      "Targeted filters for project cars & parts",
+      "Alerted matches for saved searches",
+      "Seller tools with photo-rich listings"
+    ]
+  },
+  {
+    id: "spscyber",
+    title: "Silent Partner Solutions",
+    subtitle: "People-Centered Cybersecurity & AI Advisory",
+    description: `
+      A cybersecurity and AI consultancy focused on practical, people-first outcomes.
+      The site presents services spanning security strategy, compliance enablement,
+      assessments, and AI adoption guidance, with cross-industry experience in defense,
+      IT, finance, education, and consumer products.
+    `,
+    tech: ["React", "Next.js", "TypeScript", "Chakra UI", "Vite", "AWS"],
+    category: "Corporate Website / Cybersecurity Consulting",
+    status: "Production",
+    timeline: "≈6 months",
+    team: "UI/UX Designer & Developer",
+    icon: FaShieldAlt,
+    metrics: [
+      // Swapped unverifiable counts for factual themes:
+      "Security strategy & assessments",
+      "Compliance enablement",
+      "AI adoption guidance across industries"
+    ],
+    highlights: [
+      "People-first delivery & partnerships",
+      "Multi-industry expertise",
+      "Practical, compliance-aware roadmaps"
+    ]
+  },
+  {
+    id: "fencegpt",
+    title: "FenceGPT AI Assistant",
+    subtitle: "AI Assistant for Fence Professionals",
+    description: `
+      An AI assistant purpose-built for fence companies and teams. Provides a curated
+      knowledge base, step-by-step guidance, and workflows that help estimate, plan,
+      and document jobs. Offers a free trial and tiered subscriptions with team-friendly
+      features like chat history and usage exports.
+    `,
+    tech: ["React", "Node.js", "Chakra UI", "Python", "LangChain", "Stripe", "AWS"],
+    category: "AI SaaS Platform",
+    status: "Production",
+    timeline: "≈7 months",
+    team: "Lead Developer",
+    icon: FaRobot,
+    metrics: [
+      // Avoid % accuracy claims unless we can cite them:
+      "Curated industry knowledge base",
+      "Free trial & tiered plans",
+      "Team usage exports & chat retention"
+    ],
+    highlights: [
+      "How-to guidance and job workflows",
+      "Industry-specific prompts & context",
+      "Admin controls for teams"
+    ]
+  },
+  {
+    id: "waysidefence",
+    title: "Wayside Fence Company",
+    subtitle: "Materials, Fabrication & Installation Services",
+    description: `
+      An online storefront and brand site for professional fence materials and services.
+      Showcases vinyl, wood, and aluminum options—plus gates, posts, and accessories—
+      with support for quotes and professional installation. Serves homeowners,
+      contractors, and property managers.
+    `,
+    tech: ["React", "Next.js", "TypeScript", "Chakra UI", "Stripe", "AWS"],
+    category: "E-Commerce & Services",
+    status: "Production",
+    timeline: "≈6 months",
+    team: "Full-Stack Developer",
+    icon: FaTree,
+    metrics: [
+      // If you want location specifics, keep these if accurate; otherwise use generic:
+      "Bay Shore, NY & Newington, CT locations", // Confirm exact city names if needed
+      "In-house wood, PVC & welding shops",
+      "Wide range of fence styles & accessories"
+    ],
+    highlights: [
+      "Professional construction & installation",
+      "Diverse materials: vinyl, wood, aluminum",
+      "Easy online shopping & quote requests"
+    ]
+  }
 ]
+

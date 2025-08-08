@@ -4,6 +4,7 @@
  */
 
 export { GlobalControls } from './GlobalControls';
+export { NavigationMenu } from './NavigationMenu';
 export { ColorModeButton } from './color-mode';
 export { Personalize } from './Personalize';
 export { BackgroundSelector } from './BackgroundSelector';

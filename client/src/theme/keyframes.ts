@@ -103,4 +103,20 @@ export const keyframes = {
 			transform: "translate(-50%, -50%) scale(1.1)",
 		},
 	},
+	"slide-up-full": {
+		"0%": {
+			transform: "translateY(0%)",
+		},
+		"100%": {
+			transform: "translateY(-50%)",
+		},
+	},
+	"slide-down-full": {
+		"0%": {
+			transform: "translateY(-50%)",
+		},
+		"100%": {
+			transform: "translateY(0%)",
+		},
+	},
 };

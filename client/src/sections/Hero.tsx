@@ -40,7 +40,7 @@ export const Hero = () => {
   return (
     <Container
       maxW="6xl"
-      py={{ base: "20", md: "24", lg: "32" }}
+      py={{ base: "6", md: "12", lg: "28" }}
       px={{ base: "4", md: "6", lg: "8" }}
     >
       <Stack

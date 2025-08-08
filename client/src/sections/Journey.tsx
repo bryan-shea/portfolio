@@ -12,154 +12,13 @@ import {
 } from "@chakra-ui/react";
 import { LuGraduationCap, LuCode, LuTrophy } from "react-icons/lu";
 import { motion } from "framer-motion";
-
-const journeyMilestones = [
-  {
-    id: "foundations",
-    year: "2022",
-    title: "CS50x - Computer Science Foundations",
-    category: "Harvard University",
-    description:
-      "Introduction to computer science and programming with C, Python, SQL, and web development fundamentals.",
-    skills: ["C Programming", "Python", "SQL", "Data Structures", "Algorithms"],
-    achievement: "CS50x Certificate",
-    color: "blue",
-  },
-  {
-    id: "ux-foundations",
-    year: "2023",
-    title: "UX Design Foundations",
-    category: "Google via Coursera",
-    description:
-      "User experience design principles, user research, prototyping, and design thinking methodologies.",
-    skills: [
-      "User Research",
-      "Wireframing",
-      "Prototyping",
-      "Design Thinking",
-      "Accessibility",
-    ],
-    achievement: "UX Design Certificate",
-    color: "purple",
-  },
-  {
-    id: "ux-process",
-    year: "2023",
-    title: "UX Design Process",
-    category: "Google via Coursera",
-    description:
-      "Advanced UX design process including user journey mapping, information architecture, and usability testing.",
-    skills: [
-      "Journey Mapping",
-      "Information Architecture",
-      "Usability Testing",
-      "Design Systems",
-    ],
-    achievement: "UX Process Certificate",
-    color: "purple",
-  },
-  {
-    id: "dsa",
-    year: "2023",
-    title: "Data Structures & Algorithms",
-    category: "Self-Study",
-    description:
-      "Deep dive into algorithmic thinking, problem-solving patterns, and optimization techniques.",
-    skills: [
-      "Big O Notation",
-      "Sorting Algorithms",
-      "Graph Theory",
-      "Dynamic Programming",
-      "Binary Trees",
-    ],
-    achievement: "DSA Mastery",
-    color: "green",
-  },
-  {
-    id: "apollo-graph",
-    year: "2024",
-    title: "Apollo Graph Associate",
-    category: "Apollo GraphQL",
-    description:
-      "GraphQL fundamentals, schema design, resolver implementation, and Apollo Server configuration.",
-    skills: [
-      "GraphQL",
-      "Apollo Server",
-      "Schema Design",
-      "Type Definitions",
-      "Resolvers",
-    ],
-    achievement: "Apollo Graph Associate",
-    color: "indigo",
-  },
-  {
-    id: "apollo-api",
-    year: "2024",
-    title: "Apollo API Orchestration Associate",
-    category: "Apollo GraphQL",
-    description:
-      "Advanced GraphQL concepts including federation, supergraph architecture, and API orchestration.",
-    skills: [
-      "GraphQL Federation",
-      "Supergraph",
-      "API Gateway",
-      "Microservices",
-      "Schema Stitching",
-    ],
-    achievement: "API Orchestration Associate",
-    color: "indigo",
-  },
-];
-
-const techCategories = [
-  {
-    name: "Frontend",
-    technologies: [
-      "React",
-      "TypeScript",
-      "Next.js",
-      "Chakra UI",
-      "Vite",
-      "HTML5",
-      "CSS3",
-    ],
-    color: "blue",
-  },
-  {
-    name: "Backend",
-    technologies: [
-      "Node.js",
-      "Express",
-      "GraphQL",
-      "Apollo Server",
-      "PostgreSQL",
-      "MongoDB",
-    ],
-    color: "green",
-  },
-  {
-    name: "DevOps & Cloud",
-    technologies: ["AWS", "Docker", "CI/CD", "Git", "Linux", "Deployment"],
-    color: "orange",
-  },
-  {
-    name: "Design & UX",
-    technologies: [
-      "Figma",
-      "User Research",
-      "Prototyping",
-      "Design Systems",
-      "Accessibility",
-    ],
-    color: "purple",
-  },
-];
+import { journeyMilestones, techCategories } from "../config";
 
 export const Journey = () => {
   return (
     <Container
       maxW="6xl"
-      py={{ base: "16", md: "20", lg: "24" }}
+      py={{ base: "6", md: "12", lg: "16" }}
       px={{ base: "4", md: "6", lg: "8" }}
     >
       <motion.div
@@ -168,7 +27,7 @@ export const Journey = () => {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <VStack gap="6" textAlign="center" mb="12">
+        <VStack gap="1" textAlign="center" mb="12">
           <Badge
             px="4"
             py="2"
@@ -219,7 +78,7 @@ export const Journey = () => {
           </Heading>
         </motion.div>
 
-        <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap="4" w="full">
+        <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap="8" w="full">
           {techCategories.map((category, index) => (
             <motion.div
               key={category.name}
@@ -280,7 +139,7 @@ export const Journey = () => {
         </SimpleGrid>
       </VStack>
 
-      <VStack gap="8">
+      <VStack gap="16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -299,7 +158,7 @@ export const Journey = () => {
           w="full"
         >
           {journeyMilestones.map((milestone, index) => (
-            <Timeline.Item key={milestone.id}>
+            <Timeline.Item key={milestone.id} py={{ base: "4", md: "8" }}>
               <Timeline.Content w="auto" minW={{ base: "20", md: "24" }}>
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}

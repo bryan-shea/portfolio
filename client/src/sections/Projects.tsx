@@ -16,7 +16,7 @@ export const Projects = () => {
   return (
     <Container
       maxW="6xl"
-      py={{ base: "16", md: "20", lg: "24" }}
+      py={{ base: "6", md: "12", lg: "24" }}
       px={{ base: "4", md: "6", lg: "8" }}
     >
       {/* Header Section */}
@@ -26,7 +26,7 @@ export const Projects = () => {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <VStack gap="6" textAlign="center" mb="12">
+        <VStack gap="1" textAlign="center" mb="12">
           <Badge
             px="4"
             py="2"
@@ -75,6 +75,7 @@ export const Projects = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
             whileHover={{ y: -8 }}
+            style={{ height: "100%" }}
           >
             <Box
               bg={{
@@ -93,9 +94,12 @@ export const Projects = () => {
                 borderColor: "primary.500",
                 boxShadow: "xl",
               }}
+              height="100%"
+              display="flex"
+              flexDirection="column"
             >
               {/* Project Header */}
-              <Box p="6" pb="4">
+              <Box p="6" pb="4" flex="1" display="flex" flexDirection="column">
                 <HStack gap="3" mb="4">
                   <motion.div
                     whileHover={{ rotate: 10, scale: 1.1 }}
@@ -112,7 +116,7 @@ export const Projects = () => {
                     </Box>
                   </motion.div>
                   <VStack align="start" gap="1" flex="1">
-                    <Heading size="md" color="fg">
+                    <Heading size="md" color="fg" truncate lineClamp={1}>
                       {project.title}
                     </Heading>
                     <Badge size="sm" colorPalette="green" variant="subtle">
@@ -126,6 +130,8 @@ export const Projects = () => {
                   fontSize="sm"
                   lineHeight="relaxed"
                   mb="4"
+                  lineClamp={3}
+                  flex="1"
                 >
                   {project.description}
                 </Text>
@@ -140,30 +146,41 @@ export const Projects = () => {
                   >
                     Technologies
                   </Text>
-                  <HStack wrap="wrap" gap="1">
-                    {project.tech.map((tech, techIndex) => (
-                      <motion.div
-                        key={tech}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.3,
-                          delay: index * 0.1 + 0.3 + techIndex * 0.05,
-                        }}
-                        whileHover={{ scale: 1.05 }}
-                      >
+                  <Box minHeight="12">
+                    <HStack wrap="wrap" gap="1">
+                      {project.tech.slice(0, 6).map((tech, techIndex) => (
+                        <motion.div
+                          key={tech}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 0.3,
+                            delay: index * 0.1 + 0.3 + techIndex * 0.05,
+                          }}
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          <Badge
+                            size="sm"
+                            variant="outline"
+                            colorPalette="gray"
+                          >
+                            {tech}
+                          </Badge>
+                        </motion.div>
+                      ))}
+                      {project.tech.length > 6 && (
                         <Badge size="sm" variant="outline" colorPalette="gray">
-                          {tech}
+                          +{project.tech.length - 6}
                         </Badge>
-                      </motion.div>
-                    ))}
-                  </HStack>
+                      )}
+                    </HStack>
+                  </Box>
                 </VStack>
               </Box>
 
               {/* Project Actions */}
-              <Box p="6" pt="0">
+              <Box p="6" pt="0" mt="auto">
                 <VStack gap="3" align="stretch">
                   <Text
                     fontSize="xs"
@@ -178,7 +195,13 @@ export const Projects = () => {
                       <Text fontSize="sm" color="fg.muted">
                         Category:
                       </Text>
-                      <Text fontSize="sm" fontWeight="medium">
+                      <Text
+                        fontSize="sm"
+                        fontWeight="medium"
+                        truncate
+                        maxWidth="50%"
+                        textAlign="right"
+                      >
                         {project.category}
                       </Text>
                     </HStack>
@@ -186,7 +209,13 @@ export const Projects = () => {
                       <Text fontSize="sm" color="fg.muted">
                         Timeline:
                       </Text>
-                      <Text fontSize="sm" fontWeight="medium">
+                      <Text
+                        fontSize="sm"
+                        fontWeight="medium"
+                        truncate
+                        maxWidth="50%"
+                        textAlign="right"
+                      >
                         {project.timeline}
                       </Text>
                     </HStack>
@@ -194,7 +223,13 @@ export const Projects = () => {
                       <Text fontSize="sm" color="fg.muted">
                         Role:
                       </Text>
-                      <Text fontSize="sm" fontWeight="medium">
+                      <Text
+                        fontSize="sm"
+                        fontWeight="medium"
+                        truncate
+                        maxWidth="50%"
+                        textAlign="right"
+                      >
                         {project.team}
                       </Text>
                     </HStack>

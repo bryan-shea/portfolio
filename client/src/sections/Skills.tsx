@@ -1,5 +1,5 @@
-import { LogoGrid } from "../components/common";
+import { TechStackGrid } from "../components/common";
 
 export const Skills = () => {
-  return <LogoGrid />;
+  return <TechStackGrid />;
 };
