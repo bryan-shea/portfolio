@@ -40,8 +40,14 @@ export const colors = defineSemanticTokens.colors({
 		},
 		surface: {
 			value: {
-				_light: "gray.50",
+				_light: "rgba(255, 255, 255, 0.9)",
 				_dark: "{colors.surface.blue}",
+			},
+		},
+		darkmode: {
+			value: {
+				_light: "rgba(255, 255, 255, 0.9)",
+				_dark: "{colors.surface.dark}",
 			},
 		},
 		panel: {
@@ -80,6 +86,12 @@ export const colors = defineSemanticTokens.colors({
 			value: {
 				_light: "gray.200",
 				_dark: "{colors.overlay.blue.dp03}",
+			},
+		},
+		darkmode: {
+			value: {
+				_light: "gray.200",
+				_dark: "{colors.surface.light}",
 			},
 		},
 		emphasized: {

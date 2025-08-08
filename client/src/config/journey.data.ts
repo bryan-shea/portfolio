@@ -75,7 +75,7 @@ export const journeyMilestones: JourneyMilestone[] = [
     id: "dsa",
     year: "2023",
     title: "Data Structures & Algorithms",
-    category: "Self-Study",
+    category: "Udemy",
     description:
       "Deep dive into algorithmic thinking, problem-solving patterns, and optimization techniques.",
     skills: [
@@ -92,7 +92,7 @@ export const journeyMilestones: JourneyMilestone[] = [
     id: "ux-process",
     year: "2023",
     title: "UX Design Process",
-    category: "Google via Coursera",
+    category: "Google UI/UX",
     description:
       "Advanced UX design process including user journey mapping, information architecture, and usability testing.",
     skills: [
@@ -108,7 +108,7 @@ export const journeyMilestones: JourneyMilestone[] = [
     id: "ux-foundations",
     year: "2023",
     title: "UX Design Foundations",
-    category: "Google via Coursera",
+    category: "Google UI/UX",
     description:
       "User experience design principles, user research, prototyping, and design thinking methodologies.",
     skills: [
@@ -150,7 +150,7 @@ export const techCategories: TechCategory[] = [
       "HTML5",
       "CSS3",
     ],
-    color: "blue",
+    color: "cyan",
   },
   {
     name: "Backend",

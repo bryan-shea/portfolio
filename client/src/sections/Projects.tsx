@@ -70,29 +70,42 @@ export const Projects = () => {
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-            whileHover={{ y: -8 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{
+              duration: 0.3,
+              delay: index * 0.1,
+              ease: "easeOut",
+            }}
+            whileHover={{
+              y: -8,
+              scale: 1.01,
+              transition: {
+                duration: 0.3,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+            }}
             style={{ height: "100%" }}
           >
             <Box
-              bg={{
-                _light: "white",
-                _dark: "gray.800",
-              }}
-              border="1px solid"
+              bg="bg.surface"
+              border="2px solid"
               borderColor={{
-                _light: "gray.200",
+                _light: "gray.400",
                 _dark: "gray.700",
               }}
               borderRadius="xl"
               overflow="hidden"
-              transition="all 0.3s ease"
+              transition="all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
               _hover={{
                 borderColor: "primary.500",
-                boxShadow: "xl",
+                boxShadow:
+                  "0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.06)",
+                _dark: {
+                  boxShadow:
+                    "0 20px 40px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.2)",
+                },
               }}
               height="100%"
               display="flex"
@@ -119,7 +132,7 @@ export const Projects = () => {
                     <Heading size="md" color="fg" truncate lineClamp={1}>
                       {project.title}
                     </Heading>
-                    <Badge size="sm" colorPalette="green" variant="subtle">
+                    <Badge size="sm" variant="subtle" bg="primary.500" color="fg.inverted">
                       {project.status}
                     </Badge>
                   </VStack>

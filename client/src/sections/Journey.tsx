@@ -78,7 +78,7 @@ export const Journey = () => {
           </Heading>
         </motion.div>
 
-        <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap="8" w="full">
+        <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap="8" w="fit-content">
           {techCategories.map((category, index) => (
             <motion.div
               key={category.name}
@@ -86,47 +86,50 @@ export const Journey = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              style={{ height: "100%" }}
             >
               <Box
-                bg="bg.panel"
-                border="1px solid"
-                borderColor="border.muted"
+                bg="bg.surface"
+                border="2px solid"
+                borderColor="border.darkmode"
                 borderRadius="xl"
-                p={{ base: "4", md: "6" }}
+                p={{ base: "4", md: "4" }}
                 textAlign="center"
                 transition="all 0.3s ease"
+                height="100%"
+                display="flex"
+                flexDirection="column"
                 _hover={{
                   transform: "translateY(-4px)",
                   borderColor: `${category.color}.500`,
                   boxShadow: "lg",
                 }}
               >
-                <VStack gap="4">
-                  <Box
-                    p="3"
-                    borderRadius="lg"
-                    bg={`${category.color}.50`}
-                    color={`${category.color}.600`}
-                    _dark={{
-                      bg: `${category.color}.900/50`,
-                      color: `${category.color}.300`,
-                    }}
+                <VStack gap="4" flex="1">
+                  <Badge
+                    size="lg"
+                    variant="solid"
+                    colorPalette={category.color}
+                    px="4"
+                    py="2"
+                    borderRadius="full"
+                    fontSize="sm"
+                    fontWeight="semibold"
+                    display="flex"
+                    alignItems="center"
+                    gap="2"
                   >
-                    <Icon as={LuCode} boxSize="6" />
-                  </Box>
-
-                  <Heading size="md" color="fg">
+                    <Icon as={LuCode} boxSize="4" />
                     {category.name}
-                  </Heading>
+                  </Badge>
 
-                  <VStack gap="2" align="stretch">
+                  <VStack gap="2" align="stretch" flex="1" justify="flex-start">
                     {category.technologies.map((tech) => (
                       <Badge
                         key={tech}
-                        size="sm"
-                        variant="outline"
+                        size="md"
+                        variant="surface"
                         colorPalette={category.color}
-                        fontSize="xs"
                       >
                         {tech}
                       </Badge>
@@ -139,26 +142,15 @@ export const Journey = () => {
         </SimpleGrid>
       </VStack>
 
-      <VStack gap="16">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <Heading size="xl" color="fg" textAlign="center">
-            Learning & Certification Timeline
-          </Heading>
-        </motion.div>
-
+      <VStack gap="2" mt="12">
         <Timeline.Root
-          size={{ base: "md", lg: "lg" }}
-          variant="outline"
+          size={{ base: "md", md: "xl" }}
+          variant="solid"
           maxW="4xl"
           w="full"
         >
           {journeyMilestones.map((milestone, index) => (
-            <Timeline.Item key={milestone.id} py={{ base: "4", md: "8" }}>
+            <Timeline.Item key={milestone.id} py={{ base: "4", md: "8" }} >
               <Timeline.Content w="auto" minW={{ base: "20", md: "24" }}>
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -166,16 +158,16 @@ export const Journey = () => {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <VStack gap="1" align="start">
+                  <VStack gap="1" align="end">
                     <Text
-                      fontSize="sm"
+                      fontSize="md"
                       fontWeight="bold"
-                      color={`${milestone.color}.500`}
+                      color="bg.inverted"
                     >
                       {milestone.year}
                     </Text>
                     <Badge
-                      size="xs"
+                      size="sm"
                       colorPalette={milestone.color}
                       variant="subtle"
                     >
@@ -187,19 +179,25 @@ export const Journey = () => {
 
               <Timeline.Connector>
                 <Timeline.Separator />
-                <Timeline.Indicator colorPalette={milestone.color}>
+                <Timeline.Indicator>
                   <Icon as={LuGraduationCap} boxSize="4" />
                 </Timeline.Indicator>
               </Timeline.Connector>
 
-              <Timeline.Content>
+              <Timeline.Content
+                bg="bg.surface"
+                border="2px solid"
+                borderColor="border.darkmode"
+                borderRadius="xl"
+                p="6"
+              >
                 <motion.div
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <VStack gap="4" align="start" w="full">
+                  <VStack gap="4" align="start" w="full" >
                     <VStack gap="2" align="start">
                       <Timeline.Title
                         fontSize={{ base: "md", lg: "lg" }}
@@ -239,13 +237,11 @@ export const Journey = () => {
                     <HStack gap="2" align="center">
                       <Icon
                         as={LuTrophy}
-                        color={`${milestone.color}.500`}
                         boxSize="4"
                       />
                       <Text
-                        fontSize="sm"
+                        fontSize="md"
                         fontWeight="semibold"
-                        color={`${milestone.color}.500`}
                       >
                         {milestone.achievement}
                       </Text>

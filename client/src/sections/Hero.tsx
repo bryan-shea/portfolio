@@ -9,6 +9,7 @@ import {
   Badge,
   VStack,
   Highlight,
+	AbsoluteCenter
 } from "@chakra-ui/react";
 import { LuArrowRight, LuCode, LuPalette, LuMail } from "react-icons/lu";
 import { ProfilePicture } from "../components/common";
@@ -27,18 +28,17 @@ export const Hero = () => {
     "purple",
     "pink",
   ] as const;
-  const variants = ["subtle", "surface"] as const;
+  const variants = ["surface"] as const;
 
   // Technologies to display
   const technologies = [
     "TypeScript",
     "React",
-    "Next.js",
-    "AWS",
-    "Docker",
+	"Node.js",
     "GraphQL",
-    "PostgreSQL",
-    "Node.js",
+	"MongoDB",
+	"AWS",
+    "Docker",
   ];
 
   // Generate random styling for each tech badge on component mount
@@ -66,8 +66,9 @@ export const Hero = () => {
   return (
     <Container
       maxW="6xl"
-      py={{ base: "6", md: "12", lg: "32" }}
+      py={{ base: "6", md: "12", lg: "40" }}
       px={{ base: "4", md: "6", lg: "8" }}
+      mb={{ base: "8", md: "12", lg: "16" }}
     >
       <Stack
         gap={{ base: "8", md: "10", lg: "12" }}
@@ -135,65 +136,36 @@ export const Hero = () => {
 
         {/* Content Section */}
         <Stack gap={{ base: "2", md: "4" }} maxW={{ md: "6xl" }}>
-          {/* Hireability-focused Description */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-          >
-            <Text
-              fontSize={{ base: "lg", md: "xl" }}
-              color="fg.muted"
-              maxW="4xl"
-              mx="auto"
-              lineHeight="relaxed"
-            >
-              Experienced full-stack engineer specializing in{" "}
-              <Highlight
-                query={["modern web applications"]}
-                styles={{
-                  fontWeight: "semibold",
-                  color: "fg",
-                  bg: { _light: "blue.50", _dark: "blue.900/30" },
-                  px: "1",
-                  py: "0.5",
-                  rounded: "sm",
-                }}
-              >
-                modern web applications
-              </Highlight>{" "}
-              and{" "}
-              <Highlight
-                query={["cloud-native solutions"]}
-                styles={{
-                  fontWeight: "semibold",
-                  color: "fg",
-                  bg: { _light: "green.50", _dark: "green.900/30" },
-                  px: "1",
-                  py: "0.5",
-                  rounded: "sm",
-                }}
-              >
-                cloud-native solutions
-              </Highlight>
-              . Focused on building{" "}
-              <Highlight
-                query={["scalable, user-focused products"]}
-                styles={{
-                  fontWeight: "semibold",
-                  color: "fg",
-                  bg: { _light: "orange.50", _dark: "orange.900/30" },
-                  px: "1",
-                  py: "0.5",
-                  rounded: "sm",
-                }}
-              >
-                scalable, user-focused products
-              </Highlight>{" "}
-              that drive business growth and deliver exceptional user
-              experiences.
-            </Text>
-          </motion.div>
+		  {/* Hireability-focused Description */}
+		  <motion.div
+			initial={{ opacity: 0, y: 30 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+		  >
+			<Text
+			  fontSize={{ base: "lg", md: "xl" }}
+			  color="fg.muted"
+			  maxW="4xl"
+			  mx="auto"
+			  lineHeight="relaxed"
+			>
+			  Experienced full-stack engineer specializing in{" "}
+			  <Highlight
+				query={["modern web applications", "cloud-native solutions", "scalable products"]}
+				styles={{
+				  fontWeight: "medium",
+				  color: "fg",
+				  bg: { _light: "blue.100/60", _dark: "blue.900/40" },
+				  px: "1.5",
+				  py: "0.5",
+				  rounded: "md",
+				}}
+			  >
+				modern web applications and cloud-native solutions
+			  </Highlight>
+			  . Focused on building scalable products that drive business growth and deliver exceptional user experiences.
+			</Text>
+		  </motion.div>
 
           {/* Key Skills/Technologies */}
           <motion.div
@@ -260,7 +232,7 @@ export const Hero = () => {
                   colorPalette="blue"
                   boxShadow="lg"
                   onClick={handleViewWork}
-                  _hover={{ transform: "translateY(-2px)", boxShadow: "xl" }}
+                  _hover={{ transform: "translateY(-1px)", boxShadow: "xl" }}
                   transition="all 0.2s"
                 >
                   View Portfolio <LuArrowRight />
@@ -276,9 +248,11 @@ export const Hero = () => {
                   px="8"
                   py="6"
                   variant="outline"
+				  colorPalette="blue"
                   borderWidth="2px"
+				  borderColor="primary.400"
                   onClick={handleContact}
-                  _hover={{ bg: "bg.subtle", transform: "translateY(-2px)" }}
+                  _hover={{ borderColor: "primary.700", bg: "transparent", transform: "translateY(-1px)" }}
                   transition="all 0.2s"
                 >
                   <LuMail /> Let's Connect
