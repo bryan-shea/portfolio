@@ -198,7 +198,7 @@ export const Journey = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <VStack gap="4" align="start" w="full" >
-                    <VStack gap="2" align="start">
+                    <VStack gap="4" align="start">
                       <Timeline.Title
                         fontSize={{ base: "md", lg: "lg" }}
                         fontWeight="bold"

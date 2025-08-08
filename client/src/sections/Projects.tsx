@@ -16,7 +16,7 @@ export const Projects = () => {
   return (
     <Container
       maxW="6xl"
-      py={{ base: "6", md: "12", lg: "24" }}
+      py={{ base: "6", md: "12", lg: "16" }}
       px={{ base: "4", md: "6", lg: "8" }}
     >
       {/* Header Section */}
@@ -38,7 +38,7 @@ export const Projects = () => {
             letterSpacing="wide"
             textTransform="uppercase"
           >
-            Portfolio Showcase
+            Project Showcase
           </Badge>
 
           <Heading

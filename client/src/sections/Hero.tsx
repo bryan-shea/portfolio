@@ -235,7 +235,7 @@ export const Hero = () => {
                   _hover={{ transform: "translateY(-1px)", boxShadow: "xl" }}
                   transition="all 0.2s"
                 >
-                  View Portfolio <LuArrowRight />
+                  View Projects <LuArrowRight />
                 </Button>
               </motion.div>
               <motion.div

@@ -115,9 +115,9 @@ export const TechStackGrid = () => {
 
   return (
     <Container
-      py={{ base: "6", md: "12", lg: "24" }}
+      py={{ base: "6", md: "12", lg: "16" }}
       px={{ base: "4", md: "6", lg: "8" }}
-      mt={{ base: "8", md: "12", lg: "16" }}
+      mt={{ base: "8", md: "12", lg: "20" }}
       maxW="6xl"
       mx="auto"
     >
