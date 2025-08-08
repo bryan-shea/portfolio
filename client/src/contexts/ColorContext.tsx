@@ -38,31 +38,31 @@ export interface ColorScheme {
 }
 
 /**
- * Default color palette (Ocean Blue)
+ * Default color palette (Elegant Gray)
  */
 const DEFAULT_PALETTE: ColorPalette = {
-  name: "Ocean Blue",
-  description: "Cool and professional with excellent contrast",
+  name: "Elegant Gray",
+  description: "Sophisticated and timeless with excellent readability",
   primary: {
-    50: "#eff8ff",
-    100: "#dbeafe",
-    200: "#bfdbfe",
-    300: "#93c5fd",
-    400: "#60a5fa",
-    500: "#3b82f6",
-    600: "#2563eb",
-    700: "#1d4ed8",
-    800: "#1e40af",
-    900: "#1e3a8a",
-    950: "#172554",
+    50: "#f9fafb",
+    100: "#f3f4f6",
+    200: "#e5e7eb",
+    300: "#d1d5db",
+    400: "#9ca3af",
+    500: "#6b7280",
+    600: "#4b5563",
+    700: "#374151",
+    800: "#1f2937",
+    900: "#111827",
+    950: "#030712",
   },
   accent: {
-    light: "#dbeafe",
-    dark: "#1e40af",
+    light: "#f3f4f6",
+    dark: "#374151",
   },
   preview: {
-    light: "#3b82f6",
-    dark: "#60a5fa",
+    light: "#6b7280",
+    dark: "#9ca3af",
   },
 };
 

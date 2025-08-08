@@ -39,12 +39,27 @@ const PORTFOLIO_SECTIONS: SectionConfig[] = [
  * Renders all portfolio sections with background options and consistent animations
  */
 const Portfolio = () => {
-  const [globalBackground, setGlobalBackground] =
-    useState<BackgroundType>("none");
+  const [globalBackground, setGlobalBackground] = useState<BackgroundType>(
+    () => {
+      // Try to load from localStorage
+      if (typeof window !== "undefined") {
+        const saved = localStorage.getItem("portfolio-background");
+        if (saved && saved !== "none") {
+          return saved as BackgroundType;
+        }
+      }
+      // Default to grid if no saved preference
+      return "grid";
+    }
+  );
   const { colorScheme, setColorScheme } = useColors();
 
   const handleBackgroundChange = (newBackground: BackgroundType) => {
     setGlobalBackground(newBackground);
+    // Save to localStorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem("portfolio-background", newBackground);
+    }
   };
 
   const handleColorsChange = (colors: ColorScheme) => {

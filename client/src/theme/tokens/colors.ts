@@ -47,7 +47,7 @@ export const colors = defineTokens.colors({
 			value: "#1d2429d5",
 		},
 		light: {
-			value: "#333f48d5",
+			value: "rgba(39, 48, 55, 1)",
 		},
 	},
 	overlay: {

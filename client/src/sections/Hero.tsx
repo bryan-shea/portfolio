@@ -66,7 +66,7 @@ export const Hero = () => {
   return (
     <Container
       maxW="6xl"
-      py={{ base: "6", md: "12", lg: "40" }}
+      py={{ base: "32", md: "12", lg: "40" }}
       px={{ base: "4", md: "6", lg: "8" }}
       mb={{ base: "8", md: "12", lg: "16" }}
     >
@@ -75,19 +75,19 @@ export const Hero = () => {
         align="center"
         textAlign="center"
         w="full"
-        position="relative"
-        _before={{
-          content: '""',
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          bg: { _light: "white/80", _dark: "gray.900/10" },
-          backdropFilter: "blur(3px)",
-          borderRadius: "xl",
-          zIndex: -1,
-        }}
+        // position="relative"
+        // _before={{
+        //   content: '""',
+        //   position: "absolute",
+        //   top: 0,
+        //   left: 0,
+        //   right: 0,
+        //   bottom: 0,
+        //   bg: { _light: "white/80", _dark: "gray.900/10" },
+        //   backdropFilter: "blur(3px)",
+        //   borderRadius: "xl",
+        //   zIndex: -1,
+        // }}
       >
         {/* Profile Header - Grouped for better alignment */}
         <Stack gap={{ base: "2", md: "4" }} align="center">
@@ -128,7 +128,7 @@ export const Hero = () => {
               gap="3"
               color="fg.info"
             >
-              <LuCode /> Senior Full-Stack Engineer • Product Builder{" "}
+              <LuCode /> Full-Stack Developer • Product Builder{" "}
               <LuPalette />
             </HStack>
           </motion.div>
@@ -147,9 +147,9 @@ export const Hero = () => {
 			  color="fg.muted"
 			  maxW="4xl"
 			  mx="auto"
-			  lineHeight="relaxed"
+			  lineHeight="tall"
 			>
-			  Experienced full-stack engineer specializing in{" "}
+			  Experienced full-stack developer specializing in{" "}
 			  <Highlight
 				query={["modern web applications", "cloud-native solutions", "scalable products"]}
 				styles={{
@@ -163,7 +163,7 @@ export const Hero = () => {
 			  >
 				modern web applications and cloud-native solutions
 			  </Highlight>
-			  . Focused on building scalable products that drive business growth and deliver exceptional user experiences.
+				{""}that drive business growth and exceptional user experiences.
 			</Text>
 		  </motion.div>
 

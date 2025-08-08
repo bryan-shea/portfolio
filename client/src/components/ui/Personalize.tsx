@@ -45,6 +45,31 @@ interface ColorPalette {
  */
 const COLOR_PALETTES: ColorPalette[] = [
   {
+    name: "Steel Gray",
+    description: "Professional and timeless with subtle elegance",
+    primary: {
+      50: "#f8fafc",
+      100: "#f1f5f9",
+      200: "#e2e8f0",
+      300: "#cbd5e1",
+      400: "#94a3b8",
+      500: "#64748b",
+      600: "#475569",
+      700: "#334155",
+      800: "#1e293b",
+      900: "#0f172a",
+      950: "#020617",
+    },
+    accent: {
+      light: "#e2e8f0",
+      dark: "#334155",
+    },
+    preview: {
+      light: "#64748b",
+      dark: "#94a3b8",
+    },
+  },
+  {
     name: "Ocean Blue",
     description: "Cool and professional with excellent contrast",
     primary: {
@@ -192,31 +217,6 @@ const COLOR_PALETTES: ColorPalette[] = [
     preview: {
       light: "#14b8a6",
       dark: "#2dd4bf",
-    },
-  },
-  {
-    name: "Steel Gray",
-    description: "Professional and timeless with subtle elegance",
-    primary: {
-      50: "#f8fafc",
-      100: "#f1f5f9",
-      200: "#e2e8f0",
-      300: "#cbd5e1",
-      400: "#94a3b8",
-      500: "#64748b",
-      600: "#475569",
-      700: "#334155",
-      800: "#1e293b",
-      900: "#0f172a",
-      950: "#020617",
-    },
-    accent: {
-      light: "#e2e8f0",
-      dark: "#334155",
-    },
-    preview: {
-      light: "#64748b",
-      dark: "#94a3b8",
     },
   },
   {

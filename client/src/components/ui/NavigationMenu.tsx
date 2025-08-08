@@ -12,6 +12,8 @@ import {
   Text,
   VStack,
   Box,
+  useBreakpointValue,
+  IconButton,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import {
@@ -21,6 +23,7 @@ import {
   LuCode,
   LuFolderOpen,
   LuMapPin,
+  LuMenu,
 } from "react-icons/lu";
 import { motion } from "framer-motion";
 
@@ -71,6 +74,7 @@ const portfolioSections: NavigationSection[] = [
 /**
  * Navigation menu component
  * Provides fixed navigation to different portfolio sections
+ * Responsive design: full button on desktop, compact icon on mobile
  */
 export const NavigationMenu = () => {
   const [selectedSectionId, setSelectedSectionId] = useState<string>(
@@ -79,6 +83,9 @@ export const NavigationMenu = () => {
   const selectedSection =
     portfolioSections.find((section) => section.id === selectedSectionId) ||
     portfolioSections[0];
+
+  // Responsive trigger: full button on md+, compact on mobile
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   /**
    * Scroll to a specific section
@@ -104,9 +111,19 @@ export const NavigationMenu = () => {
       }}
     >
       <Box position="fixed" top="4" left="4" zIndex="1000">
-        <Menu.Root positioning={{ placement: "bottom-start", sameWidth: true }} variant="subtle">
+        <Menu.Root
+          positioning={{
+            placement: "bottom-start",
+            sameWidth: false,
+            offset: { mainAxis: 4, crossAxis: 8 },
+          }}
+        >
           <Menu.Trigger asChild>
-            <SelectedSectionButton section={selectedSection} />
+            {isMobile ? (
+              <MobileNavigationTrigger section={selectedSection} />
+            ) : (
+              <SelectedSectionButton section={selectedSection} />
+            )}
           </Menu.Trigger>
           <Portal>
             <Menu.Positioner>
@@ -122,6 +139,7 @@ export const NavigationMenu = () => {
                   _dark: "gray.700",
                 }}
                 boxShadow="lg"
+                minW={isMobile ? "280px" : "320px"}
               >
                 {portfolioSections.map((section) => (
                   <SectionMenuItem
@@ -129,6 +147,7 @@ export const NavigationMenu = () => {
                     section={section}
                     selectedId={selectedSectionId}
                     onSelect={() => scrollToSection(section.id)}
+                    isMobile={isMobile}
                   />
                 ))}
               </Menu.Content>
@@ -147,12 +166,12 @@ const SectionIcon = (props: SquareProps & { children: React.ReactNode }) => {
   return (
     <Square
       bg={{
-        _light: "primary.50",
-        _dark: "primary.900/30",
+        _light: "gray.50",
+        _dark: "gray.800",
       }}
       color={{
-        _light: "primary.600",
-        _dark: "primary.400",
+        _light: "gray.600",
+        _dark: "gray.400",
       }}
       size="8"
       rounded="md"
@@ -168,13 +187,14 @@ interface SectionMenuItemProps extends Omit<Menu.ItemProps, "value"> {
   section: NavigationSection;
   selectedId: string;
   onSelect: () => void;
+  isMobile?: boolean;
 }
 
 /**
  * Section menu item component
  */
 const SectionMenuItem = (props: SectionMenuItemProps) => {
-  const { section, selectedId, onSelect, ...rest } = props;
+  const { section, selectedId, onSelect, isMobile, ...rest } = props;
 
   return (
     <Menu.Item
@@ -183,30 +203,78 @@ const SectionMenuItem = (props: SectionMenuItemProps) => {
       onClick={onSelect}
       _hover={{
         bg: {
-          _light: "primary.50",
-          _dark: "primary.900/30",
+          _light: "gray.50",
+          _dark: "gray.800",
         },
       }}
+      py={isMobile ? "3" : "2"}
     >
       <HStack gap="3" flex="1">
-        <SectionIcon>
-          <Icon boxSize="4">{section.icon}</Icon>
+        <SectionIcon size={isMobile ? "10" : "8"}>
+          <Icon boxSize={isMobile ? "5" : "4"}>{section.icon}</Icon>
         </SectionIcon>
         <VStack gap="0" align="start" flex="1">
-          <Text fontWeight="medium" textStyle="sm">
+          <Text fontWeight="medium" textStyle={isMobile ? "md" : "sm"}>
             {section.name}
           </Text>
-          <Text textStyle="xs" color="fg.muted">
-            {section.description}
-          </Text>
+          {!isMobile && (
+            <Text textStyle="xs" color="fg.muted">
+              {section.description}
+            </Text>
+          )}
         </VStack>
       </HStack>
       {selectedId === section.id && (
-        <Icon color={{ _light: "primary.500", _dark: "primary.400" }}>
+        <Icon color="gray.500">
           <LuCheck />
         </Icon>
       )}
     </Menu.Item>
+  );
+};
+
+/**
+ * Props for mobile navigation trigger
+ */
+interface MobileNavigationTriggerProps extends ButtonProps {
+  section: NavigationSection;
+}
+
+/**
+ * Mobile navigation trigger component
+ * Compact version for mobile devices - shows only navigation icon
+ */
+const MobileNavigationTrigger = (props: MobileNavigationTriggerProps) => {
+  const { section, ...rest } = props;
+
+  return (
+    <IconButton
+      variant="outline"
+      colorPalette="gray"
+      size="lg"
+      bg={{
+        _light: "white/90",
+        _dark: "gray.900/90",
+      }}
+      backdropFilter="blur(10px)"
+      border="1px solid"
+      borderColor={{
+        _light: "gray.200",
+        _dark: "gray.700",
+      }}
+      boxShadow="lg"
+      _hover={{
+        bg: {
+          _light: "white",
+          _dark: "gray.900",
+        },
+      }}
+      {...rest}
+    >
+      <Icon boxSize="5">
+        <LuMenu />
+      </Icon>
+    </IconButton>
   );
 };
 
@@ -226,10 +294,7 @@ const SelectedSectionButton = (props: SelectedSectionButtonProps) => {
   return (
     <Button
       variant="outline"
-      color={{
-		_light: "primary.600",
-		_dark: "primary.400",
-	  }}
+      colorPalette="gray"
       h="14"
       ps="3"
       bg={{
@@ -263,10 +328,7 @@ const SelectedSectionButton = (props: SelectedSectionButtonProps) => {
             <Badge
               size="xs"
               variant="surface"
-              color={{
-				_light: "primary.500",
-				_dark: "primary.400",
-			  }}
+              colorPalette="gray"
               textTransform="uppercase"
               letterSpacing="wider"
             >

@@ -137,37 +137,36 @@ export const TechStackGrid = () => {
             w="full"
           >
             {/* Header Section - Left Side */}
-            <motion.div
-              initial={{ opacity: 0, y: -30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <Stack
-                gap="4"
-                align={{ base: "center", lg: "start" }}
-                textAlign={{ base: "center", lg: "left" }}
-                maxW={{ base: "full", lg: "md" }}
-                flex="0 0 auto"
-                mt={{ base: "8", md: "24" }}
-              >
-                <Heading
-                  size={{ base: "2xl", md: "3xl" }}
-                  fontWeight="medium"
-                  color="fg"
-                >
-                  Skills & Technologies
-                </Heading>
-                <Text
-                  fontSize={{ base: "md", md: "lg" }}
-                  color="fg.muted"
-                  lineHeight="relaxed"
-                >
-                  Building modern web applications with cutting-edge tools and
-                  frameworks that power scalable, performant solutions
-                </Text>
-              </Stack>
-            </motion.div>
+			<motion.div
+			  initial={{ opacity: 0, y: -30 }}
+			  whileInView={{ opacity: 1, y: 0 }}
+			  viewport={{ once: true, amount: 0.3 }}
+			  transition={{ duration: 0.6, ease: "easeOut" }}
+			>
+			  <Stack
+				gap="4"
+				align={{ base: "center", lg: "start" }}
+				textAlign={{ base: "center", lg: "left" }}
+				maxW={{ base: "full", lg: "md" }}
+				flex="0 0 auto"
+				mt={{ base: "8", md: "24" }}
+			  >
+				<Heading
+				  size={{ base: "2xl", md: "3xl" }}
+				  fontWeight="medium"
+				  color="fg"
+				>
+				  Current Tech Stack
+				</Heading>
+				<Text
+				  fontSize={{ base: "md", md: "lg" }}
+				  color="fg.muted"
+				  lineHeight="relaxed"
+				>
+				  These are the technologies I actively work with in my current role and personal projects. Each tool shown represents skills I use regularly and can contribute with immediately.
+				</Text>
+			  </Stack>
+			</motion.div>
 
             {/* Conveyor Belt Section - Right Side */}
             <Flex

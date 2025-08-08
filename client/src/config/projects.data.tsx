@@ -3,15 +3,14 @@ import { FaCar, FaShieldAlt, FaRobot, FaTree } from "react-icons/fa"
 export const projects = [
   {
     id: "myprojectcar",
-    title: "MyProjectCar Marketplace",
+    title: "myprojectcar.com",
     subtitle: "Marketplace for Project Cars & Parts", // Consider matching the site's exact tagline if different
     description: `
-      A marketplace built for car-restoration enthusiasts. Shoppers can browse project cars
-      and parts with filters like make, model, and year; save searches; set alerts; and
-      message sellers. Sellers create listings with photos and details and get notified
-      when buyers show interest. Includes tools for organizing finds and tracking listings.
+      A community-driven marketplace for car restoration enthusiasts to buy,
+      sell, and trade project cars and parts. Featuring advanced search filters,
+      user profiles, and a full ecommerce experience.
     `,
-    tech: ["React", "Node.js", "Chakra UI", "TypeScript", "PostgreSQL", "AWS"],
+    tech: ["React", "Node.js", "Chakra UI", "TypeScript", "MongoDB", "AWS"],
     category: "Automotive Marketplace",
     status: "Production",
     timeline: "≈8 months",
@@ -31,7 +30,7 @@ export const projects = [
   },
   {
     id: "spscyber",
-    title: "Silent Partner Solutions",
+    title: "spscyber.com",
     subtitle: "People-Centered Cybersecurity & AI Advisory",
     description: `
       A cybersecurity and AI consultancy focused on practical, people-first outcomes.
@@ -59,7 +58,7 @@ export const projects = [
   },
   {
     id: "fencegpt",
-    title: "FenceGPT AI Assistant",
+    title: "fencegpt.com",
     subtitle: "AI Assistant for Fence Professionals",
     description: `
       An AI assistant purpose-built for fence companies and teams. Provides a curated
@@ -87,7 +86,7 @@ export const projects = [
   },
   {
     id: "waysidefence",
-    title: "Wayside Fence Company",
+    title: "waysidefence.com",
     subtitle: "Materials, Fabrication & Installation Services",
     description: `
       An online storefront and brand site for professional fence materials and services.

@@ -91,10 +91,7 @@ export const Projects = () => {
             <Box
               bg="bg.surface"
               border="2px solid"
-              borderColor={{
-                _light: "gray.400",
-                _dark: "gray.700",
-              }}
+              borderColor="border.darkmode"
               borderRadius="xl"
               overflow="hidden"
               transition="all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
@@ -132,9 +129,6 @@ export const Projects = () => {
                     <Heading size="md" color="fg" truncate lineClamp={1}>
                       {project.title}
                     </Heading>
-                    <Badge size="sm" variant="subtle" bg="primary.500" color="fg.inverted">
-                      {project.status}
-                    </Badge>
                   </VStack>
                 </HStack>
 

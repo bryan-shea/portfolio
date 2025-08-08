@@ -12,6 +12,8 @@ import {
   Text,
   VStack,
   Box,
+  useBreakpointValue,
+  IconButton,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import {
@@ -63,6 +65,7 @@ interface ControlAction {
 /**
  * Global controls component
  * Provides menu-based access to theme, background, and personalization controls
+ * Responsive design: full button on desktop, compact icon on mobile
  */
 export const GlobalControls: React.FC<GlobalControlsProps> = ({
   currentBackground,
@@ -75,6 +78,9 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
     useState(false);
   const [selectedActionId, setSelectedActionId] = useState<string>("settings");
   const { toggleColorMode, colorMode } = useColorMode();
+
+  // Responsive trigger: full button on md+, compact on mobile
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   const handleColorsChange = (colors: ColorScheme) => {
     if (onColorsChange) {
@@ -139,9 +145,19 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
         }}
       >
         <Box position="fixed" top="4" right="4" zIndex="1000">
-          <Menu.Root positioning={{ placement: "bottom-end", sameWidth: true }}>
+          <Menu.Root
+            positioning={{
+              placement: "bottom-end",
+              sameWidth: false,
+              offset: { mainAxis: 4, crossAxis: -8 },
+            }}
+          >
             <Menu.Trigger asChild>
-              <SelectedActionButton action={selectedAction} />
+              {isMobile ? (
+                <MobileControlsTrigger action={selectedAction} />
+              ) : (
+                <SelectedActionButton action={selectedAction} />
+              )}
             </Menu.Trigger>
             <Portal>
               <Menu.Positioner>
@@ -157,6 +173,7 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
                     _dark: "gray.700",
                   }}
                   boxShadow="lg"
+                  minW={isMobile ? "260px" : "300px"}
                 >
                   {controlActions.map((action) => (
                     <ActionMenuItem
@@ -164,6 +181,7 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
                       action={action}
                       selectedId={selectedActionId}
                       onSelect={action.action}
+                      isMobile={isMobile}
                     />
                   ))}
                 </Menu.Content>
@@ -222,13 +240,14 @@ interface ActionMenuItemProps extends Omit<Menu.ItemProps, "value"> {
   action: ControlAction;
   selectedId: string;
   onSelect: () => void;
+  isMobile?: boolean;
 }
 
 /**
  * Action menu item component
  */
 const ActionMenuItem = (props: ActionMenuItemProps) => {
-  const { action, selectedId, onSelect, ...rest } = props;
+  const { action, selectedId, onSelect, isMobile, ...rest } = props;
 
   return (
     <Menu.Item
@@ -241,18 +260,21 @@ const ActionMenuItem = (props: ActionMenuItemProps) => {
           _dark: "gray.800",
         },
       }}
+      py={isMobile ? "3" : "2"}
     >
       <HStack gap="3" flex="1">
-        <ActionIcon>
-          <Icon boxSize="4">{action.icon}</Icon>
+        <ActionIcon size={isMobile ? "10" : "8"}>
+          <Icon boxSize={isMobile ? "5" : "4"}>{action.icon}</Icon>
         </ActionIcon>
         <VStack gap="0" align="start" flex="1">
-          <Text fontWeight="medium" textStyle="sm">
+          <Text fontWeight="medium" textStyle={isMobile ? "md" : "sm"}>
             {action.name}
           </Text>
-          <Text textStyle="xs" color="fg.muted">
-            {action.description}
-          </Text>
+          {!isMobile && (
+            <Text textStyle="xs" color="fg.muted">
+              {action.description}
+            </Text>
+          )}
         </VStack>
       </HStack>
       {selectedId === action.id && (
@@ -261,6 +283,51 @@ const ActionMenuItem = (props: ActionMenuItemProps) => {
         </Icon>
       )}
     </Menu.Item>
+  );
+};
+
+/**
+ * Props for mobile controls trigger
+ */
+interface MobileControlsTriggerProps extends ButtonProps {
+  action: ControlAction;
+}
+
+/**
+ * Mobile controls trigger component
+ * Compact version for mobile devices - shows only settings icon
+ */
+const MobileControlsTrigger = (props: MobileControlsTriggerProps) => {
+  const { action, ...rest } = props;
+
+  return (
+    <IconButton
+      variant="outline"
+      colorPalette="gray"
+      size="lg"
+      bg={{
+        _light: "white/90",
+        _dark: "gray.900/90",
+      }}
+      backdropFilter="blur(10px)"
+      border="1px solid"
+      borderColor={{
+        _light: "gray.200",
+        _dark: "gray.700",
+      }}
+      boxShadow="lg"
+      _hover={{
+        bg: {
+          _light: "white",
+          _dark: "gray.900",
+        },
+      }}
+      {...rest}
+    >
+      <Icon boxSize="5">
+        <LuSettings />
+      </Icon>
+    </IconButton>
   );
 };
 
