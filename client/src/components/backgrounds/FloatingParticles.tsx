@@ -76,8 +76,12 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({
           height={`${particle.size}px`}
           borderRadius="full"
           bg={{
-            _light: "blue.300/50",
+            _light: "blue.400/60",
             _dark: "blue.400/20",
+          }}
+          boxShadow={{
+            _light: "0 2px 12px rgba(59, 130, 246, 0.4)",
+            _dark: "none",
           }}
           animation={`floatUpDown ${particle.duration}s ease-in-out infinite`}
           animationDelay={`${particle.delay}s`}
@@ -87,11 +91,15 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({
             inset: "0",
             borderRadius: "full",
             bg: {
-              _light: "purple.400/40",
+              _light: "purple.400/50",
               _dark: "purple.400/15",
             },
             animation: `fadeInOut ${particle.duration * 0.7}s ease-in-out infinite`,
             animationDelay: `${particle.delay + 1}s`,
+            boxShadow: {
+              _light: "0 0 8px rgba(147, 51, 234, 0.3)",
+              _dark: "none",
+            },
           }}
         />
       ))}

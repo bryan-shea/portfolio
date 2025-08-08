@@ -10,7 +10,8 @@ import {
 import {
   FloatingParticles,
   DotPattern,
-  FadeLines,
+  GeometricShapes,
+  SubtleGrid,
   GradientOrbs,
   NetworkNodes,
   type BackgroundType,
@@ -49,11 +50,18 @@ const SHOWCASE_SECTIONS: ShowcaseSection[] = [
     component: DotPattern,
   },
   {
-    background: "lines",
-    title: "Fade Lines",
+    background: "shapes",
+    title: "Geometric Shapes",
     description:
-      "Minimal vertical lines with gradient fade effects. Perfect for creating structured layouts with subtle visual depth.",
-    component: FadeLines,
+      "Elegant floating geometric forms with smooth animations. Features circles, triangles, squares, and diamonds that gently float and rotate.",
+    component: GeometricShapes,
+  },
+  {
+    background: "grid",
+    title: "Subtle Grid",
+    description:
+      "Minimal grid pattern with gentle floating animation. Adds subtle texture and depth without distraction.",
+    component: SubtleGrid,
   },
   {
     background: "orbs",

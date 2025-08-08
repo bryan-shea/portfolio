@@ -1,4 +1,4 @@
-import { type ComponentProps, type SVGProps } from "react";
+import { type ComponentProps } from "react";
 
 interface LogoProps extends ComponentProps<"svg"> {
   monochrome?: boolean;

@@ -4,7 +4,7 @@ export const colors = defineSemanticTokens.colors({
 	bg: {
 		DEFAULT: {
 			value: {
-				_light: "white",
+				_light: "#fafafa",
 				_dark: "{colors.surface.bg}",
 			},
 		},
@@ -38,9 +38,15 @@ export const colors = defineSemanticTokens.colors({
 				_dark: "{colors.dp.muted}",
 			},
 		},
+		surface: {
+			value: {
+				_light: "gray.50",
+				_dark: "{colors.surface.blue}",
+			},
+		},
 		panel: {
 			value: {
-				_light: "white",
+				_light: "#fafafa",
 				_dark: "{colors.gray.950}",
 			},
 		},
@@ -198,6 +204,12 @@ export const colors = defineSemanticTokens.colors({
 			value: {
 				_light: "rgba(0, 0, 0, 0.03)",
 				_dark: "{colors.overlay.blue.dp08}",
+			},
+		},
+		surface: {
+			value: {
+				_light: "rgba(255, 255, 255, 0.9)",
+				_dark: "{colors.overlay.surface}",
 			},
 		},
 	},

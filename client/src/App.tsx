@@ -29,7 +29,7 @@ interface SectionConfig {
  */
 const PORTFOLIO_SECTIONS: SectionConfig[] = [
   { id: "hero", component: Hero, defaultBackground: "particles" },
-  { id: "skills", component: Skills, defaultBackground: "lines" },
+  { id: "skills", component: Skills, defaultBackground: "grid" },
   { id: "projects", component: Projects, defaultBackground: "orbs" },
   { id: "journey", component: Journey, defaultBackground: "dots" },
 ];

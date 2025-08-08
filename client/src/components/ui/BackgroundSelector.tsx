@@ -13,7 +13,8 @@ import { useNavigate } from "react-router-dom";
 import {
   FloatingParticles,
   DotPattern,
-  FadeLines,
+  GeometricShapes,
+  SubtleGrid,
   GradientOrbs,
   NetworkNodes,
   type BackgroundType,
@@ -50,10 +51,16 @@ const BACKGROUND_OPTIONS: BackgroundOption[] = [
     component: DotPattern,
   },
   {
-    type: "lines",
-    name: "Fade Lines",
-    icon: "📏",
-    component: FadeLines,
+    type: "shapes",
+    name: "Geometric Shapes",
+    icon: "🔸",
+    component: GeometricShapes,
+  },
+  {
+    type: "grid",
+    name: "Subtle Grid",
+    icon: "▦",
+    component: SubtleGrid,
   },
   {
     type: "orbs",

@@ -5,7 +5,8 @@
 
 export { FloatingParticles } from './FloatingParticles';
 export { DotPattern } from './DotPattern';
-export { FadeLines } from './FadeLines';
+export { GeometricShapes } from './GeometricShapes';
+export { SubtleGrid } from './SubtleGrid';
 export { GradientOrbs } from './GradientOrbs';
 export { NetworkNodes } from './NetworkNodes';
 export { BackgroundManager, type BackgroundType } from './BackgroundManager';

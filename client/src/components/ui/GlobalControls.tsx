@@ -1,21 +1,34 @@
-import { Box, Button, VStack, Collapsible, IconButton } from "@chakra-ui/react";
+"use client";
+
+import type { ButtonProps, SquareProps } from "@chakra-ui/react";
+import {
+  Badge,
+  Button,
+  HStack,
+  Icon,
+  Menu,
+  Portal,
+  Square,
+  Text,
+  VStack,
+  Box,
+} from "@chakra-ui/react";
 import { useState } from "react";
-import { LuPalette, LuSettings, LuX, LuImage } from "react-icons/lu";
-import { ColorModeIcon, useColorMode } from "./color-mode";
-import { Tooltip } from "./tooltip";
+import {
+  LuPalette,
+  LuImage,
+  LuSettings,
+  LuCheck,
+  LuChevronsUpDown,
+  LuSun,
+  LuMoon,
+} from "react-icons/lu";
+import { useColorMode } from "./color-mode";
 import { Personalize } from "./Personalize";
 import { BackgroundSelector } from "./BackgroundSelector";
 import { type BackgroundType } from "../backgrounds";
+import { type ColorScheme } from "../../contexts/ColorContext";
 import { motion } from "framer-motion";
-
-/**
- * Color scheme interface
- */
-interface ColorScheme {
-  primary: string;
-  secondary: string;
-  accent: string;
-}
 
 /**
  * Props for GlobalControls component
@@ -32,25 +45,36 @@ interface GlobalControlsProps {
 }
 
 /**
+ * Control action interface
+ */
+interface ControlAction {
+  /** Unique identifier for the action */
+  id: string;
+  /** Display name of the action */
+  name: string;
+  /** Icon component for the action */
+  icon: React.ReactElement;
+  /** Brief description of the action */
+  description: string;
+  /** Action to execute */
+  action: () => void;
+}
+
+/**
  * Global controls component
- * Combines color mode toggle with background selector and personalization options
- * Positioned as a fixed overlay for easy access
+ * Provides menu-based access to theme, background, and personalization controls
  */
 export const GlobalControls: React.FC<GlobalControlsProps> = ({
   currentBackground,
   onBackgroundChange,
-  currentColors = {
-    primary: "#0090d3",
-    secondary: "#007ab3",
-    accent: "#b6eaff",
-  },
+  currentColors,
   onColorsChange,
 }) => {
   const [isPersonalizeOpen, setIsPersonalizeOpen] = useState(false);
   const [isBackgroundSelectorOpen, setIsBackgroundSelectorOpen] =
     useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(true); // Start collapsed
-  const { toggleColorMode } = useColorMode();
+  const [selectedActionId, setSelectedActionId] = useState<string>("settings");
+  const { toggleColorMode, colorMode } = useColorMode();
 
   const handleColorsChange = (colors: ColorScheme) => {
     if (onColorsChange) {
@@ -58,7 +82,51 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
     }
   };
 
-  console.log("GlobalControls current background:", currentBackground);
+  /**
+   * Available control actions
+   */
+  const controlActions: ControlAction[] = [
+    {
+      id: "theme",
+      name: "Toggle Theme",
+      icon: colorMode === "light" ? <LuMoon /> : <LuSun />,
+      description: `Switch to ${colorMode === "light" ? "dark" : "light"} mode`,
+      action: () => {
+        toggleColorMode();
+        setSelectedActionId("theme");
+      },
+    },
+    {
+      id: "background",
+      name: "Background",
+      icon: <LuImage />,
+      description: "Choose background style",
+      action: () => {
+        setIsBackgroundSelectorOpen(true);
+        setSelectedActionId("background");
+      },
+    },
+    {
+      id: "personalize",
+      name: "Personalize",
+      icon: <LuPalette />,
+      description: "Customize colors",
+      action: () => {
+        setIsPersonalizeOpen(true);
+        setSelectedActionId("personalize");
+      },
+    },
+  ];
+
+  const selectedAction = controlActions.find(
+    (action) => action.id === selectedActionId
+  ) || {
+    id: "settings",
+    name: "Settings",
+    icon: <LuSettings />,
+    description: "Global controls",
+    action: () => {},
+  };
 
   return (
     <>
@@ -70,134 +138,38 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
           ease: "easeOut",
         }}
       >
-        <Box
-          position="fixed"
-          top="4"
-          right="4"
-          zIndex="1000"
-          bg={{
-            _light: "white/80",
-            _dark: "gray.900/80",
-          }}
-          backdropFilter="blur(10px)"
-          borderRadius="lg"
-          border="1px solid"
-          borderColor={{
-            _light: "gray.200",
-            _dark: "gray.700",
-          }}
-          boxShadow="lg"
-          overflow="hidden"
-        >
-          <Collapsible.Root
-            open={!isCollapsed}
-            onOpenChange={(details) => setIsCollapsed(!details.open)}
-          >
-            {/* Toggle Button - Always visible */}
-            <Box p="2">
-              <Tooltip
-                content={isCollapsed ? "Open controls" : "Close controls"}
-                positioning={{ placement: "left" }}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
+        <Box position="fixed" top="4" right="4" zIndex="1000">
+          <Menu.Root positioning={{ placement: "bottom-end", sameWidth: true }}>
+            <Menu.Trigger asChild>
+              <SelectedActionButton action={selectedAction} />
+            </Menu.Trigger>
+            <Portal>
+              <Menu.Positioner>
+                <Menu.Content
+                  bg={{
+                    _light: "white/95",
+                    _dark: "gray.900/95",
+                  }}
+                  backdropFilter="blur(10px)"
+                  border="1px solid"
+                  borderColor={{
+                    _light: "gray.200",
+                    _dark: "gray.700",
+                  }}
+                  boxShadow="lg"
                 >
-                  <Collapsible.Trigger asChild>
-                    <IconButton
-                      size="sm"
-                      variant="ghost"
-                      aria-label={
-                        isCollapsed ? "Open controls" : "Close controls"
-                      }
-                    >
-                      <motion.div
-                        animate={{ rotate: isCollapsed ? 0 : 45 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                      >
-                        {isCollapsed ? <LuSettings /> : <LuX />}
-                      </motion.div>
-                    </IconButton>
-                  </Collapsible.Trigger>
-                </motion.div>
-              </Tooltip>
-            </Box>
-
-            {/* Collapsible Content */}
-            <Collapsible.Content>
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{
-                  opacity: isCollapsed ? 0 : 1,
-                  height: isCollapsed ? 0 : "auto",
-                }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{
-                  duration: 0.25,
-                  ease: "easeInOut",
-                }}
-              >
-                <Box p="3" pt="0">
-                  <VStack gap="2" align="stretch">
-                    {/* Personalize Colors Button */}
-                    <motion.div
-                      whileHover={{ x: 4 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ duration: 0.15 }}
-                    >
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => setIsPersonalizeOpen(true)}
-                        width="full"
-                        justifyContent="flex-start"
-                      >
-                        <LuPalette />
-                        Personalize Colors
-                      </Button>
-                    </motion.div>
-
-                    {/* Background Selector Button */}
-                    <motion.div
-                      whileHover={{ x: 4 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ duration: 0.15 }}
-                    >
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => setIsBackgroundSelectorOpen(true)}
-                        width="full"
-                        justifyContent="flex-start"
-                      >
-                        <LuImage />
-                        Choose Background
-                      </Button>
-                    </motion.div>
-
-                    {/* Color Mode Toggle */}
-                    <motion.div
-                      whileHover={{ x: 4 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ duration: 0.15 }}
-                    >
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={toggleColorMode}
-                        width="full"
-                        justifyContent="flex-start"
-                      >
-                        <ColorModeIcon />
-                        Toggle Theme
-                      </Button>
-                    </motion.div>
-                  </VStack>
-                </Box>
-              </motion.div>
-            </Collapsible.Content>
-          </Collapsible.Root>
+                  {controlActions.map((action) => (
+                    <ActionMenuItem
+                      key={action.id}
+                      action={action}
+                      selectedId={selectedActionId}
+                      onSelect={action.action}
+                    />
+                  ))}
+                </Menu.Content>
+              </Menu.Positioner>
+            </Portal>
+          </Menu.Root>
         </Box>
       </motion.div>
 
@@ -210,12 +182,153 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
       />
 
       {/* Personalize Panel */}
-      <Personalize
-        currentColors={currentColors}
-        onColorsChange={handleColorsChange}
-        isOpen={isPersonalizeOpen}
-        onClose={() => setIsPersonalizeOpen(false)}
-      />
+      {currentColors && (
+        <Personalize
+          currentColors={currentColors}
+          onColorsChange={handleColorsChange}
+          isOpen={isPersonalizeOpen}
+          onClose={() => setIsPersonalizeOpen(false)}
+        />
+      )}
     </>
+  );
+};
+
+/**
+ * Action icon component
+ */
+const ActionIcon = (props: SquareProps & { children: React.ReactNode }) => {
+  return (
+    <Square
+      bg={{
+        _light: "gray.50",
+        _dark: "gray.800",
+      }}
+      color={{
+        _light: "gray.600",
+        _dark: "gray.400",
+      }}
+      size="8"
+      rounded="md"
+      {...props}
+    />
+  );
+};
+
+/**
+ * Props for action menu item
+ */
+interface ActionMenuItemProps extends Omit<Menu.ItemProps, "value"> {
+  action: ControlAction;
+  selectedId: string;
+  onSelect: () => void;
+}
+
+/**
+ * Action menu item component
+ */
+const ActionMenuItem = (props: ActionMenuItemProps) => {
+  const { action, selectedId, onSelect, ...rest } = props;
+
+  return (
+    <Menu.Item
+      {...rest}
+      value={action.id}
+      onClick={onSelect}
+      _hover={{
+        bg: {
+          _light: "gray.50",
+          _dark: "gray.800",
+        },
+      }}
+    >
+      <HStack gap="3" flex="1">
+        <ActionIcon>
+          <Icon boxSize="4">{action.icon}</Icon>
+        </ActionIcon>
+        <VStack gap="0" align="start" flex="1">
+          <Text fontWeight="medium" textStyle="sm">
+            {action.name}
+          </Text>
+          <Text textStyle="xs" color="fg.muted">
+            {action.description}
+          </Text>
+        </VStack>
+      </HStack>
+      {selectedId === action.id && (
+        <Icon color="gray.500">
+          <LuCheck />
+        </Icon>
+      )}
+    </Menu.Item>
+  );
+};
+
+/**
+ * Props for selected action button
+ */
+interface SelectedActionButtonProps extends ButtonProps {
+  action: ControlAction;
+}
+
+/**
+ * Selected action button component
+ */
+const SelectedActionButton = (props: SelectedActionButtonProps) => {
+  const { action, ...rest } = props;
+
+  return (
+    <Button
+      variant="outline"
+      colorPalette="gray"
+      h="14"
+      ps="3"
+      bg={{
+        _light: "white/90",
+        _dark: "gray.900/90",
+      }}
+      backdropFilter="blur(10px)"
+      border="1px solid"
+      borderColor={{
+        _light: "gray.200",
+        _dark: "gray.700",
+      }}
+      boxShadow="lg"
+      _hover={{
+        bg: {
+          _light: "white",
+          _dark: "gray.900",
+        },
+      }}
+      {...rest}
+    >
+      <HStack gap="2">
+        <ActionIcon size="10">
+          <Icon boxSize="5">{action.icon}</Icon>
+        </ActionIcon>
+        <VStack gap="0" align="start">
+          <HStack gap="2">
+            <Text fontWeight="semibold" textStyle="sm">
+              {action.name}
+            </Text>
+            <Badge
+              size="xs"
+              variant="surface"
+              colorPalette="gray"
+              textTransform="uppercase"
+              letterSpacing="wider"
+            >
+              Control
+            </Badge>
+          </HStack>
+          <Text textStyle="xs" color="fg.muted">
+            {action.description}
+          </Text>
+        </VStack>
+      </HStack>
+      <Icon color="fg.subtle" ms="2" size="sm">
+        <LuChevronsUpDown />
+      </Icon>
+    </Button>
   );
 };

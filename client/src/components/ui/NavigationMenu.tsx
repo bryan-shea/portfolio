@@ -104,7 +104,7 @@ export const NavigationMenu = () => {
       }}
     >
       <Box position="fixed" top="4" left="4" zIndex="1000">
-        <Menu.Root positioning={{ placement: "bottom-start", sameWidth: true }}>
+        <Menu.Root positioning={{ placement: "bottom-start", sameWidth: true }} variant="subtle">
           <Menu.Trigger asChild>
             <SelectedSectionButton section={selectedSection} />
           </Menu.Trigger>
@@ -147,12 +147,12 @@ const SectionIcon = (props: SquareProps & { children: React.ReactNode }) => {
   return (
     <Square
       bg={{
-        _light: "blue.50",
-        _dark: "blue.900/30",
+        _light: "primary.50",
+        _dark: "primary.900/30",
       }}
       color={{
-        _light: "blue.600",
-        _dark: "blue.400",
+        _light: "primary.600",
+        _dark: "primary.400",
       }}
       size="8"
       rounded="md"
@@ -183,8 +183,8 @@ const SectionMenuItem = (props: SectionMenuItemProps) => {
       onClick={onSelect}
       _hover={{
         bg: {
-          _light: "blue.50",
-          _dark: "blue.900/30",
+          _light: "primary.50",
+          _dark: "primary.900/30",
         },
       }}
     >
@@ -202,7 +202,7 @@ const SectionMenuItem = (props: SectionMenuItemProps) => {
         </VStack>
       </HStack>
       {selectedId === section.id && (
-        <Icon color="blue.500">
+        <Icon color={{ _light: "primary.500", _dark: "primary.400" }}>
           <LuCheck />
         </Icon>
       )}
@@ -226,7 +226,10 @@ const SelectedSectionButton = (props: SelectedSectionButtonProps) => {
   return (
     <Button
       variant="outline"
-      colorPalette="blue"
+      color={{
+		_light: "primary.600",
+		_dark: "primary.400",
+	  }}
       h="14"
       ps="3"
       bg={{
@@ -260,7 +263,10 @@ const SelectedSectionButton = (props: SelectedSectionButtonProps) => {
             <Badge
               size="xs"
               variant="surface"
-              colorPalette="blue"
+              color={{
+				_light: "primary.500",
+				_dark: "primary.400",
+			  }}
               textTransform="uppercase"
               letterSpacing="wider"
             >

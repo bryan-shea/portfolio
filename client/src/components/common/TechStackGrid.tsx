@@ -149,7 +149,7 @@ export const TechStackGrid = () => {
                 textAlign={{ base: "center", lg: "left" }}
                 maxW={{ base: "full", lg: "md" }}
                 flex="0 0 auto"
-				mt={{ base: "8", md: "24" }}
+                mt={{ base: "8", md: "24" }}
               >
                 <Heading
                   size={{ base: "2xl", md: "3xl" }}
@@ -189,10 +189,10 @@ export const TechStackGrid = () => {
                       size="sm"
                       minW="160px"
                       w="160px"
-                      bg="bg.muted"
+                      bg="bg.surface"
                       _hover={{
-                        transform: "scale(1.05)",
                         shadow: "md",
+						borderColor: "primary.500",
                       }}
                       transition="all 0.2s ease"
                     >
@@ -233,10 +233,10 @@ export const TechStackGrid = () => {
                       size="sm"
                       minW="160px"
                       w="160px"
-                      bg="bg.muted"
+                      bg="bg.surface"
                       _hover={{
-                        transform: "scale(1.05)",
                         shadow: "md",
+						borderColor: "primary.500",
                       }}
                       transition="all 0.2s ease"
                     >

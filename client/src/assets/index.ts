@@ -1,0 +1,1 @@
+export { default as Headshot } from "./bryan.webp"

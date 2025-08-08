@@ -8,19 +8,50 @@ import {
   Button,
   Badge,
   VStack,
-  Box,
+  Highlight,
 } from "@chakra-ui/react";
-import {
-  LuArrowRight,
-  LuCode,
-  LuPalette,
-  LuDownload,
-  LuMail,
-} from "react-icons/lu";
+import { LuArrowRight, LuCode, LuPalette, LuMail } from "react-icons/lu";
 import { ProfilePicture } from "../components/common";
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 export const Hero = () => {
+  // Available color palettes and variants for badges
+  const colorPalettes = [
+    "gray",
+    "orange",
+    "yellow",
+    "green",
+	"teal",
+    "blue",
+    "purple",
+    "pink",
+  ] as const;
+  const variants = ["subtle", "surface"] as const;
+
+  // Technologies to display
+  const technologies = [
+    "TypeScript",
+    "React",
+    "Next.js",
+    "AWS",
+    "Docker",
+    "GraphQL",
+    "PostgreSQL",
+    "Node.js",
+  ];
+
+  // Generate random styling for each tech badge on component mount
+  const badgeStyles = useMemo(() => {
+    // Shuffle the color palettes array to ensure no repeats
+    const shuffledColors = [...colorPalettes].sort(() => Math.random() - 0.5);
+
+    return technologies.map((_, index) => ({
+      colorPalette: shuffledColors[index], // Use each color exactly once
+      variant: variants[Math.floor(Math.random() * variants.length)],
+    }));
+  }, []); // Empty dependency array ensures this only runs once on mount
+
   const handleViewWork = () => {
     const projectsSection = document.getElementById("projects");
     if (projectsSection) {
@@ -32,33 +63,57 @@ export const Hero = () => {
     window.open("mailto:your.email@example.com", "_blank");
   };
 
-  const handleDownloadResume = () => {
-    // You can replace this with your actual resume download link
-    window.open("#", "_blank");
-  };
-
   return (
     <Container
       maxW="6xl"
-      py={{ base: "6", md: "12", lg: "28" }}
+      py={{ base: "6", md: "12", lg: "32" }}
       px={{ base: "4", md: "6", lg: "8" }}
     >
       <Stack
-        gap={{ base: "12", md: "16", lg: "20" }}
+        gap={{ base: "8", md: "10", lg: "12" }}
         align="center"
         textAlign="center"
         w="full"
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bg: { _light: "white/80", _dark: "gray.900/10" },
+          backdropFilter: "blur(3px)",
+          borderRadius: "xl",
+          zIndex: -1,
+        }}
       >
-        {/* Profile Picture - Primary Focus */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <ProfilePicture />
-        </motion.div>
+        {/* Profile Header - Grouped for better alignment */}
+        <Stack gap={{ base: "2", md: "4" }} align="center">
+          {/* Profile Picture */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <ProfilePicture />
+          </motion.div>
 
-        <Stack gap={{ base: "8", md: "6" }} maxW={{ md: "4xl" }}>
+          {/* Name Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+          >
+            <Heading
+              size={{ base: "4xl", md: "6xl" }}
+              lineHeight="shorter"
+              letterSpacing="tight"
+              color="fg"
+            >
+              Bryan Shea
+            </Heading>
+          </motion.div>
           {/* Professional Title with Icons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -72,93 +127,105 @@ export const Hero = () => {
               gap="3"
               color="fg.info"
             >
-              <LuCode /> Full-Stack Developer & Designer <LuPalette />
+              <LuCode /> Senior Full-Stack Engineer • Product Builder{" "}
+              <LuPalette />
             </HStack>
           </motion.div>
+        </Stack>
 
-          <Stack gap={{ base: "6", md: "8" }}>
-            {/* Name and Key Value Proposition */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+        {/* Content Section */}
+        <Stack gap={{ base: "2", md: "4" }} maxW={{ md: "6xl" }}>
+          {/* Hireability-focused Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+          >
+            <Text
+              fontSize={{ base: "lg", md: "xl" }}
+              color="fg.muted"
+              maxW="4xl"
+              mx="auto"
+              lineHeight="relaxed"
             >
-              <Heading
-                size={{ base: "4xl", md: "6xl" }}
-                lineHeight="shorter"
-                letterSpacing="tight"
-                color="fg"
+              Experienced full-stack engineer specializing in{" "}
+              <Highlight
+                query={["modern web applications"]}
+                styles={{
+                  fontWeight: "semibold",
+                  color: "fg",
+                  bg: { _light: "blue.50", _dark: "blue.900/30" },
+                  px: "1",
+                  py: "0.5",
+                  rounded: "sm",
+                }}
               >
-                Bryan Shea
-              </Heading>
-            </motion.div>
-
-            {/* Hireability-focused Description */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-            >
-              <Text
-                fontSize={{ base: "lg", md: "xl" }}
-                color="fg.muted"
-                maxW="3xl"
-                mx="auto"
-                lineHeight="relaxed"
+                modern web applications
+              </Highlight>{" "}
+              and{" "}
+              <Highlight
+                query={["cloud-native solutions"]}
+                styles={{
+                  fontWeight: "semibold",
+                  color: "fg",
+                  bg: { _light: "green.50", _dark: "green.900/30" },
+                  px: "1",
+                  py: "0.5",
+                  rounded: "sm",
+                }}
               >
-                5+ years building scalable web applications with{" "}
-                <Text as="span" fontWeight="semibold" color="fg">
-                  React, Node.js, and modern cloud infrastructure
-                </Text>
-                . I create intuitive user experiences backed by robust,
-                performant systems.
-              </Text>
-            </motion.div>
+                cloud-native solutions
+              </Highlight>
+              . Focused on building{" "}
+              <Highlight
+                query={["scalable, user-focused products"]}
+                styles={{
+                  fontWeight: "semibold",
+                  color: "fg",
+                  bg: { _light: "orange.50", _dark: "orange.900/30" },
+                  px: "1",
+                  py: "0.5",
+                  rounded: "sm",
+                }}
+              >
+                scalable, user-focused products
+              </Highlight>{" "}
+              that drive business growth and deliver exceptional user
+              experiences.
+            </Text>
+          </motion.div>
 
-            {/* Key Skills/Technologies */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
-            >
-              <HStack justify="center" wrap="wrap" gap="2" mt="4">
-                {[
-                  "TypeScript",
-                  "React",
-                  "Node.js",
-                  "AWS",
-                  "MongoDB",
-                  "GraphQL",
-                ].map((tech, index) => {
-                  const colors = [
-                    "blue",
-                    "green",
-                    "orange",
-                    "purple",
-                    "teal",
-                    "red",
-                  ];
-                  return (
-                    <motion.div
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.4,
-                        delay: 0.9 + index * 0.1,
-                        ease: "easeOut",
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <Badge colorPalette={colors[index]} size="md">
-                        {tech}
-                      </Badge>
-                    </motion.div>
-                  );
-                })}
-              </HStack>
-            </motion.div>
-          </Stack>
+          {/* Key Skills/Technologies */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+          >
+            <HStack justify="center" wrap="wrap" gap="2" mt="4">
+              {technologies.map((tech, index) => (
+                <motion.div
+                  key={tech}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 0.9 + index * 0.08,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Badge
+                    colorPalette={badgeStyles[index].colorPalette}
+                    variant={badgeStyles[index].variant}
+                    size="md"
+                    fontWeight="semibold"
+                  >
+                    {tech}
+                  </Badge>
+                </motion.div>
+              ))}
+            </HStack>
+          </motion.div>
         </Stack>
 
         {/* Call-to-Action Buttons - Recruiter Focused */}
@@ -196,7 +263,7 @@ export const Hero = () => {
                   _hover={{ transform: "translateY(-2px)", boxShadow: "xl" }}
                   transition="all 0.2s"
                 >
-                  View My Work <LuArrowRight />
+                  View Portfolio <LuArrowRight />
                 </Button>
               </motion.div>
               <motion.div
@@ -214,52 +281,11 @@ export const Hero = () => {
                   _hover={{ bg: "bg.subtle", transform: "translateY(-2px)" }}
                   transition="all 0.2s"
                 >
-                  <LuMail /> Get In Touch
+                  <LuMail /> Let's Connect
                 </Button>
               </motion.div>
             </Flex>
-
-            {/* Resume Download - Secondary Action */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Button
-                size="md"
-                variant="ghost"
-                onClick={handleDownloadResume}
-                color="fg.muted"
-                _hover={{ color: "fg" }}
-              >
-                <LuDownload /> Download Resume
-              </Button>
-            </motion.div>
           </VStack>
-        </motion.div>
-
-        {/* Availability Status */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.4, ease: "easeOut" }}
-        >
-          <HStack
-            justify="center"
-            gap="2"
-            pt="4"
-            fontSize="sm"
-            color="fg.muted"
-          >
-            <Box
-              w="2"
-              h="2"
-              bg="green.500"
-              borderRadius="full"
-              animation="pulse 2s infinite"
-            />
-            <Text>Available for new opportunities</Text>
-          </HStack>
         </motion.div>
       </Stack>
     </Container>

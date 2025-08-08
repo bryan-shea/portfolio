@@ -1,6 +1,6 @@
 import { Box, Flex, Button, Text } from "@chakra-ui/react";
 import { type ComponentType, useState } from "react";
-import { Hero, About, Skills, Projects, Contact } from "./sections";
+import { Hero, Skills, Projects } from "./sections";
 import { AnimatedSection } from "./components/common";
 import { GlobalControls } from "./components/ui";
 import {
@@ -27,10 +27,8 @@ interface SectionConfig {
  */
 const PORTFOLIO_SECTIONS: SectionConfig[] = [
   { id: "hero", component: Hero, defaultBackground: "particles" },
-  { id: "about", component: About, defaultBackground: "grid" },
-  { id: "skills", component: Skills, defaultBackground: "waves" },
+  { id: "skills", component: Skills, defaultBackground: "grid" },
   { id: "projects", component: Projects, defaultBackground: "orbs" },
-  { id: "contact", component: Contact, defaultBackground: "network" },
 ];
 
 /**

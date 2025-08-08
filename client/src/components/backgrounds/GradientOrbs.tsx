@@ -94,7 +94,10 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
           background={getOrbGradient(orb.colorVariant)}
           animation={`orbFloat ${orb.duration}s ease-in-out infinite`}
           animationDelay={`${orb.delay}s`}
-          filter="blur(1px)"
+          filter={{
+            _light: "blur(1px) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))",
+            _dark: "blur(1px)",
+          }}
           transform="translate(-50%, -50%)"
           _after={{
             content: '""',

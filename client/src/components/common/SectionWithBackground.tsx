@@ -27,7 +27,7 @@ const QUICK_BACKGROUNDS: Array<{
   { type: "none", name: "None", emoji: "🚫" },
   { type: "particles", name: "Particles", emoji: "✨" },
   { type: "grid", name: "Grid", emoji: "⚡" },
-  { type: "waves", name: "Waves", emoji: "🌊" },
+  { type: "grid", name: "Grid", emoji: "▦" },
   { type: "orbs", name: "Orbs", emoji: "🟡" },
   { type: "network", name: "Network", emoji: "🔗" },
 ];

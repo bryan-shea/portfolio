@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import {
   FloatingParticles,
   DotPattern,
-  FadeLines,
+  GeometricShapes,
+  SubtleGrid,
   GradientOrbs,
   NetworkNodes,
 } from "./index";
@@ -15,7 +16,8 @@ export type BackgroundType =
   | "none"
   | "particles"
   | "dots"
-  | "lines"
+  | "shapes"
+  | "grid"
   | "orbs"
   | "network";
 
@@ -68,10 +70,16 @@ const BACKGROUND_OPTIONS: BackgroundOption[] = [
     component: DotPattern,
   },
   {
-    type: "lines",
-    name: "Fade Lines",
-    description: "Minimal vertical lines with gradient fade",
-    component: FadeLines,
+    type: "shapes",
+    name: "Geometric Shapes",
+    description: "Elegant floating geometric forms with smooth animations",
+    component: GeometricShapes,
+  },
+  {
+    type: "grid",
+    name: "Subtle Grid",
+    description: "Minimal grid pattern with gentle floating animation",
+    component: SubtleGrid,
   },
   {
     type: "orbs",
