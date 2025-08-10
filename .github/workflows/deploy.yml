@@ -25,9 +25,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
-      - name: Install deps (workspace)
-        run: npm ci --workspaces
+      - name: Clean install dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install --workspaces
+          # Ensure Rollup native binaries are properly installed
+          npm rebuild --workspace=client
 
       - name: Chakra typegen
         run: npm run typegen --workspace=client
