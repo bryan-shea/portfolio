@@ -1,28 +1,23 @@
 {
-  "name": "portfolio-monorepo",
+  "name": "portfolio",
   "version": "1.0.0",
-  "description": "MERN stack monorepo with shared types, GraphQL server, and React client",
+  "description": "Personal portfolio website built with React, TypeScript, and Chakra UI",
   "private": true,
   "workspaces": [
-    "shared",
-    "server",
     "client"
   ],
   "scripts": {
-	"start": "npm run start --workspace=server",
-	"dev": "npm run dev --workspaces",
+    "dev": "npm run dev --workspace=client",
     "install-all": "npm install --workspaces",
-	"lint": "eslint . --ext .ts,.tsx",
-	"typegen": "npx @chakra-ui/cli typegen ./client/src/theme/index.ts",
-	"postinstall": "npm run typegen --workspace=client",
-	"build": "npm run build --workspaces",
-	"lint-all": "npm run lint --workspaces",
-	"build-all": "npm run build --workspaces",
-    "build-shared": "npm run build --workspace=shared",
-    "start-server": "npm run start --workspace=server",
-    "dev-client": "npm run dev --workspace=client"
+    "lint": "npm run lint --workspace=client",
+    "typegen": "npm run typegen --workspace=client",
+    "postinstall": "npm run postinstall --workspace=client",
+    "build": "npm run build --workspace=client",
+    "preview": "npm run preview --workspace=client",
+    "deploy": "gh-pages -d client/dist"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "gh-pages": "^6.2.0"
   }
 }

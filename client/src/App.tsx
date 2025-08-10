@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { type ComponentType } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Hero, Skills, Projects, Journey } from "./sections";
 import { AnimatedSection } from "./components/common";
 import { GlobalControls, NavigationMenu } from "./components/ui";
