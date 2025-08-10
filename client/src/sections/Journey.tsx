@@ -14,6 +14,16 @@ import { LuGraduationCap, LuCode, LuTrophy } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { journeyMilestones, techCategories } from "../config";
 
+const getColorHex = (color: string): string => {
+  const colorMap: Record<string, string> = {
+    indigo: "#6366f1",
+    green: "#10b981",
+    purple: "#8b5cf6",
+    blue: "#3b82f6",
+  };
+  return colorMap[color] || "#6366f1";
+};
+
 export const Journey = () => {
   return (
     <Container
@@ -66,7 +76,10 @@ export const Journey = () => {
         </VStack>
       </motion.div>
 
-      <VStack gap="8" mb="12">
+      <VStack gap="12" mb="12"
+		py={2}
+		px={{ base: "4", md: "6", lg: "8" }}
+	  >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +91,7 @@ export const Journey = () => {
           </Heading>
         </motion.div>
 
-        <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap="8" w="fit-content">
+        <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap="20" w="fit-content">
           {techCategories.map((category, index) => (
             <motion.div
               key={category.name}
@@ -93,7 +106,7 @@ export const Journey = () => {
                 border="2px solid"
                 borderColor="border.darkmode"
                 borderRadius="xl"
-                p={{ base: "4", md: "4" }}
+                p={4}
                 textAlign="center"
                 transition="all 0.3s ease"
                 height="100%"
@@ -142,115 +155,150 @@ export const Journey = () => {
         </SimpleGrid>
       </VStack>
 
-      <VStack gap="2" mt="12">
+      <VStack gap="2" mt="12"
+	  	py={2}
+		px={{ base: "4", md: "6", lg: "8" }}
+
+	  >
         <Timeline.Root
           size={{ base: "md", md: "xl" }}
           variant="solid"
-          maxW="4xl"
+          maxW="5xl"
           w="full"
         >
-          {journeyMilestones.map((milestone, index) => (
-            <Timeline.Item key={milestone.id} py={{ base: "4", md: "8" }} >
-              <Timeline.Content w="auto" minW={{ base: "20", md: "24" }}>
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <VStack gap="1" align="end">
-                    <Text
-                      fontSize="md"
-                      fontWeight="bold"
-                      color="bg.inverted"
-                    >
-                      {milestone.year}
-                    </Text>
-                    <Badge
-                      size="sm"
-                      colorPalette={milestone.color}
-                      variant="subtle"
-                    >
-                      {milestone.category}
-                    </Badge>
-                  </VStack>
-                </motion.div>
-              </Timeline.Content>
-
-              <Timeline.Connector>
-                <Timeline.Separator />
-                <Timeline.Indicator>
-                  <Icon as={LuGraduationCap} boxSize="4" />
-                </Timeline.Indicator>
-              </Timeline.Connector>
-
-              <Timeline.Content
-                bg="bg.surface"
-                border="2px solid"
-                borderColor="border.darkmode"
-                borderRadius="xl"
-                p="6"
-              >
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                >
-                  <VStack gap="4" align="start" w="full" >
-                    <VStack gap="4" align="start">
-                      <Timeline.Title
-                        fontSize={{ base: "md", lg: "lg" }}
-                        fontWeight="bold"
-                        color="fg"
-                      >
-                        {milestone.title}
-                      </Timeline.Title>
-                      <Timeline.Description
-                        color="fg.muted"
-                        lineHeight="relaxed"
-                        fontSize={{ base: "sm", md: "md" }}
-                      >
-                        {milestone.description}
-                      </Timeline.Description>
-                    </VStack>
-
-                    <VStack gap="3" align="start" w="full">
-                      <Text fontSize="sm" fontWeight="semibold" color="fg">
-                        Skills Acquired:
+          {journeyMilestones.map((milestone, index) => {
+            console.log(
+              `Milestone ${milestone.id} certImage:`,
+              milestone.certImage
+            );
+            return (
+              <Timeline.Item key={milestone.id} py={{ base: "4", md: "8" }}>
+                <Timeline.Content w="auto" minW={{ base: "20", md: "24" }}>
+                  <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <VStack gap="1" align="end">
+                      <Text fontSize="md" fontWeight="bold" color="bg.inverted">
+                        {milestone.year}
                       </Text>
-                      <HStack wrap="wrap" gap="1">
-                        {milestone.skills.map((skill) => (
-                          <Badge
-                            key={skill}
-                            size="sm"
-                            variant="outline"
-                            colorPalette="gray"
-                            fontSize="xs"
-                          >
-                            {skill}
-                          </Badge>
-                        ))}
+                    </VStack>
+                  </motion.div>
+                </Timeline.Content>
+
+                <Timeline.Connector>
+                  <Timeline.Separator />
+                  <Timeline.Indicator>
+                    <Icon as={LuGraduationCap} boxSize="4" />
+                  </Timeline.Indicator>
+                </Timeline.Connector>
+
+                <Timeline.Content
+                  bg="bg.surface"
+                  border="2px solid"
+                  borderColor="border.darkmode"
+                  borderRadius="xl"
+                  p="6"
+                  position="relative"
+                  overflow="hidden"
+                  transition="all 0.3s ease"
+                  _hover={
+                    milestone.certImage
+                      ? {
+                          borderColor: `${milestone.color}.500`,
+                          transform: "translateY(-2px)",
+                          boxShadow: "lg",
+                          _before: {
+                            opacity: 0.35,
+                          },
+                        }
+                      : {}
+                  }
+                  _before={
+                    milestone.certImage
+                      ? {
+                          content: '""',
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          backgroundImage: `linear-gradient(to right,
+                          ${getColorHex(milestone.color)} 0%,
+                          ${getColorHex(milestone.color)} 30%,
+                          transparent 70%),
+                          url(${milestone.certImage})`,
+                          backgroundSize: "auto 100%, contain",
+                          backgroundPosition: "left center, right center",
+                          backgroundRepeat: "no-repeat",
+                          opacity: 0.2,
+                          zIndex: 0,
+                          transition: "opacity 0.3s ease",
+                        }
+                      : {}
+                  }
+                >
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    style={{ position: "relative", zIndex: 1 }}
+                  >
+                    <VStack gap="4" align="start" w="full">
+                      <VStack gap="4" align="start">
+                        <Timeline.Title
+                          fontSize={{ base: "md", lg: "lg" }}
+                          fontWeight="bold"
+                          color="fg"
+                        >
+                          {milestone.title}
+                        </Timeline.Title>
+                        <Timeline.Description
+                          color="fg.muted"
+                          fontSize={{ base: "sm", md: "md" }}
+						  truncate
+						  lineClamp={2}
+						  maxW="58%"
+						  py={2}
+                        >
+                          {milestone.description}
+                        </Timeline.Description>
+                      </VStack>
+
+                      <VStack gap="3" align="start" w="full">
+                        <Text fontSize="sm" fontWeight="semibold" color="fg">
+                          Skills Acquired:
+                        </Text>
+                        <HStack wrap="wrap" gap="1">
+                          {milestone.skills.map((skill) => (
+                            <Badge
+                              key={skill}
+                              size="sm"
+                              variant="outline"
+                              colorPalette="gray"
+                              fontSize="xs"
+                            >
+                              {skill}
+                            </Badge>
+                          ))}
+                        </HStack>
+                      </VStack>
+
+                      <HStack gap="2" align="center">
+                        <Icon as={LuTrophy} boxSize="4" />
+                        <Text fontSize="md" fontWeight="semibold">
+                          {milestone.achievement}
+                        </Text>
                       </HStack>
                     </VStack>
-
-                    <HStack gap="2" align="center">
-                      <Icon
-                        as={LuTrophy}
-                        boxSize="4"
-                      />
-                      <Text
-                        fontSize="md"
-                        fontWeight="semibold"
-                      >
-                        {milestone.achievement}
-                      </Text>
-                    </HStack>
-                  </VStack>
-                </motion.div>
-              </Timeline.Content>
-            </Timeline.Item>
-          ))}
+                  </motion.div>
+                </Timeline.Content>
+              </Timeline.Item>
+            );
+          })}
         </Timeline.Root>
       </VStack>
     </Container>

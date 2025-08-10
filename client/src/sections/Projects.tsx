@@ -107,6 +107,14 @@ export const Projects = () => {
               height="100%"
               display="flex"
               flexDirection="column"
+              cursor="pointer"
+              onClick={() =>
+                window.open(
+                  `https://${project.title}`,
+                  "_blank",
+                  "noopener,noreferrer"
+                )
+              }
             >
               {/* Project Header */}
               <Box p="6" pb="4" flex="1" display="flex" flexDirection="column">

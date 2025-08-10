@@ -9,60 +9,37 @@ import {
   Badge,
   VStack,
   Highlight,
-	AbsoluteCenter
 } from "@chakra-ui/react";
 import { LuArrowRight, LuCode, LuPalette, LuMail } from "react-icons/lu";
 import { ProfilePicture } from "../components/common";
-import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useRandomizedStyles, useScrollTo } from "../hooks";
+import { MotionWrapper } from "../wrappers";
+import { heroConfig } from "../config";
+import { type BadgeVariant } from "../utils";
 
 export const Hero = () => {
-  // Available color palettes and variants for badges
-  const colorPalettes = [
-    "gray",
-    "orange",
-    "yellow",
-    "green",
-	"teal",
-    "blue",
-    "purple",
-    "pink",
-  ] as const;
-  const variants = ["surface"] as const;
+  const scrollTo = useScrollTo();
 
-  // Technologies to display
-  const technologies = [
-    "TypeScript",
-    "React",
-	"Node.js",
-    "GraphQL",
-	"MongoDB",
-	"AWS",
-    "Docker",
-  ];
+  // Use configuration data instead of hardcoded values
+  const { personal, technologies, colorPalettes, badgeVariants, cta } =
+    heroConfig;
 
-  // Generate random styling for each tech badge on component mount
-  const badgeStyles = useMemo(() => {
-    // Shuffle the color palettes array to ensure no repeats
-    const shuffledColors = [...colorPalettes].sort(() => Math.random() - 0.5);
-
-    return technologies.map((_, index) => ({
-      colorPalette: shuffledColors[index], // Use each color exactly once
-      variant: variants[Math.floor(Math.random() * variants.length)],
-    }));
-  }, []); // Empty dependency array ensures this only runs once on mount
+  // Use the new randomized styles hook with config data
+  const badgeStyles = useRandomizedStyles([...technologies], {
+    colors: colorPalettes,
+    variants: badgeVariants,
+    shuffle: true,
+  });
 
   const handleViewWork = () => {
-    const projectsSection = document.getElementById("projects");
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: "smooth" });
-    }
+    scrollTo(cta.primary.target);
   };
 
   const handleContact = () => {
-    window.open("mailto:your.email@example.com", "_blank");
+    if (cta.secondary.action === "external") {
+      window.open(cta.secondary.target, "_blank");
+    }
   };
-
   return (
     <Container
       maxW="6xl"
@@ -75,192 +52,172 @@ export const Hero = () => {
         align="center"
         textAlign="center"
         w="full"
-        // position="relative"
-        // _before={{
-        //   content: '""',
-        //   position: "absolute",
-        //   top: 0,
-        //   left: 0,
-        //   right: 0,
-        //   bottom: 0,
-        //   bg: { _light: "white/80", _dark: "gray.900/10" },
-        //   backdropFilter: "blur(3px)",
-        //   borderRadius: "xl",
-        //   zIndex: -1,
-        // }}
       >
         {/* Profile Header - Grouped for better alignment */}
         <Stack gap={{ base: "2", md: "4" }} align="center">
           {/* Profile Picture */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+          <MotionWrapper variant="scale" timing="bounce">
             <ProfilePicture />
-          </motion.div>
+          </MotionWrapper>
 
-          {/* Name Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-          >
-            <Heading
-              size={{ base: "4xl", md: "6xl" }}
-              lineHeight="shorter"
-              letterSpacing="tight"
-              color="fg"
-            >
-              Bryan Shea
-            </Heading>
-          </motion.div>
-          {/* Professional Title with Icons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          >
-            <HStack
-              textStyle="sm"
-              fontWeight="medium"
-              justifyContent="center"
-              gap="3"
-              color="fg.info"
-            >
-              <LuCode /> Full-Stack Developer • Product Builder{" "}
-              <LuPalette />
-            </HStack>
-          </motion.div>
+          {/* Name and Title */}
+          <MotionWrapper variant="slideUp" timing="smooth">
+            <VStack gap={{ base: "1", md: "2" }}>
+              <Heading
+                size={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                letterSpacing={{ base: "-0.02em", lg: "-0.025em" }}
+                lineHeight={{ base: "1.1", md: "1.05" }}
+              >
+                <Highlight
+                  query={personal.name.split(" ")}
+                  styles={{
+                    bgGradient: "to-r",
+                    gradientFrom: "primary.400",
+                    gradientTo: "primary.700",
+                    bgClip: "text",
+                  }}
+                >
+                  {personal.name}
+                </Highlight>
+              </Heading>
+              <Text
+                fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
+                color="fg.muted"
+                fontWeight="medium"
+              >
+                {personal.title}
+              </Text>
+            </VStack>
+          </MotionWrapper>
         </Stack>
 
-        {/* Content Section */}
-        <Stack gap={{ base: "2", md: "4" }} maxW={{ md: "6xl" }}>
-		  {/* Hireability-focused Description */}
-		  <motion.div
-			initial={{ opacity: 0, y: 30 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-		  >
-			<Text
-			  fontSize={{ base: "lg", md: "xl" }}
-			  color="fg.muted"
-			  maxW="4xl"
-			  mx="auto"
-			  lineHeight="tall"
-			>
-			  Experienced full-stack developer specializing in{" "}
-			  <Highlight
-				query={["modern web applications", "cloud-native solutions", "scalable products"]}
-				styles={{
-				  fontWeight: "medium",
-				  color: "fg",
-				  bg: { _light: "blue.100/60", _dark: "blue.900/40" },
-				  px: "1.5",
-				  py: "0.5",
-				  rounded: "md",
-				}}
-			  >
-				modern web applications and cloud-native solutions
-			  </Highlight>
-				{""}that drive business growth and exceptional user experiences.
-			</Text>
-		  </motion.div>
-
-          {/* Key Skills/Technologies */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+        {/* Bio Section */}
+        <MotionWrapper
+          variant="fadeIn"
+          timing="smooth"
+          style={{ maxWidth: "2xl" }}
+        >
+          <Text
+            fontSize={{ base: "md", md: "xl" }}
+            color={{
+				_light: "fg.subtle",
+				_dark: "fg.muted",
+			}}
+            lineHeight="relaxed"
+            textAlign="center"
+			w="3xl"
           >
-            <HStack justify="center" wrap="wrap" gap="2" mt="4">
-              {technologies.map((tech, index) => (
-                <motion.div
+            {personal.bio}
+          </Text>
+        </MotionWrapper>
+
+        {/* Technology Stack */}
+        <MotionWrapper variant="slideUp" timing="smooth">
+          <VStack gap={{ base: "3", md: "4" }}>
+            <Text
+              fontSize={{ base: "sm", md: "md" }}
+              color="fg.muted"
+              fontWeight="medium"
+              textTransform="uppercase"
+              letterSpacing="wide"
+            >
+              Technologies I Work With
+            </Text>
+            <Flex
+              wrap="wrap"
+              gap={{ base: "2", md: "3" }}
+              justify="center"
+              align="center"
+            >
+              {technologies.map((tech: string, index: number) => (
+                <MotionWrapper
                   key={tech}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: 0.9 + index * 0.08,
-                    ease: "easeOut",
+                  variant="scale"
+                  timing="bounce"
+                  animation={{
+                    initial: { opacity: 0, scale: 0.8 },
+                    animate: {
+                      opacity: 1,
+                      scale: 1,
+                      transition: { delay: index * 0.1 },
+                    },
                   }}
-                  whileHover={{ scale: 1.05 }}
                 >
                   <Badge
-                    colorPalette={badgeStyles[index].colorPalette}
-                    variant={badgeStyles[index].variant}
-                    size="md"
-                    fontWeight="semibold"
+                    size={{ base: "md", md: "lg" }}
+                    colorPalette={badgeStyles[index]?.colorPalette}
+                    variant={badgeStyles[index]?.variant as BadgeVariant}
+                    px={{ base: "3", md: "4" }}
+                    py={{ base: "1", md: "2" }}
+                    borderRadius="full"
+                    fontWeight="medium"
+                    fontSize={{ base: "xs", md: "sm" }}
                   >
                     {tech}
                   </Badge>
-                </motion.div>
+                </MotionWrapper>
               ))}
-            </HStack>
-          </motion.div>
-        </Stack>
-
-        {/* Call-to-Action Buttons - Recruiter Focused */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
-        >
-          <VStack
-            gap={{ base: "4", sm: "4" }}
-            align="center"
-            pt={{ base: "4", md: "8" }}
-            width="full"
-          >
-            <Flex
-              direction={{ base: "column", sm: "row" }}
-              gap={{ base: "4", sm: "6" }}
-              align="center"
-              justify="center"
-              width="full"
-              maxW="md"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Button
-                  size="lg"
-                  px="8"
-                  py="6"
-                  colorPalette="blue"
-                  boxShadow="lg"
-                  onClick={handleViewWork}
-                  _hover={{ transform: "translateY(-1px)", boxShadow: "xl" }}
-                  transition="all 0.2s"
-                >
-                  View Projects <LuArrowRight />
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Button
-                  size="lg"
-                  px="8"
-                  py="6"
-                  variant="outline"
-				  colorPalette="blue"
-                  borderWidth="2px"
-				  borderColor="primary.400"
-                  onClick={handleContact}
-                  _hover={{ borderColor: "primary.700", bg: "transparent", transform: "translateY(-1px)" }}
-                  transition="all 0.2s"
-                >
-                  <LuMail /> Let's Connect
-                </Button>
-              </motion.div>
             </Flex>
           </VStack>
-        </motion.div>
+        </MotionWrapper>
+
+        {/* Call to Action Buttons */}
+        <MotionWrapper variant="slideUp" timing="smooth">
+          <HStack
+            gap={{ base: "3", md: "4" }}
+            flexDir={{ base: "column", sm: "row" }}
+            w={{ base: "full", sm: "auto" }}
+          >
+            <Button
+              size={{ base: "lg", md: "xl" }}
+              colorPalette="blue"
+              onClick={handleViewWork}
+              px={{ base: "6", md: "8" }}
+              py={{ base: "3", md: "4" }}
+              fontSize={{ base: "md", md: "lg" }}
+              fontWeight="semibold"
+              borderRadius="full"
+              _hover={{
+                transform: "translateY(-2px)",
+                shadow: "lg",
+              }}
+              transition="all 0.2s"
+              w={{ base: "full", sm: "auto" }}
+            >
+              <HStack>
+                <LuCode />
+                <Text>View My Work</Text>
+                <LuArrowRight />
+              </HStack>
+            </Button>
+
+            <Button
+              size={{ base: "lg", md: "xl" }}
+              variant="outline"
+              colorPalette="gray"
+              onClick={handleContact}
+              px={{ base: "6", md: "8" }}
+              py={{ base: "3", md: "4" }}
+              fontSize={{ base: "md", md: "lg" }}
+              fontWeight="semibold"
+              borderRadius="full"
+              _hover={{
+                transform: "translateY(-2px)",
+                shadow: "md",
+                bg: "bg.subtle",
+              }}
+              transition="all 0.2s"
+              w={{ base: "full", sm: "auto" }}
+            >
+              <HStack>
+                <LuPalette />
+                <Text>Get In Touch</Text>
+                <LuMail />
+              </HStack>
+            </Button>
+          </HStack>
+        </MotionWrapper>
       </Stack>
     </Container>
   );

@@ -1,3 +1,12 @@
+import {
+  ApolloApiCert,
+  ApolloGraphCert,
+  DSACert,
+  GoogleUXProcessCert,
+  GoogleUXFoundationsCert,
+  CS50Cert,
+} from "../assets";
+
 /**
  * Interface for journey milestone data
  */
@@ -18,6 +27,8 @@ export interface JourneyMilestone {
   achievement: string;
   /** Color theme for the milestone display */
   color: string;
+  /** Path to the certificate image */
+  certImage?: string;
 }
 
 /**
@@ -46,13 +57,13 @@ export const journeyMilestones: JourneyMilestone[] = [
       "Advanced GraphQL concepts including federation, supergraph architecture, and API orchestration.",
     skills: [
       "GraphQL Federation",
-      "Supergraph",
       "API Gateway",
       "Microservices",
       "Schema Stitching",
     ],
     achievement: "API Orchestration Associate",
     color: "indigo",
+    certImage: ApolloApiCert,
   },
   {
     id: "apollo-graph",
@@ -70,6 +81,7 @@ export const journeyMilestones: JourneyMilestone[] = [
     ],
     achievement: "Apollo Graph Associate",
     color: "indigo",
+    certImage: ApolloGraphCert,
   },
   {
     id: "dsa",
@@ -83,10 +95,10 @@ export const journeyMilestones: JourneyMilestone[] = [
       "Sorting Algorithms",
       "Graph Theory",
       "Dynamic Programming",
-      "Binary Trees",
     ],
     achievement: "DSA Mastery",
     color: "green",
+    certImage: DSACert,
   },
   {
     id: "ux-process",
@@ -103,6 +115,7 @@ export const journeyMilestones: JourneyMilestone[] = [
     ],
     achievement: "UX Process Certificate",
     color: "purple",
+    certImage: GoogleUXProcessCert,
   },
   {
     id: "ux-foundations",
@@ -120,6 +133,7 @@ export const journeyMilestones: JourneyMilestone[] = [
     ],
     achievement: "UX Design Certificate",
     color: "purple",
+    certImage: GoogleUXFoundationsCert,
   },
   {
     id: "foundations",
@@ -131,6 +145,7 @@ export const journeyMilestones: JourneyMilestone[] = [
     skills: ["C Programming", "Python", "SQL", "Data Structures", "Algorithms"],
     achievement: "CS50x Certificate",
     color: "blue",
+    certImage: CS50Cert,
   },
 ];
 
@@ -147,8 +162,6 @@ export const techCategories: TechCategory[] = [
       "Next.js",
       "Chakra UI",
       "Vite",
-      "HTML5",
-      "CSS3",
     ],
     color: "cyan",
   },
@@ -159,14 +172,13 @@ export const techCategories: TechCategory[] = [
       "Express",
       "GraphQL",
       "Apollo Server",
-      "PostgreSQL",
       "MongoDB",
     ],
     color: "green",
   },
   {
     name: "DevOps & Cloud",
-    technologies: ["AWS", "Docker", "CI/CD", "Git", "Linux", "Deployment"],
+    technologies: ["AWS", "Docker", "CI/CD", "Git", "Deployment"],
     color: "orange",
   },
   {

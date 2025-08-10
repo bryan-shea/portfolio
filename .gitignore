@@ -1,6 +1,10 @@
 # Development environment files
 project_structure.text
 
+# ignore root shared and server folders as theyre not needed
+shared/
+server/
+
 # Logs
 logs
 *.log

@@ -1,8 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { type ComponentType } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HeroRefactored, Skills, Projects, Journey } from "./sections";
-import { BackgroundsPage } from "./pages";
+import { Hero, Skills, Projects, Journey } from "./sections";
 import { AnimatedSection } from "./components/common";
 import { GlobalControls, NavigationMenu } from "./components/ui";
 import { useColors, type ColorScheme } from "./contexts";
@@ -29,7 +28,7 @@ interface SectionConfig {
  * Centralizes section management for better maintainability
  */
 const PORTFOLIO_SECTIONS: SectionConfig[] = [
-  { id: "hero", component: HeroRefactored, defaultBackground: "particles" },
+  { id: "hero", component: Hero, defaultBackground: "particles" },
   { id: "skills", component: Skills, defaultBackground: "grid" },
   { id: "projects", component: Projects, defaultBackground: "orbs" },
   { id: "journey", component: Journey, defaultBackground: "dots" },
@@ -108,7 +107,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Portfolio />} />
-        <Route path="/backgrounds" element={<BackgroundsPage />} />
       </Routes>
     </Router>
   );

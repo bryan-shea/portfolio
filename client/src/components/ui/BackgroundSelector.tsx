@@ -1,15 +1,13 @@
 import {
   Box,
-  Button,
   Card,
   Grid,
   Heading,
   Text,
   VStack,
-  HStack,
+  IconButton,
 } from "@chakra-ui/react";
-import { LuExternalLink } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
+import { LuX } from "react-icons/lu";
 import {
   FloatingParticles,
   DotPattern,
@@ -100,15 +98,8 @@ export const BackgroundSelector: React.FC<BackgroundSelectorProps> = ({
   isOpen,
   onClose,
 }) => {
-  const navigate = useNavigate();
-
   const handleBackgroundSelect = (background: BackgroundType) => {
     onBackgroundChange(background);
-    onClose();
-  };
-
-  const handleLearnMore = () => {
-    navigate("/backgrounds");
     onClose();
   };
 
@@ -145,7 +136,18 @@ export const BackgroundSelector: React.FC<BackgroundSelectorProps> = ({
         }}
         boxShadow="2xl"
       >
-        <Card.Header>
+        <Card.Header position="relative">
+          <IconButton
+            position="absolute"
+            top="4"
+            right="4"
+            size="sm"
+            variant="ghost"
+            onClick={onClose}
+            aria-label="Close background selector"
+          >
+            <LuX />
+          </IconButton>
           <VStack gap="2" textAlign="center">
             <Heading size="lg">Choose Background</Heading>
             <Text color="fg.muted" fontSize="sm">
@@ -219,27 +221,6 @@ export const BackgroundSelector: React.FC<BackgroundSelectorProps> = ({
               </Card.Root>
             ))}
           </Grid>
-
-          {/* Actions */}
-          <HStack
-            justify="space-between"
-            pt="4"
-            borderTop="1px solid"
-            borderColor="border.subtle"
-          >
-            <Button
-              variant="ghost"
-              onClick={handleLearnMore}
-              color="fg.muted"
-              _hover={{ color: "fg" }}
-            >
-              <LuExternalLink />
-              Learn More
-            </Button>
-            <Button onClick={onClose} variant="outline">
-              Close
-            </Button>
-          </HStack>
         </Card.Body>
       </Card.Root>
     </Box>

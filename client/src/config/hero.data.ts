@@ -39,14 +39,14 @@ export interface HeroConfig {
 export const heroConfig: HeroConfig = {
   personal: {
     name: "Bryan Shea",
-    title: "Full Stack Software Engineer",
+    title: "Full Stack Developer",
     bio: "Experienced full-stack developer specializing in modern web applications and cloud-native solutions that drive business growth and exceptional user experiences.",
     email: "bryan@webifyservices.com",
   },
   technologies: [
     "TypeScript",
     "React",
-    "Node.js",
+    "Vite",
     "GraphQL",
     "MongoDB",
     "AWS",
