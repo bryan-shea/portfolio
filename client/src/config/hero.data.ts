@@ -41,7 +41,7 @@ export const heroConfig: HeroConfig = {
     name: "Bryan Shea",
     title: "Full Stack Developer",
     bio: "Experienced full-stack developer specializing in modern web applications and cloud-native solutions that drive business growth and exceptional user experiences.",
-    email: "bryan@webifyservices.com",
+    email: "bryanshea88@gmail.com",
   },
   technologies: [
     "TypeScript",
@@ -72,7 +72,7 @@ export const heroConfig: HeroConfig = {
     secondary: {
       text: "Get In Touch",
       action: "external",
-      target: "mailto:your.email@example.com", // TODO: Update with actual email
+      target: "mailto:bryanshea88@gmail.com",
     },
   },
 };
