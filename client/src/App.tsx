@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
-import { type ComponentType, useState } from "react";
+import { type ComponentType } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Hero, Skills, Projects, Journey } from "./sections";
+import { HeroRefactored, Skills, Projects, Journey } from "./sections";
 import { BackgroundsPage } from "./pages";
 import { AnimatedSection } from "./components/common";
 import { GlobalControls, NavigationMenu } from "./components/ui";
@@ -10,6 +10,7 @@ import {
   BackgroundManager,
   type BackgroundType,
 } from "./components/backgrounds";
+import { useBackgroundManager } from "./hooks";
 
 /**
  * Configuration interface for portfolio sections
@@ -28,7 +29,7 @@ interface SectionConfig {
  * Centralizes section management for better maintainability
  */
 const PORTFOLIO_SECTIONS: SectionConfig[] = [
-  { id: "hero", component: Hero, defaultBackground: "particles" },
+  { id: "hero", component: HeroRefactored, defaultBackground: "particles" },
   { id: "skills", component: Skills, defaultBackground: "grid" },
   { id: "projects", component: Projects, defaultBackground: "orbs" },
   { id: "journey", component: Journey, defaultBackground: "dots" },
@@ -39,27 +40,12 @@ const PORTFOLIO_SECTIONS: SectionConfig[] = [
  * Renders all portfolio sections with background options and consistent animations
  */
 const Portfolio = () => {
-  const [globalBackground, setGlobalBackground] = useState<BackgroundType>(
-    () => {
-      // Try to load from localStorage
-      if (typeof window !== "undefined") {
-        const saved = localStorage.getItem("portfolio-background");
-        if (saved && saved !== "none") {
-          return saved as BackgroundType;
-        }
-      }
-      // Default to grid if no saved preference
-      return "grid";
-    }
-  );
+  const [globalBackground, setGlobalBackground] =
+    useBackgroundManager<BackgroundType>("grid");
   const { colorScheme, setColorScheme } = useColors();
 
   const handleBackgroundChange = (newBackground: BackgroundType) => {
     setGlobalBackground(newBackground);
-    // Save to localStorage
-    if (typeof window !== "undefined") {
-      localStorage.setItem("portfolio-background", newBackground);
-    }
   };
 
   const handleColorsChange = (colors: ColorScheme) => {
