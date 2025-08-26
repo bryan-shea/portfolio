@@ -11,34 +11,34 @@ export const projects = [
       secure payment processing to create a comprehensive ecommerce platform.
     `,
 	// include: EasyPost
-    tech: ["MERN", "Chakra UI", "TypeScript", "MongoDB", "AWS", "Stripe", "EasyPost"],
-    category: "Automotive Marketplace",
-    status: "Production",
-    timeline: "≈8 months",
-    team: "Lead Full-Stack Developer",
-    icon: FaCar,
-    architecture: "MERN Stack + AWS",
-    userBase: "Active Marketplace",
-    keyFeature: "Real-time Messaging",
-    metrics: [
-      "Full end-to-end ecommerce solution",
-      "Custom-tailored alert creation system",
-      "User profiles & community features",
-    ],
-    highlights: [
-      "End-to-end ecommerce solution",
-      "Customizable alert system",
-      "Project car management dashboard",
-    ],
-  },
-  {
-    id: "spscyber",
-    title: "spscyber.com",
-    subtitle: "People-Centered Cybersecurity & AI Advisory",
-    description: `
-	Corporate consulting website built with modern React stack. Designed and developed
-	responsive interface showcasing cybersecurity services, compliance solutions, and AI
-	advisory offerings for enterprise clients across multiple industries.
+	tech: ["React", "Next.js", "TypeScript", "Chakra UI", "SSG", "AWS"],
+	category: "Cybersecurity Consulting",
+	status: "Production",
+	timeline: "≈4 months",
+	team: "Full-Stack Developer",
+	icon: FaShieldAlt,
+	architecture: "Next.js + SSG",
+	userBase: "Enterprise Clients",
+	keyFeature: "Security Focus",
+	metrics: [
+		"Comprehensive security assessments",
+		"AI adoption & compliance strategies",
+		"People-first cybersecurity approach",
+	],
+	highlights: [
+		"Enterprise security consulting",
+		"AI governance frameworks",
+		"Compliance roadmap development",
+	],
+	},
+	{
+	id: "spscyber",
+	title: "spscyber.com",
+	subtitle: "People-First Cybersecurity & AI Advisory",
+	description: `
+	  Corporate website for SPS Cyber, a cybersecurity consulting firm specializing in
+	  security strategy, compliance enablement, and AI adoption guidance. Focused on
+	  delivering people-first solutions and practical roadmaps across industries.
 	`,
 	// include: WebifyUI, GraphQL, Apollo Client
     tech: ["MERN", "Chakra UI", "TypeScript", "Vite", "AWS", "WebifyUI", "GraphQL", "Apollo Client"],
@@ -95,9 +95,9 @@ export const projects = [
       "Team usage exports & chat retention",
     ],
     highlights: [
-      "How-to guidance and job workflows",
-      "Industry-specific prompts & context",
-      "Admin controls for teams",
+      "RAG-based document retrieval",
+      "Custom knowledge base isolation",
+      "Team collaboration features",
     ],
   },
   {

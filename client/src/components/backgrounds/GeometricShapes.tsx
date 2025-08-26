@@ -82,7 +82,7 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
       width: `${shape.size}px`,
       height: `${shape.size}px`,
       opacity: {
-        _light: 0.12,
+        _light: 0.15,
         _dark: 0.15,
       },
       transform: `rotate(${shape.rotation}deg)`,
@@ -98,11 +98,11 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
               {...commonStyles}
               borderRadius="50%"
               bg={{
-                _light: "slate.300/60",
+                _light: "blue.600/40",
                 _dark: "token(colors.gray.500)",
               }}
               boxShadow={{
-                _light: "0 1px 4px rgba(148, 163, 184, 0.2)",
+                _light: "none",
                 _dark: "none",
               }}
             />
@@ -123,7 +123,7 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
                 borderRight: `${shape.size / 2}px solid transparent`,
                 borderBottom: `${shape.size}px solid`,
                 borderBottomColor: {
-                  _light: "slate.300/60",
+                  _light: "gray.600/40",
                   _dark: "token(colors.gray.500)",
                 },
                 filter: {
@@ -138,11 +138,11 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
             <Box
               {...commonStyles}
               bg={{
-                _light: "slate.300/60",
+                _light: "gray.600/40",
                 _dark: "token(colors.gray.500)",
               }}
               boxShadow={{
-                _light: "0 1px 4px rgba(148, 163, 184, 0.15)",
+                _light: "none",
                 _dark: "none",
               }}
             />
@@ -152,12 +152,12 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
             <Box
               {...commonStyles}
               bg={{
-                _light: "slate.300/60",
+                _light: "gray.600/40",
                 _dark: "token(colors.gray.500)",
               }}
               transform={`rotate(${shape.rotation + 45}deg)`}
               boxShadow={{
-                _light: "0 1px 4px rgba(148, 163, 184, 0.15)",
+                _light: "none",
                 _dark: "none",
               }}
             />

@@ -29,13 +29,13 @@ export const DotPattern: React.FC<DotPatternProps> = ({
         position="absolute"
         inset="0"
         opacity={{
-          _light: "0.08",
+          _light: "0.15",
           _dark: "0.05",
         }}
         bgImage={{
           _light: [
             "radial-gradient(circle at 25% 25%, #64748b 1px, transparent 1.5px)",
-            "radial-gradient(circle at 75% 75%, #94a3b8 1px, transparent 1.5px)",
+            "radial-gradient(circle at 75% 75%, #475569 1px, transparent 1.5px)",
           ].join(", "),
           _dark: [
             "radial-gradient(circle at 25% 25%, #3182ce 1px, transparent 2px)",

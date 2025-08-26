@@ -102,18 +102,18 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
           >
             <stop
               offset="0%"
-              stopColor="var(--chakra-colors-slate-400)"
-              stopOpacity="0.3"
-            />
-            <stop
-              offset="50%"
-              stopColor="var(--chakra-colors-gray-400)"
+              stopColor="var(--chakra-colors-slate-600)"
               stopOpacity="0.4"
             />
             <stop
+              offset="50%"
+              stopColor="var(--chakra-colors-gray-600)"
+              stopOpacity="0.5"
+            />
+            <stop
               offset="100%"
-              stopColor="var(--chakra-colors-slate-400)"
-              stopOpacity="0.3"
+              stopColor="var(--chakra-colors-slate-600)"
+              stopOpacity="0.4"
             />
           </linearGradient>
           <linearGradient
@@ -170,15 +170,14 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
           height={`${node.size}px`}
           borderRadius="full"
           bg={{
-            _light: "slate.400/40",
+            _light: "gray.600/25",
             _dark: "blue.500/30",
           }}
           transform="translate(-50%, -50%)"
           animation="gridPulse 2s ease-in-out infinite"
           animationDelay={`${index * 0.2}s`}
           boxShadow={{
-            _light:
-              "0 0 8px rgba(148, 163, 184, 0.3), inset 0 0 4px rgba(255, 255, 255, 0.1)",
+            _light: "none",
             _dark: "0 0 8px rgba(59, 130, 246, 0.2)",
           }}
           _before={{
@@ -187,13 +186,13 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
             inset: "-2px",
             borderRadius: "full",
             bg: {
-              _light: "gray.400/30",
+              _light: "gray.500/20",
               _dark: "purple.500/15",
             },
             animation: "gridPulse 2s ease-in-out infinite reverse",
             animationDelay: `${index * 0.2 + 1}s`,
             boxShadow: {
-              _light: "0 0 6px rgba(156, 163, 175, 0.2)",
+              _light: "none",
               _dark: "none",
             },
           }}
@@ -207,12 +206,12 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
         left="10%"
         width="80%"
         height="70%"
-        background={{
-          _light:
-            "radial-gradient(ellipse at center, rgba(148, 163, 184, 0.04) 0%, transparent 60%)",
-          _dark:
-            "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.015) 0%, transparent 60%)",
+        bgGradient="circle"
+        gradientFrom={{
+          _light: "slate.600/6",
+          _dark: "blue.400/1.5",
         }}
+        gradientTo="transparent"
         animation="gridPulse 8s ease-in-out infinite"
         animationDelay="2s"
       />
