@@ -61,9 +61,9 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
   const getOrbGradient = (variant: number) => {
     const gradients = {
       light: [
-        "radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 100%)",
-        "radial-gradient(circle, rgba(147, 51, 234, 0.25) 0%, rgba(147, 51, 234, 0.08) 50%, transparent 100%)",
-        "radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, rgba(236, 72, 153, 0.08) 50%, transparent 100%)",
+        "radial-gradient(circle, rgba(148, 163, 184, 0.08) 0%, rgba(148, 163, 184, 0.02) 50%, transparent 100%)",
+        "radial-gradient(circle, rgba(156, 163, 175, 0.08) 0%, rgba(156, 163, 175, 0.02) 50%, transparent 100%)",
+        "radial-gradient(circle, rgba(148, 163, 184, 0.06) 0%, rgba(148, 163, 184, 0.015) 50%, transparent 100%)",
       ],
       dark: [
         "radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 100%)",
@@ -95,7 +95,7 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
           animation={`orbFloat ${orb.duration}s ease-in-out infinite`}
           animationDelay={`${orb.delay}s`}
           filter={{
-            _light: "blur(1px) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))",
+            _light: "blur(2px)",
             _dark: "blur(1px)",
           }}
           transform="translate(-50%, -50%)"
@@ -121,7 +121,7 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
         height="80%"
         background={{
           _light:
-            "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse at center, rgba(148, 163, 184, 0.03) 0%, transparent 70%)",
           _dark:
             "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.02) 0%, transparent 70%)",
         }}
@@ -137,7 +137,7 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
         height="60%"
         background={{
           _light:
-            "radial-gradient(ellipse at center, rgba(147, 51, 234, 0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse at center, rgba(156, 163, 175, 0.03) 0%, transparent 70%)",
           _dark:
             "radial-gradient(ellipse at center, rgba(147, 51, 234, 0.02) 0%, transparent 70%)",
         }}

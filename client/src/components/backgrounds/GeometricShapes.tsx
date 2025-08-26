@@ -81,7 +81,10 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
       top: `${shape.y}%`,
       width: `${shape.size}px`,
       height: `${shape.size}px`,
-      opacity: { base: 0.25, _dark: 0.15 },
+      opacity: {
+        _light: 0.12,
+        _dark: 0.15,
+      },
       transform: `rotate(${shape.rotation}deg)`,
       animation: `geometricFloat-${shape.id} ${shape.duration}s ease-in-out infinite`,
       animationDelay: `${shape.delay}s`,
@@ -95,11 +98,11 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
               {...commonStyles}
               borderRadius="50%"
               bg={{
-                base: "token(colors.blue.200)",
+                _light: "slate.300/60",
                 _dark: "token(colors.gray.500)",
               }}
               boxShadow={{
-                base: "0 2px 8px rgba(59, 130, 246, 0.2)",
+                _light: "0 1px 4px rgba(148, 163, 184, 0.2)",
                 _dark: "none",
               }}
             />
@@ -120,11 +123,11 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
                 borderRight: `${shape.size / 2}px solid transparent`,
                 borderBottom: `${shape.size}px solid`,
                 borderBottomColor: {
-                  base: "token(colors.purple.200)",
+                  _light: "slate.300/60",
                   _dark: "token(colors.gray.500)",
                 },
                 filter: {
-                  base: "drop-shadow(0 2px 4px rgba(147, 51, 234, 0.3))",
+                  _light: "none",
                   _dark: "none",
                 },
               }}
@@ -135,11 +138,11 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
             <Box
               {...commonStyles}
               bg={{
-                base: "token(colors.teal.200)",
+                _light: "slate.300/60",
                 _dark: "token(colors.gray.500)",
               }}
               boxShadow={{
-                base: "0 2px 8px rgba(20, 184, 166, 0.25)",
+                _light: "0 1px 4px rgba(148, 163, 184, 0.15)",
                 _dark: "none",
               }}
             />
@@ -149,12 +152,12 @@ export const GeometricShapes: React.FC<GeometricShapesProps> = ({
             <Box
               {...commonStyles}
               bg={{
-                base: "token(colors.pink.200)",
+                _light: "slate.300/60",
                 _dark: "token(colors.gray.500)",
               }}
               transform={`rotate(${shape.rotation + 45}deg)`}
               boxShadow={{
-                base: "0 2px 8px rgba(236, 72, 153, 0.25)",
+                _light: "0 1px 4px rgba(148, 163, 184, 0.15)",
                 _dark: "none",
               }}
             />

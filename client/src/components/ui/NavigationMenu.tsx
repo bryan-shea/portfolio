@@ -46,6 +46,12 @@ interface NavigationSection {
  */
 const portfolioSections: NavigationSection[] = [
   {
+    id: "navigation-placeholder",
+    name: "Navigation",
+    icon: <LuChevronsUpDown />,
+    description: "Scroll to any section",
+  },
+  {
     id: "hero",
     name: "About Me",
     icon: <LuUser />,
@@ -77,12 +83,27 @@ const portfolioSections: NavigationSection[] = [
  * Responsive design: full button on desktop, compact icon on mobile
  */
 export const NavigationMenu = () => {
-  const [selectedSectionId, setSelectedSectionId] = useState<string>(
-    portfolioSections[0].id
+  // Filter out placeholder from selectable sections
+  const selectableSections = portfolioSections.filter(
+    (section) => section.id !== "navigation-placeholder"
   );
-  const selectedSection =
-    portfolioSections.find((section) => section.id === selectedSectionId) ||
-    portfolioSections[0];
+
+  const [selectedSectionId, setSelectedSectionId] = useState<string>(
+    "navigation-placeholder"
+  );
+
+  // Always show Navigation as the main section, but track which section is in view
+  const selectedSection = {
+    id: "navigation",
+    name: "Navigation",
+    icon: <LuChevronsUpDown />,
+    description: "Scroll to sections",
+  };
+
+  // Get the current section for badge display
+  const currentSection = portfolioSections.find(
+    (section) => section.id === selectedSectionId
+  );
 
   // Responsive trigger: full button on md+, compact on mobile
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -91,6 +112,11 @@ export const NavigationMenu = () => {
    * Scroll to a specific section
    */
   const scrollToSection = (sectionId: string) => {
+    // Skip scrolling for placeholder section
+    if (sectionId === "navigation-placeholder") {
+      return;
+    }
+
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({
@@ -122,7 +148,10 @@ export const NavigationMenu = () => {
             {isMobile ? (
               <MobileNavigationTrigger section={selectedSection} />
             ) : (
-              <SelectedSectionButton section={selectedSection} />
+              <SelectedSectionButton
+                section={selectedSection}
+                currentSection={currentSection}
+              />
             )}
           </Menu.Trigger>
           <Portal>
@@ -141,7 +170,7 @@ export const NavigationMenu = () => {
                 boxShadow="lg"
                 minW={isMobile ? "280px" : "320px"}
               >
-                {portfolioSections.map((section) => (
+                {selectableSections.map((section) => (
                   <SectionMenuItem
                     key={section.id}
                     section={section}
@@ -283,13 +312,14 @@ const MobileNavigationTrigger = (props: MobileNavigationTriggerProps) => {
  */
 interface SelectedSectionButtonProps extends ButtonProps {
   section: NavigationSection;
+  currentSection?: NavigationSection;
 }
 
 /**
  * Selected section button component
  */
 const SelectedSectionButton = (props: SelectedSectionButtonProps) => {
-  const { section, ...rest } = props;
+  const { section, currentSection, ...rest } = props;
 
   return (
     <Button
@@ -332,7 +362,9 @@ const SelectedSectionButton = (props: SelectedSectionButtonProps) => {
               textTransform="uppercase"
               letterSpacing="wider"
             >
-              Section
+              {currentSection?.id === "navigation-placeholder"
+                ? "Navigation"
+                : currentSection?.name || "Navigation"}
             </Badge>
           </HStack>
           <Text textStyle="xs" color="fg.muted">

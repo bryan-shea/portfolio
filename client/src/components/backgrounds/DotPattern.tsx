@@ -29,13 +29,13 @@ export const DotPattern: React.FC<DotPatternProps> = ({
         position="absolute"
         inset="0"
         opacity={{
-          _light: "0.15",
+          _light: "0.08",
           _dark: "0.05",
         }}
         bgImage={{
           _light: [
-            "radial-gradient(circle at 25% 25%, #2563eb 1.5px, transparent 2px)",
-            "radial-gradient(circle at 75% 75%, #7c3aed 1.5px, transparent 2px)",
+            "radial-gradient(circle at 25% 25%, #64748b 1px, transparent 1.5px)",
+            "radial-gradient(circle at 75% 75%, #94a3b8 1px, transparent 1.5px)",
           ].join(", "),
           _dark: [
             "radial-gradient(circle at 25% 25%, #3182ce 1px, transparent 2px)",
@@ -45,7 +45,7 @@ export const DotPattern: React.FC<DotPatternProps> = ({
         bgSize="60px 60px"
         animation={`floatUpDown ${20 / animationSpeed}s ease-in-out infinite`}
         filter={{
-          _light: "drop-shadow(0 1px 2px rgba(37, 99, 235, 0.2))",
+          _light: "none",
           _dark: "none",
         }}
       />

@@ -118,7 +118,7 @@ export const Projects = () => {
             >
               {/* Project Header */}
               <Box p="6" pb="4" flex="1" display="flex" flexDirection="column">
-                <HStack gap="3" mb="4">
+                <HStack gap="2" mb="4">
                   <motion.div
                     whileHover={{ rotate: 10, scale: 1.1 }}
                     transition={{ duration: 0.2 }}
@@ -145,14 +145,14 @@ export const Projects = () => {
                   fontSize="sm"
                   lineHeight="relaxed"
                   mb="4"
-                  lineClamp={3}
+                  //   lineClamp={5}
                   flex="1"
                 >
                   {project.description}
                 </Text>
 
                 {/* Tech Stack */}
-                <VStack gap="3" align="stretch">
+                {/* <VStack gap="3" align="stretch">
                   <Text
                     fontSize="xs"
                     fontWeight="semibold"
@@ -191,10 +191,10 @@ export const Projects = () => {
                       )}
                     </HStack>
                   </Box>
-                </VStack>
+                </VStack> */}
               </Box>
 
-              {/* Project Actions */}
+              {/* Project Highlights */}
               <Box p="6" pt="0" mt="auto">
                 <VStack gap="3" align="stretch">
                   <Text
@@ -203,51 +203,28 @@ export const Projects = () => {
                     color="fg.muted"
                     textTransform="uppercase"
                   >
-                    Details
+                    Highlights
                   </Text>
                   <VStack gap="2" align="stretch">
-                    <HStack justify="space-between">
-                      <Text fontSize="sm" color="fg.muted">
-                        Category:
-                      </Text>
-                      <Text
-                        fontSize="sm"
-                        fontWeight="medium"
-                        truncate
-                        maxWidth="50%"
-                        textAlign="right"
-                      >
-                        {project.category}
-                      </Text>
-                    </HStack>
-                    <HStack justify="space-between">
-                      <Text fontSize="sm" color="fg.muted">
-                        Timeline:
-                      </Text>
-                      <Text
-                        fontSize="sm"
-                        fontWeight="medium"
-                        truncate
-                        maxWidth="50%"
-                        textAlign="right"
-                      >
-                        {project.timeline}
-                      </Text>
-                    </HStack>
-                    <HStack justify="space-between">
-                      <Text fontSize="sm" color="fg.muted">
-                        Role:
-                      </Text>
-                      <Text
-                        fontSize="sm"
-                        fontWeight="medium"
-                        truncate
-                        maxWidth="50%"
-                        textAlign="right"
-                      >
-                        {project.team}
-                      </Text>
-                    </HStack>
+                    {project.highlights.slice(0, 3).map((highlight) => (
+                      <HStack key={highlight} gap="2">
+                        <Box
+                          w="1.5"
+                          h="1.5"
+                          borderRadius="full"
+                          bg="primary.500"
+                          flexShrink={0}
+                          mt="1"
+                        />
+                        <Text
+                          fontSize="sm"
+                          color="fg.muted"
+                          lineHeight="relaxed"
+                        >
+                          {highlight}
+                        </Text>
+                      </HStack>
+                    ))}
                   </VStack>
                 </VStack>
               </Box>

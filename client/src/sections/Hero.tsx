@@ -195,7 +195,8 @@ export const Hero = () => {
             <Button
               size={{ base: "lg", md: "xl" }}
               variant="outline"
-              colorPalette="gray"
+              colorPalette="blue"
+			  borderColor="blue.500"
               onClick={handleContact}
               px={{ base: "6", md: "8" }}
               py={{ base: "3", md: "4" }}

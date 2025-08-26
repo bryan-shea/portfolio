@@ -102,18 +102,18 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
           >
             <stop
               offset="0%"
-              stopColor="var(--chakra-colors-blue-500)"
-              stopOpacity="0.6"
+              stopColor="var(--chakra-colors-slate-400)"
+              stopOpacity="0.3"
             />
             <stop
               offset="50%"
-              stopColor="var(--chakra-colors-purple-500)"
-              stopOpacity="0.8"
+              stopColor="var(--chakra-colors-gray-400)"
+              stopOpacity="0.4"
             />
             <stop
               offset="100%"
-              stopColor="var(--chakra-colors-blue-500)"
-              stopOpacity="0.6"
+              stopColor="var(--chakra-colors-slate-400)"
+              stopOpacity="0.3"
             />
           </linearGradient>
           <linearGradient
@@ -149,11 +149,11 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
             x2={`${connection.to.x}%`}
             y2={`${connection.to.y}%`}
             stroke="url(#connectionGradientLight)"
-            strokeWidth="1.5"
-            strokeDasharray="3 5"
+            strokeWidth="1"
+            strokeDasharray="2 4"
             style={{
-              animation: `nodeConnect 4s ease-in-out infinite`,
-              animationDelay: `${index * 0.3}s`,
+              animation: `nodeConnect 6s ease-in-out infinite`,
+              animationDelay: `${index * 0.4}s`,
             }}
           />
         ))}
@@ -170,7 +170,7 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
           height={`${node.size}px`}
           borderRadius="full"
           bg={{
-            _light: "blue.400/80",
+            _light: "slate.400/40",
             _dark: "blue.500/30",
           }}
           transform="translate(-50%, -50%)"
@@ -178,7 +178,7 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
           animationDelay={`${index * 0.2}s`}
           boxShadow={{
             _light:
-              "0 0 16px rgba(59, 130, 246, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.2)",
+              "0 0 8px rgba(148, 163, 184, 0.3), inset 0 0 4px rgba(255, 255, 255, 0.1)",
             _dark: "0 0 8px rgba(59, 130, 246, 0.2)",
           }}
           _before={{
@@ -187,13 +187,13 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
             inset: "-2px",
             borderRadius: "full",
             bg: {
-              _light: "purple.400/50",
+              _light: "gray.400/30",
               _dark: "purple.500/15",
             },
             animation: "gridPulse 2s ease-in-out infinite reverse",
             animationDelay: `${index * 0.2 + 1}s`,
             boxShadow: {
-              _light: "0 0 12px rgba(147, 51, 234, 0.4)",
+              _light: "0 0 6px rgba(156, 163, 175, 0.2)",
               _dark: "none",
             },
           }}
@@ -209,7 +209,7 @@ export const NetworkNodes: React.FC<NetworkNodesProps> = ({
         height="70%"
         background={{
           _light:
-            "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.12) 0%, transparent 60%)",
+            "radial-gradient(ellipse at center, rgba(148, 163, 184, 0.04) 0%, transparent 60%)",
           _dark:
             "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.015) 0%, transparent 60%)",
         }}
