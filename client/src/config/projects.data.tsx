@@ -1,4 +1,4 @@
-import { FaCar, FaShieldAlt, FaRobot, FaTree } from "react-icons/fa";
+import { FaShieldAlt, FaRobot, FaTree } from "react-icons/fa";
 
 export const projects = [
   {
@@ -10,38 +10,47 @@ export const projects = [
       Implemented advanced search functionality, user authentication, messaging system, and
       secure payment processing to create a comprehensive ecommerce platform.
     `,
-	// include: EasyPost
-	tech: ["React", "Next.js", "TypeScript", "Chakra UI", "SSG", "AWS"],
-	category: "Cybersecurity Consulting",
-	status: "Production",
-	timeline: "≈4 months",
-	team: "Full-Stack Developer",
-	icon: FaShieldAlt,
-	architecture: "Next.js + SSG",
-	userBase: "Enterprise Clients",
-	keyFeature: "Security Focus",
-	metrics: [
-		"Comprehensive security assessments",
-		"AI adoption & compliance strategies",
-		"People-first cybersecurity approach",
-	],
-	highlights: [
-		"Enterprise security consulting",
-		"AI governance frameworks",
-		"Compliance roadmap development",
-	],
-	},
-	{
-	id: "spscyber",
-	title: "spscyber.com",
-	subtitle: "People-First Cybersecurity & AI Advisory",
-	description: `
+    // include: EasyPost
+    tech: ["React", "Next.js", "TypeScript", "Chakra UI", "SSG", "AWS"],
+    category: "Cybersecurity Consulting",
+    status: "Production",
+    timeline: "≈4 months",
+    team: "Full-Stack Developer",
+    icon: FaShieldAlt,
+    architecture: "Next.js + SSG",
+    userBase: "Enterprise Clients",
+    keyFeature: "Security Focus",
+    metrics: [
+      "Comprehensive security assessments",
+      "AI adoption & compliance strategies",
+      "People-first cybersecurity approach",
+    ],
+    highlights: [
+      "Enterprise security consulting",
+      "AI governance frameworks",
+      "Compliance roadmap development",
+    ],
+  },
+  {
+    id: "spscyber",
+    title: "spscyber.com",
+    subtitle: "People-First Cybersecurity & AI Advisory",
+    description: `
 	  Corporate website for SPS Cyber, a cybersecurity consulting firm specializing in
 	  security strategy, compliance enablement, and AI adoption guidance. Focused on
 	  delivering people-first solutions and practical roadmaps across industries.
 	`,
-	// include: WebifyUI, GraphQL, Apollo Client
-    tech: ["MERN", "Chakra UI", "TypeScript", "Vite", "AWS", "WebifyUI", "GraphQL", "Apollo Client"],
+    // include: WebifyUI, GraphQL, Apollo Client
+    tech: [
+      "MERN",
+      "Chakra UI",
+      "TypeScript",
+      "Vite",
+      "AWS",
+      "WebifyUI",
+      "GraphQL",
+      "Apollo Client",
+    ],
     category: "Corporate Website / Cybersecurity Consulting",
     status: "Production",
     timeline: "≈6 months",

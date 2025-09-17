@@ -4,10 +4,13 @@
  */
 
 // Storage hooks
-export { useLocalStorage } from './useLocalStorage';
+export { useLocalStorage } from "./useLocalStorage";
 
 // Navigation and scroll hooks
-export { useScrollTo, useScrollPosition, useInViewport } from './useScroll';
+export { useScrollTo, useScrollPosition, useInViewport } from "./useScroll";
 
 // Style and UI management hooks
-export { useBackgroundManager, useRandomizedStyles } from './useStyleManagement';
+export {
+  useBackgroundManager,
+  useRandomizedStyles,
+} from "./useStyleManagement";

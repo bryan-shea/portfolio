@@ -9,7 +9,7 @@ import {
   FramerMotion,
   Vitest,
   Playwright,
-} from '../components/common/tech-logos';
+} from "../components/common/tech-logos";
 
 /**
  * Interface for tech stack item
@@ -161,8 +161,12 @@ export const skillTechCategories: SkillTechCategory[] = [
 export const techStackSets = {
   setA: techStackConfig.slice(0, Math.ceil(techStackConfig.length / 2)),
   setB: techStackConfig.slice(Math.ceil(techStackConfig.length / 2)),
-  primary: techStackConfig.filter(tech => tech.proficiency && tech.proficiency >= 4),
-  secondary: techStackConfig.filter(tech => tech.proficiency && tech.proficiency < 4),
+  primary: techStackConfig.filter(
+    tech => tech.proficiency && tech.proficiency >= 4
+  ),
+  secondary: techStackConfig.filter(
+    tech => tech.proficiency && tech.proficiency < 4
+  ),
 };
 
 /**

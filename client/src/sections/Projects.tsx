@@ -206,7 +206,7 @@ export const Projects = () => {
                     Highlights
                   </Text>
                   <VStack gap="2" align="stretch">
-                    {project.highlights.slice(0, 3).map((highlight) => (
+                    {project.highlights.slice(0, 3).map(highlight => (
                       <HStack key={highlight} gap="2">
                         <Box
                           w="1.5"

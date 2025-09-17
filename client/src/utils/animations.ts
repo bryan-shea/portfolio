@@ -49,10 +49,10 @@ export const animationVariants = {
  * Common transition configurations
  */
 export const transitions = {
-  smooth: { duration: 0.6, ease: 'easeOut' },
-  quick: { duration: 0.3, ease: 'easeOut' },
-  slow: { duration: 1.0, ease: 'easeOut' },
-  bounce: { type: 'spring', stiffness: 300, damping: 20 },
+  smooth: { duration: 0.6, ease: "easeOut" },
+  quick: { duration: 0.3, ease: "easeOut" },
+  slow: { duration: 1.0, ease: "easeOut" },
+  bounce: { type: "spring", stiffness: 300, damping: 20 },
 } as const;
 
 /**
@@ -63,7 +63,7 @@ export const transitions = {
  */
 export const createAnimationProps = (
   variant: keyof typeof animationVariants,
-  transition: keyof typeof transitions = 'smooth'
+  transition: keyof typeof transitions = "smooth"
 ) => ({
   ...animationVariants[variant],
   transition: transitions[transition],
@@ -76,7 +76,7 @@ export const createAnimationProps = (
  * @returns Container and item animation props
  */
 export const createStaggerAnimation = (
-  itemVariant: keyof typeof animationVariants = 'fadeIn',
+  itemVariant: keyof typeof animationVariants = "fadeIn",
   staggerDelay = 0.1
 ) => ({
   container: {

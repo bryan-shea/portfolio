@@ -85,7 +85,7 @@ const portfolioSections: NavigationSection[] = [
 export const NavigationMenu = () => {
   // Filter out placeholder from selectable sections
   const selectableSections = portfolioSections.filter(
-    (section) => section.id !== "navigation-placeholder"
+    section => section.id !== "navigation-placeholder"
   );
 
   const [selectedSectionId, setSelectedSectionId] = useState<string>(
@@ -102,7 +102,7 @@ export const NavigationMenu = () => {
 
   // Get the current section for badge display
   const currentSection = portfolioSections.find(
-    (section) => section.id === selectedSectionId
+    section => section.id === selectedSectionId
   );
 
   // Responsive trigger: full button on md+, compact on mobile
@@ -170,7 +170,7 @@ export const NavigationMenu = () => {
                 boxShadow="lg"
                 minW={isMobile ? "280px" : "320px"}
               >
-                {selectableSections.map((section) => (
+                {selectableSections.map(section => (
                   <SectionMenuItem
                     key={section.id}
                     section={section}

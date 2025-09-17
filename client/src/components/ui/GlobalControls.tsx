@@ -125,7 +125,7 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
   ];
 
   const selectedAction = controlActions.find(
-    (action) => action.id === selectedActionId
+    action => action.id === selectedActionId
   );
 
   // Always show Settings as the main action, but track which action was last used
@@ -184,7 +184,7 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
                   boxShadow="lg"
                   minW={isMobile ? "260px" : "300px"}
                 >
-                  {controlActions.map((action) => (
+                  {controlActions.map(action => (
                     <ActionMenuItem
                       key={action.id}
                       action={action}

@@ -66,7 +66,7 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({
       pointerEvents="none"
       zIndex={-1}
     >
-      {particles.map((particle) => (
+      {particles.map(particle => (
         <Box
           key={particle.id}
           position="absolute"

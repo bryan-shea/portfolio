@@ -117,7 +117,7 @@ export const Journey = () => {
                   </Badge>
 
                   <VStack gap="2" align="stretch" flex="1" justify="flex-start">
-                    {category.technologies.map((tech) => (
+                    {category.technologies.map(tech => (
                       <Badge
                         key={tech}
                         size="md"
@@ -243,7 +243,7 @@ export const Journey = () => {
                           Skills Acquired:
                         </Text>
                         <HStack wrap="wrap" gap="1">
-                          {milestone.skills.map((skill) => (
+                          {milestone.skills.map(skill => (
                             <Badge
                               key={skill}
                               size="sm"

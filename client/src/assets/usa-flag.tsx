@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 /**
  * USA Flag SVG component
  * Represents the USA flag with 13 stripes and 50 stars
  *
  */
-export const USFlag: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+export const USFlag: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,5 +27,5 @@ export const USFlag: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
         ></path>
       </g>
     </svg>
-  )
-}
+  );
+};

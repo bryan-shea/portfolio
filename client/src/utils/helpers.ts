@@ -89,8 +89,8 @@ export const clamp = (value: number, min: number, max: number): number => {
  */
 export const toKebabCase = (str: string): string => {
   return str
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .replace(/\s+/g, '-')
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/\s+/g, "-")
     .toLowerCase();
 };
 
@@ -101,7 +101,7 @@ export const toKebabCase = (str: string): string => {
  */
 export const toCamelCase = (str: string): string => {
   return str
-    .replace(/[-_\s]+(.)?/g, (_, char) => (char ? char.toUpperCase() : ''))
+    .replace(/[-_\s]+(.)?/g, (_, char) => (char ? char.toUpperCase() : ""))
     .replace(/^[A-Z]/, char => char.toLowerCase());
 };
 
@@ -125,6 +125,6 @@ export const safeJsonParse = <T>(jsonString: string, fallback: T): T => {
  * @param separator - Separator character (default: ',')
  * @returns Formatted number string
  */
-export const formatNumber = (num: number, separator = ','): string => {
+export const formatNumber = (num: number, separator = ","): string => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 };

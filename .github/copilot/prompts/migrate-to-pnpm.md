@@ -54,7 +54,7 @@ pnpm --version
 
 2. **Create .npmrc for pnpm configuration**
 
-   ```
+   ```.npmrc
    # .npmrc
    # Use pnpm's strict peer dependencies
    strict-peer-dependencies=true

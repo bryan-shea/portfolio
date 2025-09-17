@@ -7,7 +7,7 @@ interface LogoProps extends ComponentProps<"svg"> {
 /**
  * MongoDB logo component
  */
-export const MongoDB = ({ monochrome, ...props }: LogoProps) => (
+export const MongoDB = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"

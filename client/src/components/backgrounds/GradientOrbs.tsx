@@ -59,9 +59,6 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
   }, [count, minSize, maxSize, baseDuration]);
 
   const getOrbBackground = (variant: number) => {
-    const lightColors = ["slate.500", "slate.600", "slate.700"];
-    const darkColors = ["blue.400", "purple.400", "pink.400"];
-
     return {
       _light: `radial-gradient(circle, rgba(71, 85, 105, 0.25) 0%, transparent 60%)`, // slate equivalent
       _dark:
@@ -81,7 +78,7 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
       pointerEvents="none"
       zIndex={-1}
     >
-      {orbs.map((orb) => {
+      {orbs.map(orb => {
         const mainBackground = getOrbBackground(orb.colorVariant);
         const innerBackground = getOrbBackground((orb.colorVariant + 1) % 3);
 

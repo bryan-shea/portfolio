@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 /**
  * Custom hook for managing background selection with persistence
@@ -8,24 +8,27 @@ import { useState, useCallback } from 'react';
  */
 export function useBackgroundManager<T extends string>(
   initialBackground: T,
-  storageKey = 'portfolio-background'
+  storageKey = "portfolio-background"
 ): [T, (background: T) => void] {
   const [background, setBackgroundState] = useState<T>(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const saved = localStorage.getItem(storageKey);
-      if (saved && saved !== 'none') {
+      if (saved && saved !== "none") {
         return saved as T;
       }
     }
     return initialBackground;
   });
 
-  const setBackground = useCallback((newBackground: T) => {
-    setBackgroundState(newBackground);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(storageKey, newBackground);
-    }
-  }, [storageKey]);
+  const setBackground = useCallback(
+    (newBackground: T) => {
+      setBackgroundState(newBackground);
+      if (typeof window !== "undefined") {
+        localStorage.setItem(storageKey, newBackground);
+      }
+    },
+    [storageKey]
+  );
 
   return [background, setBackground];
 }

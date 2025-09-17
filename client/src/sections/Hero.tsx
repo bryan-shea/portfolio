@@ -101,12 +101,12 @@ export const Hero = () => {
           <Text
             fontSize={{ base: "md", md: "xl" }}
             color={{
-				_light: "fg.subtle",
-				_dark: "fg.muted",
-			}}
+              _light: "fg.subtle",
+              _dark: "fg.muted",
+            }}
             lineHeight="relaxed"
             textAlign="center"
-			w="3xl"
+            w="3xl"
           >
             {personal.bio}
           </Text>
@@ -196,7 +196,7 @@ export const Hero = () => {
               size={{ base: "lg", md: "xl" }}
               variant="outline"
               colorPalette="blue"
-			  borderColor="blue.500"
+              borderColor="blue.500"
               onClick={handleContact}
               px={{ base: "6", md: "8" }}
               py={{ base: "3", md: "4" }}

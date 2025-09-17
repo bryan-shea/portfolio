@@ -1,2 +1,2 @@
-export { ColorProvider, useColors } from './ColorContext';
-export type { ColorScheme } from './ColorContext';
+export { ColorProvider, useColors } from "./ColorContext";
+export type { ColorScheme } from "./ColorContext";
