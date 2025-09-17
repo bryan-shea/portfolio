@@ -1,4 +1,4 @@
-import { type ColorPaletteName, type BadgeVariant } from '../utils';
+import { type ColorPaletteName, type BadgeVariant } from "../utils";
 
 /**
  * Interface for hero section configuration
@@ -21,12 +21,12 @@ export interface HeroConfig {
   cta: {
     primary: {
       text: string;
-      action: 'scroll' | 'external';
+      action: "scroll" | "external";
       target: string;
     };
     secondary: {
       text: string;
-      action: 'scroll' | 'external';
+      action: "scroll" | "external";
       target: string;
     };
   };

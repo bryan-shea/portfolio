@@ -2,19 +2,27 @@
   "name": "portfolio",
   "version": "1.0.0",
   "description": "Personal portfolio website built with React, TypeScript, and Chakra UI",
+  "type": "module",
   "private": true,
   "workspaces": [
     "client"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace=client",
-    "install-all": "npm install --workspaces",
-    "lint": "npm run lint --workspace=client",
-    "typegen": "npm run typegen --workspace=client",
-    "postinstall": "npm run postinstall --workspace=client",
-    "build": "npm run build --workspace=client",
-    "preview": "npm run preview --workspace=client",
-    "deploy": "gh-pages -d client/dist"
+    "dev": "pnpm --filter client dev",
+    "install-all": "pnpm install",
+    "lint": "pnpm --filter client lint",
+    "lint:fix": "pnpm --filter client lint:fix",
+    "format": "pnpm --filter client format",
+    "format:check": "pnpm --filter client format:check",
+    "type-check": "pnpm --filter client type-check",
+    "typegen": "pnpm --filter client typegen",
+    "postinstall": "pnpm --filter client postinstall",
+    "build": "pnpm --filter client build",
+    "preview": "pnpm --filter client preview",
+    "deploy": "gh-pages -d client/dist",
+    "ci": "pnpm run type-check && pnpm run lint && pnpm run format:check && pnpm run build",
+    "ci:fix": "pnpm run format && pnpm run lint:fix && pnpm run type-check && pnpm run build",
+    "ci:simple": "echo \"🚀 Starting CI Pipeline...\" && echo \"[1/4] Type checking...\" && pnpm run type-check && echo \"[2/4] Linting...\" && pnpm run lint && echo \"[3/4] Format checking...\" && pnpm run format:check && echo \"[4/4] Building...\" && pnpm run build && echo \"✅ CI Pipeline completed successfully!\""
   },
   "devDependencies": {
     "typescript": "^5.0.0",

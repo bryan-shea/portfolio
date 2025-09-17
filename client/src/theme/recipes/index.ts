@@ -4,8 +4,8 @@ import { textareaRecipe } from "./textarea";
 import { menuRecipe } from "./menu";
 
 export const recipes = {
-	button: buttonRecipe,
-	input: inputRecipe,
-	textarea: textareaRecipe,
-	menu: menuRecipe,
+  button: buttonRecipe,
+  input: inputRecipe,
+  textarea: textareaRecipe,
+  menu: menuRecipe,
 };

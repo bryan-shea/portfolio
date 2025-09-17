@@ -156,24 +156,12 @@ export const journeyMilestones: JourneyMilestone[] = [
 export const techCategories: TechCategory[] = [
   {
     name: "Frontend",
-    technologies: [
-      "React",
-      "TypeScript",
-      "Next.js",
-      "Chakra UI",
-      "Vite",
-    ],
+    technologies: ["React", "TypeScript", "Next.js", "Chakra UI", "Vite"],
     color: "cyan",
   },
   {
     name: "Backend",
-    technologies: [
-      "Node.js",
-      "Express",
-      "GraphQL",
-      "Apollo Server",
-      "MongoDB",
-    ],
+    technologies: ["Node.js", "Express", "GraphQL", "Apollo Server", "MongoDB"],
     color: "green",
   },
   {

@@ -35,7 +35,7 @@ export const SubtleGrid: React.FC<SubtleGridProps> = ({
         position="absolute"
         inset="0"
         opacity={{
-          _light: "0.08",
+          _light: "0.04",
           _dark: "0.03",
         }}
         backgroundImage={{
@@ -58,7 +58,7 @@ export const SubtleGrid: React.FC<SubtleGridProps> = ({
         inset="0"
         background={{
           _light:
-            "radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.02) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(147, 51, 234, 0.015) 0%, transparent 50%)",
+            "radial-gradient(circle at 30% 40%, rgba(226, 232, 240, 0.01) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(241, 245, 249, 0.008) 0%, transparent 50%)",
           _dark:
             "radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.01) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(147, 51, 234, 0.008) 0%, transparent 50%)",
         }}

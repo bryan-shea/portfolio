@@ -1,98 +1,122 @@
-import { FaCar, FaShieldAlt, FaRobot, FaTree } from "react-icons/fa"
+import { FaShieldAlt, FaRobot, FaTree } from "react-icons/fa";
 
 export const projects = [
   {
     id: "myprojectcar",
     title: "myprojectcar.com",
-    subtitle: "Marketplace for Project Cars & Parts", // Consider matching the site's exact tagline if different
+    subtitle: "Marketplace for Project Cars & Parts",
     description: `
-      A community-driven marketplace for car restoration enthusiasts to buy,
-      sell, and trade project cars and parts. Featuring advanced search filters,
-      user profiles, and a full ecommerce experience.
+      Full-stack marketplace connecting automotive enthusiasts with project cars and parts.
+      Implemented advanced search functionality, user authentication, messaging system, and
+      secure payment processing to create a comprehensive ecommerce platform.
     `,
-    tech: ["React", "Node.js", "Chakra UI", "TypeScript", "MongoDB", "AWS"],
-    category: "Automotive Marketplace",
+    // include: EasyPost
+    tech: ["React", "Next.js", "TypeScript", "Chakra UI", "SSG", "AWS"],
+    category: "Cybersecurity Consulting",
     status: "Production",
-    timeline: "≈8 months",
-    team: "Lead Full-Stack Developer",
-    icon: FaCar,
+    timeline: "≈4 months",
+    team: "Full-Stack Developer",
+    icon: FaShieldAlt,
+    architecture: "Next.js + SSG",
+    userBase: "Enterprise Clients",
+    keyFeature: "Security Focus",
     metrics: [
-      // Replace these with site-verifiable stats if you want hard numbers shown in UI:
-      "Search by make, model & year",
-      "Saved searches & alerts",
-      "Buyer–seller messaging"
+      "Comprehensive security assessments",
+      "AI adoption & compliance strategies",
+      "People-first cybersecurity approach",
     ],
     highlights: [
-      "Targeted filters for project cars & parts",
-      "Alerted matches for saved searches",
-      "Seller tools with photo-rich listings"
-    ]
+      "Enterprise security consulting",
+      "AI governance frameworks",
+      "Compliance roadmap development",
+    ],
   },
   {
     id: "spscyber",
     title: "spscyber.com",
-    subtitle: "People-Centered Cybersecurity & AI Advisory",
+    subtitle: "People-First Cybersecurity & AI Advisory",
     description: `
-      A cybersecurity and AI consultancy focused on practical, people-first outcomes.
-      The site presents services spanning security strategy, compliance enablement,
-      assessments, and AI adoption guidance, with cross-industry experience in defense,
-      IT, finance, education, and consumer products.
-    `,
-    tech: ["React", "Next.js", "TypeScript", "Chakra UI", "Vite", "AWS"],
+	  Corporate website for SPS Cyber, a cybersecurity consulting firm specializing in
+	  security strategy, compliance enablement, and AI adoption guidance. Focused on
+	  delivering people-first solutions and practical roadmaps across industries.
+	`,
+    // include: WebifyUI, GraphQL, Apollo Client
+    tech: [
+      "MERN",
+      "Chakra UI",
+      "TypeScript",
+      "Vite",
+      "AWS",
+      "WebifyUI",
+      "GraphQL",
+      "Apollo Client",
+    ],
     category: "Corporate Website / Cybersecurity Consulting",
     status: "Production",
     timeline: "≈6 months",
     team: "UI/UX Designer & Developer",
     icon: FaShieldAlt,
+    architecture: "Next.js + SSG",
+    userBase: "Enterprise Clients",
+    keyFeature: "Responsive Design",
     metrics: [
       // Swapped unverifiable counts for factual themes:
       "Security strategy & assessments",
       "Compliance enablement",
-      "AI adoption guidance across industries"
+      "AI adoption guidance across industries",
     ],
     highlights: [
       "People-first delivery & partnerships",
       "Multi-industry expertise",
-      "Practical, compliance-aware roadmaps"
-    ]
+      "Practical, compliance-aware roadmaps",
+    ],
   },
   {
     id: "fencegpt",
     title: "fencegpt.com",
     subtitle: "AI Assistant for Fence Professionals",
     description: `
-      An AI assistant purpose-built for fence companies and teams. Provides a curated
-      knowledge base, step-by-step guidance, and workflows that help estimate, plan,
-      and document jobs. Offers a free trial and tiered subscriptions with team-friendly
-      features like chat history and usage exports.
+      AI-powered SaaS platform for fence industry professionals. Integrated OpenAI APIs
+      with LangChain to deliver specialized knowledge base, automated workflows, and team
+      collaboration features. Implemented subscription billing and usage analytics.
     `,
-    tech: ["React", "Node.js", "Chakra UI", "Python", "LangChain", "Stripe", "AWS"],
+    tech: [
+      "React",
+      "Node.js",
+      "Chakra UI",
+      "Python",
+      "LangChain",
+      "Stripe",
+      "AWS",
+    ],
     category: "AI SaaS Platform",
     status: "Production",
     timeline: "≈7 months",
     team: "Lead Developer",
     icon: FaRobot,
+    architecture: "Python + OpenAI",
+    userBase: "SaaS Subscribers",
+    keyFeature: "AI Integration",
     metrics: [
       // Avoid % accuracy claims unless we can cite them:
       "Curated industry knowledge base",
       "Free trial & tiered plans",
-      "Team usage exports & chat retention"
+      "Team usage exports & chat retention",
     ],
     highlights: [
-      "How-to guidance and job workflows",
-      "Industry-specific prompts & context",
-      "Admin controls for teams"
-    ]
+      "RAG-based document retrieval",
+      "Custom knowledge base isolation",
+      "Team collaboration features",
+    ],
   },
   {
     id: "waysidefence",
     title: "waysidefence.com",
     subtitle: "Materials, Fabrication & Installation Services",
     description: `
-      An online storefront and brand site for professional fence materials and services.
-      Showcases vinyl, wood, and aluminum options—plus gates, posts, and accessories—
-      with support for quotes and professional installation. Serves homeowners,
-      contractors, and property managers.
+      E-commerce platform for fence materials and professional services. Built comprehensive
+      product catalog with quote system, inventory management, and multi-location service
+      coordination. Integrated Stripe for secure payment processing.
     `,
     tech: ["React", "Next.js", "TypeScript", "Chakra UI", "Stripe", "AWS"],
     category: "E-Commerce & Services",
@@ -100,17 +124,19 @@ export const projects = [
     timeline: "≈6 months",
     team: "Full-Stack Developer",
     icon: FaTree,
+    architecture: "Next.js + Stripe",
+    userBase: "E-commerce Platform",
+    keyFeature: "Payment Processing",
     metrics: [
       // If you want location specifics, keep these if accurate; otherwise use generic:
       "Bay Shore, NY & Newington, CT locations", // Confirm exact city names if needed
       "In-house wood, PVC & welding shops",
-      "Wide range of fence styles & accessories"
+      "Wide range of fence styles & accessories",
     ],
     highlights: [
-      "Professional construction & installation",
-      "Diverse materials: vinyl, wood, aluminum",
-      "Easy online shopping & quote requests"
-    ]
-  }
-]
-
+      "Industry material & supply",
+      "Custom CMS dashboard",
+      "Lead ingestion & management",
+    ],
+  },
+];

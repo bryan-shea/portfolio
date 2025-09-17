@@ -1,13 +1,11 @@
 import { type ComponentProps } from "react";
 
-interface LogoProps extends ComponentProps<"svg"> {
-  monochrome?: boolean;
-}
+type LogoProps = ComponentProps<"svg">;
 
 /**
  * MongoDB logo component
  */
-export const MongoDB = ({ monochrome, ...props }: LogoProps) => (
+export const MongoDB = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
@@ -36,7 +34,7 @@ export const MongoDB = ({ monochrome, ...props }: LogoProps) => (
 /**
  * React logo component
  */
-export const React = ({ monochrome, ...props }: LogoProps) => (
+export const React = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
@@ -75,7 +73,7 @@ export const React = ({ monochrome, ...props }: LogoProps) => (
 /**
  * Vite logo component
  */
-export const Vite = ({ monochrome, ...props }: LogoProps) => (
+export const Vite = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
@@ -125,7 +123,7 @@ export const Vite = ({ monochrome, ...props }: LogoProps) => (
 /**
  * GraphQL logo component
  */
-export const GraphQL = ({ monochrome, ...props }: LogoProps) => (
+export const GraphQL = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
@@ -168,7 +166,7 @@ export const GraphQL = ({ monochrome, ...props }: LogoProps) => (
 /**
  * TypeScript logo component
  */
-export const TypeScript = ({ monochrome, ...props }: LogoProps) => (
+export const TypeScript = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
@@ -190,7 +188,7 @@ export const TypeScript = ({ monochrome, ...props }: LogoProps) => (
 /**
  * Chakra UI logo component
  */
-export const ChakraUI = ({ monochrome, ...props }: LogoProps) => (
+export const ChakraUI = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 128 128"
@@ -222,7 +220,7 @@ export const ChakraUI = ({ monochrome, ...props }: LogoProps) => (
 /**
  * AWS logo component
  */
-export const AWS = ({ monochrome, ...props }: LogoProps) => (
+export const AWS = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
@@ -255,7 +253,7 @@ export const AWS = ({ monochrome, ...props }: LogoProps) => (
 /**
  * Playwright logo component
  */
-export const Playwright = ({ monochrome, ...props }: LogoProps) => (
+export const Playwright = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 128 128"
@@ -297,7 +295,7 @@ export const Playwright = ({ monochrome, ...props }: LogoProps) => (
 /**
  * Vitest
  */
-export const Vitest = ({ monochrome, ...props }: LogoProps) => (
+export const Vitest = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"
@@ -327,7 +325,7 @@ export const Vitest = ({ monochrome, ...props }: LogoProps) => (
 /**
  * Framer Motion
  */
-export const FramerMotion = ({ monochrome, ...props }: LogoProps) => (
+export const FramerMotion = ({ ...props }: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256 256"

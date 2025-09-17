@@ -11,7 +11,8 @@ export const menuRecipe = defineRecipe({
     bg: "bg.panel",
     boxShadow: {
       _light: "lg",
-      _dark: "0 10px 25px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05)"
+      _dark:
+        "0 10px 25px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05)",
     },
     color: "fg",
     borderRadius: "md",
@@ -40,32 +41,32 @@ export const menuRecipe = defineRecipe({
       _hover: {
         bg: {
           _light: "primary.50",
-          _dark: "primary.900/20"
+          _dark: "primary.900/20",
         },
         color: {
           _light: "primary.700",
-          _dark: "primary.200"
-        }
+          _dark: "primary.200",
+        },
       },
 
       _active: {
         bg: {
           _light: "primary.100",
-          _dark: "primary.800/30"
+          _dark: "primary.800/30",
         },
         color: {
           _light: "primary.800",
-          _dark: "primary.100"
-        }
+          _dark: "primary.100",
+        },
       },
 
       _focus: {
         bg: {
           _light: "primary.50",
-          _dark: "primary.900/20"
+          _dark: "primary.900/20",
         },
         boxShadow: "0 0 0 2px var(--chakra-colors-primary-500)",
-        outline: "none"
+        outline: "none",
       },
 
       _disabled: {
@@ -73,9 +74,9 @@ export const menuRecipe = defineRecipe({
         cursor: "not-allowed",
         _hover: {
           bg: "transparent",
-          color: "fg.muted"
-        }
-      }
+          color: "fg.muted",
+        },
+      },
     },
 
     // Menu item text
@@ -100,7 +101,7 @@ export const menuRecipe = defineRecipe({
       color: "fg.subtle",
       bg: {
         _light: "gray.100",
-        _dark: "gray.800"
+        _dark: "gray.800",
       },
       px: "1.5",
       py: "0.5",
@@ -120,8 +121,8 @@ export const menuRecipe = defineRecipe({
       borderColor: "border.muted",
       bg: {
         _light: "gray.50",
-        _dark: "gray.900/50"
-      }
+        _dark: "gray.900/50",
+      },
     },
 
     // Menu separator
@@ -135,8 +136,8 @@ export const menuRecipe = defineRecipe({
     "& .chakra-menu__indicator": {
       mr: "2",
       color: "primary.500",
-      fontSize: "sm"
-    }
+      fontSize: "sm",
+    },
   },
 
   variants: {
@@ -146,12 +147,12 @@ export const menuRecipe = defineRecipe({
           _highlighted: {
             bg: {
               _light: "primary.50",
-              _dark: "primary.900/25"
+              _dark: "primary.900/25",
             },
             color: {
               _light: "primary.700",
-              _dark: "primary.200"
-            }
+              _dark: "primary.200",
+            },
           },
         },
       },
@@ -190,7 +191,7 @@ export const menuRecipe = defineRecipe({
           px: "2",
           py: "1",
           fontSize: "2xs",
-        }
+        },
       },
       md: {
         minW: "200px",
@@ -206,7 +207,7 @@ export const menuRecipe = defineRecipe({
           px: "3",
           py: "2",
           fontSize: "xs",
-        }
+        },
       },
       lg: {
         minW: "240px",
@@ -222,7 +223,7 @@ export const menuRecipe = defineRecipe({
           px: "4",
           py: "2.5",
           fontSize: "sm",
-        }
+        },
       },
     },
   },

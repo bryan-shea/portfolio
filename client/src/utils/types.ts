@@ -35,7 +35,9 @@ export type BadgeVariant = "surface" | "outline" | "solid" | "subtle";
 /**
  * Common responsive breakpoint values
  */
-export type ResponsiveValue<T> = T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; "2xl"?: T };
+export type ResponsiveValue<T> =
+  | T
+  | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; "2xl"?: T };
 
 /**
  * Animation timing types
@@ -65,7 +67,13 @@ export type ContactMethod = "email" | "linkedin" | "github" | "phone";
 /**
  * Project technology categories
  */
-export type TechCategory = "frontend" | "backend" | "database" | "devops" | "mobile" | "other";
+export type TechCategory =
+  | "frontend"
+  | "backend"
+  | "database"
+  | "devops"
+  | "mobile"
+  | "other";
 
 /**
  * Skill proficiency levels

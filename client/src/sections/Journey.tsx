@@ -14,16 +14,6 @@ import { LuGraduationCap, LuCode, LuTrophy } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { journeyMilestones, techCategories } from "../config";
 
-const getColorHex = (color: string): string => {
-  const colorMap: Record<string, string> = {
-    indigo: "#6366f1",
-    green: "#10b981",
-    purple: "#8b5cf6",
-    blue: "#3b82f6",
-  };
-  return colorMap[color] || "#6366f1";
-};
-
 export const Journey = () => {
   return (
     <Container
@@ -76,22 +66,12 @@ export const Journey = () => {
         </VStack>
       </motion.div>
 
-      <VStack gap="12" mb="12"
-		py={2}
-		px={{ base: "4", md: "6", lg: "8" }}
-	  >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+      <VStack gap="12" mb="12" py={2} px={{ base: "4", md: "6", lg: "8" }}>
+        <SimpleGrid
+          columns={{ base: 1, sm: 2, lg: 4 }}
+          gap="20"
+          w="fit-content"
         >
-          <Heading size="xl" color="fg" textAlign="center">
-            Technical Expertise Areas
-          </Heading>
-        </motion.div>
-
-        <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap="20" w="fit-content">
           {techCategories.map((category, index) => (
             <motion.div
               key={category.name}
@@ -114,7 +94,7 @@ export const Journey = () => {
                 flexDirection="column"
                 _hover={{
                   transform: "translateY(-4px)",
-                  borderColor: `${category.color}.500`,
+                  borderColor: "primary.500",
                   boxShadow: "lg",
                 }}
               >
@@ -122,7 +102,7 @@ export const Journey = () => {
                   <Badge
                     size="lg"
                     variant="solid"
-                    colorPalette={category.color}
+                    colorPalette="primary"
                     px="4"
                     py="2"
                     borderRadius="full"
@@ -137,12 +117,12 @@ export const Journey = () => {
                   </Badge>
 
                   <VStack gap="2" align="stretch" flex="1" justify="flex-start">
-                    {category.technologies.map((tech) => (
+                    {category.technologies.map(tech => (
                       <Badge
                         key={tech}
                         size="md"
                         variant="surface"
-                        colorPalette={category.color}
+                        colorPalette="primary"
                       >
                         {tech}
                       </Badge>
@@ -155,14 +135,11 @@ export const Journey = () => {
         </SimpleGrid>
       </VStack>
 
-      <VStack gap="2" mt="12"
-	  	py={2}
-		px={{ base: "4", md: "6", lg: "8" }}
-
-	  >
+      <VStack gap="2" mt="12" py={2} px={{ base: "4", md: "6", lg: "8" }}>
         <Timeline.Root
           size={{ base: "md", md: "xl" }}
           variant="solid"
+          colorPalette="primary"
           maxW="5xl"
           w="full"
         >
@@ -207,12 +184,9 @@ export const Journey = () => {
                   _hover={
                     milestone.certImage
                       ? {
-                          borderColor: `${milestone.color}.500`,
+                          borderColor: "primary.500",
                           transform: "translateY(-2px)",
                           boxShadow: "lg",
-                          _before: {
-                            opacity: 0.35,
-                          },
                         }
                       : {}
                   }
@@ -225,15 +199,11 @@ export const Journey = () => {
                           left: 0,
                           right: 0,
                           bottom: 0,
-                          backgroundImage: `linear-gradient(to right,
-                          ${getColorHex(milestone.color)} 0%,
-                          ${getColorHex(milestone.color)} 30%,
-                          transparent 70%),
-                          url(${milestone.certImage})`,
-                          backgroundSize: "auto 100%, contain",
-                          backgroundPosition: "left center, right center",
+                          backgroundImage: `url(${milestone.certImage})`,
+                          backgroundSize: "contain",
+                          backgroundPosition: "right center",
                           backgroundRepeat: "no-repeat",
-                          opacity: 0.2,
+                          opacity: 0.1,
                           zIndex: 0,
                           transition: "opacity 0.3s ease",
                         }
@@ -259,10 +229,10 @@ export const Journey = () => {
                         <Timeline.Description
                           color="fg.muted"
                           fontSize={{ base: "sm", md: "md" }}
-						  truncate
-						  lineClamp={2}
-						  maxW="58%"
-						  py={2}
+                          truncate
+                          lineClamp={2}
+                          maxW="58%"
+                          py={2}
                         >
                           {milestone.description}
                         </Timeline.Description>
@@ -273,7 +243,7 @@ export const Journey = () => {
                           Skills Acquired:
                         </Text>
                         <HStack wrap="wrap" gap="1">
-                          {milestone.skills.map((skill) => (
+                          {milestone.skills.map(skill => (
                             <Badge
                               key={skill}
                               size="sm"

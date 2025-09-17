@@ -125,14 +125,20 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
   ];
 
   const selectedAction = controlActions.find(
-    (action) => action.id === selectedActionId
-  ) || {
+    action => action.id === selectedActionId
+  );
+
+  // Always show Settings as the main action, but track which action was last used
+  const displayAction = {
     id: "settings",
     name: "Settings",
     icon: <LuSettings />,
     description: "Global controls",
     action: () => {},
   };
+
+  // Get the current action for badge display
+  const currentAction = selectedAction;
 
   return (
     <>
@@ -154,9 +160,12 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
           >
             <Menu.Trigger asChild>
               {isMobile ? (
-                <MobileControlsTrigger action={selectedAction} />
+                <MobileControlsTrigger action={displayAction} />
               ) : (
-                <SelectedActionButton action={selectedAction} />
+                <SelectedActionButton
+                  action={displayAction}
+                  currentAction={currentAction}
+                />
               )}
             </Menu.Trigger>
             <Portal>
@@ -175,7 +184,7 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
                   boxShadow="lg"
                   minW={isMobile ? "260px" : "300px"}
                 >
-                  {controlActions.map((action) => (
+                  {controlActions.map(action => (
                     <ActionMenuItem
                       key={action.id}
                       action={action}
@@ -324,9 +333,7 @@ const MobileControlsTrigger = (props: MobileControlsTriggerProps) => {
       }}
       {...rest}
     >
-      <Icon boxSize="5">
-        <LuSettings />
-      </Icon>
+      <Icon boxSize="5">{action.icon}</Icon>
     </IconButton>
   );
 };
@@ -336,13 +343,14 @@ const MobileControlsTrigger = (props: MobileControlsTriggerProps) => {
  */
 interface SelectedActionButtonProps extends ButtonProps {
   action: ControlAction;
+  currentAction?: ControlAction;
 }
 
 /**
  * Selected action button component
  */
 const SelectedActionButton = (props: SelectedActionButtonProps) => {
-  const { action, ...rest } = props;
+  const { action, currentAction, ...rest } = props;
 
   return (
     <Button
@@ -385,7 +393,7 @@ const SelectedActionButton = (props: SelectedActionButtonProps) => {
               textTransform="uppercase"
               letterSpacing="wider"
             >
-              Control
+              {currentAction?.name || "Control"}
             </Badge>
           </HStack>
           <Text textStyle="xs" color="fg.muted">

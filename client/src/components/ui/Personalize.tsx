@@ -389,7 +389,7 @@ export const Personalize: React.FC<PersonalizeProps> = ({
                 gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
                 gap="1"
               >
-                {COLOR_PALETTES.map((palette) => (
+                {COLOR_PALETTES.map(palette => (
                   <Box
                     key={palette.name}
                     p="4"
@@ -463,7 +463,7 @@ export const Personalize: React.FC<PersonalizeProps> = ({
                           palette.primary[400],
                           palette.primary[600],
                           palette.primary[800],
-                        ].map((color) => (
+                        ].map(color => (
                           <Box
                             key={color}
                             w="4"

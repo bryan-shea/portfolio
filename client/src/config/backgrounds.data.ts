@@ -5,7 +5,7 @@ import {
   SubtleGrid,
   GradientOrbs,
   NetworkNodes,
-} from '../components/backgrounds';
+} from "../components/backgrounds";
 
 /**
  * Available background types

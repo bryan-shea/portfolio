@@ -11,9 +11,9 @@ export interface ControlAction {
   /** Description of what the action does */
   description: string;
   /** Type of action to perform */
-  actionType: 'modal' | 'toggle' | 'function';
+  actionType: "modal" | "toggle" | "function";
   /** Action-specific metadata */
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 /**

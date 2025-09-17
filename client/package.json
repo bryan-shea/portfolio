@@ -7,9 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "type-check": "tsc --noEmit",
     "preview": "vite preview",
-    "typegen": "npx @chakra-ui/cli typegen ./src/theme/index.ts",
-    "postinstall": "npm run typegen"
+    "typegen": "pnpm dlx @chakra-ui/cli typegen ./src/theme/index.ts",
+    "postinstall": "pnpm run typegen"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.23.0",
@@ -33,6 +37,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "prettier": "^3.6.2",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4"

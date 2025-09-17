@@ -58,20 +58,16 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
     }));
   }, [count, minSize, maxSize, baseDuration]);
 
-  const getOrbGradient = (variant: number) => {
-    const gradients = {
-      light: [
-        "radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 100%)",
-        "radial-gradient(circle, rgba(147, 51, 234, 0.25) 0%, rgba(147, 51, 234, 0.08) 50%, transparent 100%)",
-        "radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, rgba(236, 72, 153, 0.08) 50%, transparent 100%)",
-      ],
-      dark: [
-        "radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 100%)",
-        "radial-gradient(circle, rgba(147, 51, 234, 0.12) 0%, rgba(147, 51, 234, 0.04) 50%, transparent 100%)",
-        "radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, rgba(236, 72, 153, 0.04) 50%, transparent 100%)",
-      ],
+  const getOrbBackground = (variant: number) => {
+    return {
+      _light: `radial-gradient(circle, rgba(71, 85, 105, 0.25) 0%, transparent 60%)`, // slate equivalent
+      _dark:
+        variant === 0
+          ? `radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 60%)` // blue.400
+          : variant === 1
+            ? `radial-gradient(circle, rgba(196, 181, 253, 0.15) 0%, transparent 60%)` // purple.400
+            : `radial-gradient(circle, rgba(251, 182, 206, 0.15) 0%, transparent 60%)`, // pink.400
     };
-    return { _light: gradients.light[variant], _dark: gradients.dark[variant] };
   };
 
   return (
@@ -82,35 +78,40 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
       pointerEvents="none"
       zIndex={-1}
     >
-      {orbs.map((orb) => (
-        <Box
-          key={orb.id}
-          position="absolute"
-          left={`${orb.x}%`}
-          top={`${orb.y}%`}
-          width={`${orb.size}px`}
-          height={`${orb.size}px`}
-          borderRadius="full"
-          background={getOrbGradient(orb.colorVariant)}
-          animation={`orbFloat ${orb.duration}s ease-in-out infinite`}
-          animationDelay={`${orb.delay}s`}
-          filter={{
-            _light: "blur(1px) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))",
-            _dark: "blur(1px)",
-          }}
-          transform="translate(-50%, -50%)"
-          _after={{
-            content: '""',
-            position: "absolute",
-            inset: "20%",
-            borderRadius: "full",
-            background: getOrbGradient((orb.colorVariant + 1) % 3),
-            animation: `orbFloat ${orb.duration * 0.8}s ease-in-out infinite reverse`,
-            animationDelay: `${orb.delay + 2}s`,
-            filter: "blur(2px)",
-          }}
-        />
-      ))}
+      {orbs.map(orb => {
+        const mainBackground = getOrbBackground(orb.colorVariant);
+        const innerBackground = getOrbBackground((orb.colorVariant + 1) % 3);
+
+        return (
+          <Box
+            key={orb.id}
+            position="absolute"
+            left={`${orb.x}%`}
+            top={`${orb.y}%`}
+            width={`${orb.size}px`}
+            height={`${orb.size}px`}
+            borderRadius="full"
+            background={mainBackground}
+            animation={`orbFloat ${orb.duration}s ease-in-out infinite`}
+            animationDelay={`${orb.delay}s`}
+            filter={{
+              _light: "blur(2px)",
+              _dark: "blur(1px)",
+            }}
+            transform="translate(-50%, -50%)"
+            _after={{
+              content: '""',
+              position: "absolute",
+              inset: "20%",
+              borderRadius: "full",
+              background: innerBackground,
+              animation: `orbFloat ${orb.duration * 0.8}s ease-in-out infinite reverse`,
+              animationDelay: `${orb.delay + 2}s`,
+              filter: "blur(2px)",
+            }}
+          />
+        );
+      })}
 
       {/* Additional ambient glow effects */}
       <Box
@@ -121,9 +122,9 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
         height="80%"
         background={{
           _light:
-            "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.06) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(71, 85, 105, 0.08) 0%, transparent 60%)", // slate.600/8
           _dark:
-            "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.02) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(96, 165, 250, 0.02) 0%, transparent 60%)", // blue.400/2
         }}
         animation="orbFloat 25s ease-in-out infinite"
         animationDelay="5s"
@@ -137,9 +138,9 @@ export const GradientOrbs: React.FC<GradientOrbsProps> = ({
         height="60%"
         background={{
           _light:
-            "radial-gradient(ellipse at center, rgba(147, 51, 234, 0.06) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(51, 65, 85, 0.08) 0%, transparent 60%)", // slate.700/8
           _dark:
-            "radial-gradient(ellipse at center, rgba(147, 51, 234, 0.02) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(196, 181, 253, 0.02) 0%, transparent 60%)", // purple.400/2
         }}
         animation="orbFloat 30s ease-in-out infinite reverse"
         animationDelay="8s"

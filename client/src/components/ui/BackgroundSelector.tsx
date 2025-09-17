@@ -166,7 +166,7 @@ export const BackgroundSelector: React.FC<BackgroundSelectorProps> = ({
             gap="4"
             mb="6"
           >
-            {BACKGROUND_OPTIONS.map((option) => (
+            {BACKGROUND_OPTIONS.map(option => (
               <Card.Root
                 key={option.type}
                 position="relative"

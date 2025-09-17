@@ -41,7 +41,7 @@ interface FloatingParticlesProps {
  * Adapts colors for light and dark modes
  */
 export const FloatingParticles: React.FC<FloatingParticlesProps> = ({
-  count = 15,
+  count = 65,
   minSize = 2,
   maxSize = 8,
   minDuration = 15,
@@ -66,7 +66,7 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({
       pointerEvents="none"
       zIndex={-1}
     >
-      {particles.map((particle) => (
+      {particles.map(particle => (
         <Box
           key={particle.id}
           position="absolute"
@@ -76,11 +76,11 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({
           height={`${particle.size}px`}
           borderRadius="full"
           bg={{
-            _light: "blue.400/60",
+            _light: "blue.900/40",
             _dark: "blue.400/20",
           }}
           boxShadow={{
-            _light: "0 2px 12px rgba(59, 130, 246, 0.4)",
+            _light: "none",
             _dark: "none",
           }}
           animation={`floatUpDown ${particle.duration}s ease-in-out infinite`}
@@ -91,13 +91,13 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({
             inset: "0",
             borderRadius: "full",
             bg: {
-              _light: "purple.400/50",
+              _light: "gray.600/10",
               _dark: "purple.400/15",
             },
             animation: `fadeInOut ${particle.duration * 0.7}s ease-in-out infinite`,
             animationDelay: `${particle.delay + 1}s`,
             boxShadow: {
-              _light: "0 0 8px rgba(147, 51, 234, 0.3)",
+              _light: "none",
               _dark: "none",
             },
           }}

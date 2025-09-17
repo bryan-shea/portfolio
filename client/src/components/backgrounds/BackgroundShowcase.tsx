@@ -111,7 +111,7 @@ export const BackgroundShowcase: React.FC = () => {
           gap="8"
           alignItems="start"
         >
-          {SHOWCASE_SECTIONS.map((section) => (
+          {SHOWCASE_SECTIONS.map(section => (
             <Card.Root
               key={section.background}
               position="relative"

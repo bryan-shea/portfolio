@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 /**
  * Custom hook for smooth scrolling to elements
  * @param behavior - Scroll behavior ('smooth' | 'auto')
  * @returns Function to scroll to element by ID
  */
-export function useScrollTo(behavior: ScrollBehavior = 'smooth') {
+export function useScrollTo(behavior: ScrollBehavior = "smooth") {
   const scrollToElement = (elementId: string) => {
     const element = document.getElementById(elementId);
     if (element) {
@@ -28,10 +28,10 @@ export function useScrollPosition() {
       setScrollPosition(window.pageYOffset);
     };
 
-    window.addEventListener('scroll', updatePosition);
+    window.addEventListener("scroll", updatePosition);
     updatePosition();
 
-    return () => window.removeEventListener('scroll', updatePosition);
+    return () => window.removeEventListener("scroll", updatePosition);
   }, []);
 
   return scrollPosition;

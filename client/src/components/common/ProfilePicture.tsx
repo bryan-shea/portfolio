@@ -1,4 +1,4 @@
-import { Image } from "@chakra-ui/react"
+import { Image } from "@chakra-ui/react";
 import { Headshot } from "../../assets";
 
 export const ProfilePicture = () => (
@@ -9,4 +9,4 @@ export const ProfilePicture = () => (
     fit="cover"
     alt="Naruto Uzumaki"
   />
-)
+);

@@ -101,7 +101,7 @@ export const SectionWithBackground: React.FC<SectionWithBackgroundProps> = ({
                 </Text>
 
                 <VStack gap="2" align="stretch">
-                  {QUICK_BACKGROUNDS.map((bg) => (
+                  {QUICK_BACKGROUNDS.map(bg => (
                     <Button
                       key={bg.type}
                       size="sm"
@@ -124,9 +124,8 @@ export const SectionWithBackground: React.FC<SectionWithBackgroundProps> = ({
                 <Text fontSize="xs" color="fg.muted" mt="2">
                   Current:{" "}
                   {
-                    QUICK_BACKGROUNDS.find(
-                      (bg) => bg.type === currentBackground
-                    )?.name
+                    QUICK_BACKGROUNDS.find(bg => bg.type === currentBackground)
+                      ?.name
                   }
                 </Text>
               </VStack>

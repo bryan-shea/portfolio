@@ -28,7 +28,9 @@ export interface BackgroundOption {
  * Portfolio sections configuration
  * Centralizes section management for better maintainability
  */
-export const createPortfolioSections = (sections: SectionConfig[]): SectionConfig[] => {
+export const createPortfolioSections = (
+  sections: SectionConfig[]
+): SectionConfig[] => {
   return sections;
 };
 
@@ -38,7 +40,10 @@ export const createPortfolioSections = (sections: SectionConfig[]): SectionConfi
  * @param validBackgrounds - Array of valid background types
  * @returns Boolean indicating if background is valid
  */
-export const isValidBackground = (background: string, validBackgrounds: string[]): boolean => {
+export const isValidBackground = (
+  background: string,
+  validBackgrounds: string[]
+): boolean => {
   return validBackgrounds.includes(background);
 };
 
@@ -48,7 +53,10 @@ export const isValidBackground = (background: string, validBackgrounds: string[]
  * @param backgrounds - Available background types
  * @returns Next background type in sequence
  */
-export const getNextBackground = (current: string, backgrounds: string[]): string => {
+export const getNextBackground = (
+  current: string,
+  backgrounds: string[]
+): string => {
   const currentIndex = backgrounds.indexOf(current);
   return backgrounds[(currentIndex + 1) % backgrounds.length];
 };
@@ -59,7 +67,12 @@ export const getNextBackground = (current: string, backgrounds: string[]): strin
  * @param backgrounds - Available background types
  * @returns Previous background type in sequence
  */
-export const getPreviousBackground = (current: string, backgrounds: string[]): string => {
+export const getPreviousBackground = (
+  current: string,
+  backgrounds: string[]
+): string => {
   const currentIndex = backgrounds.indexOf(current);
-  return backgrounds[currentIndex === 0 ? backgrounds.length - 1 : currentIndex - 1];
+  return backgrounds[
+    currentIndex === 0 ? backgrounds.length - 1 : currentIndex - 1
+  ];
 };

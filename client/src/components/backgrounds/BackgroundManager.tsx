@@ -119,7 +119,7 @@ export const BackgroundManager: React.FC<BackgroundManagerProps> = ({
   };
 
   const currentOption = BACKGROUND_OPTIONS.find(
-    (option) => option.type === currentBackground
+    option => option.type === currentBackground
   );
   const BackgroundComponent = currentOption?.component;
 
@@ -155,7 +155,7 @@ export const BackgroundManager: React.FC<BackgroundManagerProps> = ({
           </Text>
 
           <HStack wrap="wrap" gap="2">
-            {BACKGROUND_OPTIONS.map((option) => (
+            {BACKGROUND_OPTIONS.map(option => (
               <Button
                 key={option.type}
                 size="sm"
