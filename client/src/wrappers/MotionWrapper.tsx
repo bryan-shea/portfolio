@@ -1,4 +1,9 @@
-import { motion, type HTMLMotionProps } from "framer-motion";
+import {
+  motion,
+  type HTMLMotionProps,
+  type TargetAndTransition,
+  type VariantLabels,
+} from "framer-motion";
 import { forwardRef } from "react";
 import { animationVariants, transitions, type AnimationTiming } from "../utils";
 
@@ -15,9 +20,9 @@ interface MotionWrapperProps
   animateOnMount?: boolean;
   /** Custom animation props (overrides variant) */
   animation?: {
-    initial?: any;
-    animate?: any;
-    exit?: any;
+    initial?: TargetAndTransition | VariantLabels | boolean;
+    animate?: TargetAndTransition | VariantLabels | boolean;
+    exit?: TargetAndTransition | VariantLabels;
   };
 }
 
@@ -48,12 +53,16 @@ export const MotionWrapper = forwardRef<HTMLDivElement, MotionWrapperProps>(
       <motion.div
         ref={ref}
         initial={
-          !isStaggerVariant && animateOnMount
-            ? (motionProps as any).initial
+          !isStaggerVariant && animateOnMount && "initial" in motionProps
+            ? motionProps.initial
             : false
         }
-        animate={(motionProps as any).animate}
-        exit={!isStaggerVariant ? (motionProps as any).exit : undefined}
+        animate={"animate" in motionProps ? motionProps.animate : undefined}
+        exit={
+          !isStaggerVariant && "exit" in motionProps
+            ? motionProps.exit
+            : undefined
+        }
         transition={transitions[timing]}
         {...props}
       >

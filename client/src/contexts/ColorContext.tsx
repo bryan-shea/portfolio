@@ -1,4 +1,11 @@
-import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+} from "react";
 import type { ReactNode } from "react";
 
 /**
@@ -118,7 +125,7 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
   /**
    * Update theme with the selected color palette
    */
-  const updateTheme = (colors: ColorScheme) => {
+  const updateTheme = useCallback((colors: ColorScheme) => {
     // Save to localStorage
     if (typeof window !== "undefined") {
       localStorage.setItem("portfolio-color-scheme", JSON.stringify(colors));
@@ -169,17 +176,20 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
         palette.accent.dark
       );
     }
-  };
+  }, []);
 
-  const handleSetColorScheme = (colors: ColorScheme) => {
-    setColorScheme(colors);
-    updateTheme(colors);
-  };
+  const handleSetColorScheme = useCallback(
+    (colors: ColorScheme) => {
+      setColorScheme(colors);
+      updateTheme(colors);
+    },
+    [updateTheme]
+  );
 
   // Apply initial theme
   useEffect(() => {
     updateTheme(colorScheme);
-  }, []);
+  }, [updateTheme, colorScheme]);
 
   const contextValue: ColorContextType = useMemo(
     () => ({
@@ -187,7 +197,7 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
       setColorScheme: handleSetColorScheme,
       updateTheme,
     }),
-    [colorScheme]
+    [colorScheme, handleSetColorScheme, updateTheme]
   );
 
   return (
@@ -200,6 +210,7 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
 /**
  * Hook to use color context
  */
+// eslint-disable-next-line react-refresh/only-export-components
 export const useColors = (): ColorContextType => {
   const context = useContext(ColorContext);
   if (!context) {

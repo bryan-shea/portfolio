@@ -333,9 +333,7 @@ const MobileControlsTrigger = (props: MobileControlsTriggerProps) => {
       }}
       {...rest}
     >
-      <Icon boxSize="5">
-        <LuSettings />
-      </Icon>
+      <Icon boxSize="5">{action.icon}</Icon>
     </IconButton>
   );
 };

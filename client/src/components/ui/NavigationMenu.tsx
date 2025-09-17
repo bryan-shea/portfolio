@@ -23,7 +23,6 @@ import {
   LuCode,
   LuFolderOpen,
   LuMapPin,
-  LuMenu,
 } from "react-icons/lu";
 import { motion } from "framer-motion";
 
@@ -300,9 +299,7 @@ const MobileNavigationTrigger = (props: MobileNavigationTriggerProps) => {
       }}
       {...rest}
     >
-      <Icon boxSize="5">
-        <LuMenu />
-      </Icon>
+      <Icon boxSize="5">{section.icon}</Icon>
     </IconButton>
   );
 };
