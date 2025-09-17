@@ -21,27 +21,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
+          cache: "pnpm"
 
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install --workspaces
-          # Ensure Rollup native binaries are properly installed
-          npm rebuild --workspace=client
-
-      - name: Chakra typegen
-        run: npm run typegen --workspace=client
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build client
         env:
           # For project pages, set base path to "/<repo>/". For user/organization pages leave it "/".
           BASE_PATH: "/${{ github.event.repository.name }}/"
-        run: npm run build --workspace=client
+        run: pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
