@@ -64,3 +64,67 @@ export function useInViewport(elementId: string, threshold = 0.1) {
 
   return isInViewport;
 }
+
+/**
+ * Custom hook for tracking the currently active section
+ * @param sectionIds - Array of section IDs to track
+ * @returns ID of the currently active section
+ */
+export function useActiveSection(sectionIds: string[]) {
+  const [activeSection, setActiveSection] = useState<string>(
+    sectionIds[0] || ""
+  );
+
+  useEffect(() => {
+    const elements = sectionIds
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        // Get all visible sections with their data
+        const visibleSections = entries
+          .filter(entry => entry.isIntersecting)
+          .map(entry => ({
+            id: entry.target.id,
+            ratio: entry.intersectionRatio,
+            top: entry.boundingClientRect.top,
+          }))
+          .sort((a, b) => b.ratio - a.ratio);
+
+        if (visibleSections.length > 0) {
+          setActiveSection(visibleSections[0].id);
+        }
+      },
+      {
+        threshold: [0, 0.1, 0.25], // Multiple thresholds for better detection
+        rootMargin: "-80px 0px -20% 0px", // Less restrictive bottom margin
+      }
+    );
+
+    // Also add a scroll listener to catch the last section when at page bottom
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const isNearBottom = scrollPosition >= documentHeight - 100;
+
+      if (isNearBottom && sectionIds.length > 0) {
+        setActiveSection(sectionIds[sectionIds.length - 1]);
+      }
+    };
+
+    elements.forEach(element => {
+      if (element) observer.observe(element);
+    });
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [sectionIds]);
+
+  return activeSection;
+}

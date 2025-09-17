@@ -1,14 +1,4 @@
-import {
-  Box,
-  Card,
-  Container,
-  Flex,
-  Heading,
-  Stack,
-  Text,
-  type FlexProps,
-} from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { Box, Card, Flex, Stack, Text, type FlexProps } from "@chakra-ui/react";
 import {
   MongoDB,
   React,
@@ -110,165 +100,100 @@ const VerticalMarquee = (props: VerticalMarqueeProps) => {
  * Left column moves up, right column moves down
  */
 export const TechStackGrid = () => {
-  console.log("TechStackGrid rendering with logoSetA:", logoSetA);
-  console.log("TechStackGrid rendering with logoSetB:", logoSetB);
-
   return (
-    <Container
-      py={{ base: "6", md: "12", lg: "16" }}
-      px={{ base: "4", md: "6", lg: "8" }}
-      mt={{ base: "8", md: "12", lg: "20" }}
-      maxW="6xl"
-      mx="auto"
+    <Flex
+      gap={{ base: "8", md: "12", lg: "16" }}
+      justify="center"
+      align="flex-start"
+      minW="0"
     >
-      <Stack gap={{ base: "12", md: "16" }} align="stretch" w="full">
-        {/* Content Layout - Header and Animation Side by Side */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          style={{ width: "100%" }}
-        >
-          <Flex
-            direction={{ base: "column", lg: "row" }}
-            align={{ base: "center", lg: "flex-start" }}
-            gap={{ base: "8", lg: "16" }}
-            w="full"
-          >
-            {/* Header Section - Left Side */}
-            <motion.div
-              initial={{ opacity: 0, y: -30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+      {/* Left Column - Moving Up */}
+      <VerticalMarquee
+        direction="up"
+        speed="25s"
+        gutter="6"
+        items={logoSetA.map(({ name, component: Logo }) => ({
+          id: `left-${name}`,
+          content: (
+            <Card.Root
+              size="sm"
+              minW="160px"
+              w="160px"
+              bg="bg.surface"
+              _hover={{
+                shadow: "md",
+                borderColor: "primary.500",
+              }}
+              transition="all 0.2s ease"
             >
-              <Stack
-                gap="4"
-                align={{ base: "center", lg: "start" }}
-                textAlign={{ base: "center", lg: "left" }}
-                maxW={{ base: "full", lg: "md" }}
-                flex="0 0 auto"
-                mt={{ base: "8", md: "24" }}
+              <Card.Body
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                p="4"
               >
-                <Heading
-                  size={{ base: "2xl", md: "3xl" }}
-                  fontWeight="medium"
-                  color="fg"
-                >
-                  Current Tech Stack
-                </Heading>
-                <Text
-                  fontSize={{ base: "md", md: "lg" }}
-                  color="fg.muted"
-                  lineHeight="relaxed"
-                >
-                  These are the technologies I actively work with in my current
-                  role and personal projects. Each tool shown represents skills
-                  I use regularly and can contribute with immediately.
-                </Text>
-              </Stack>
-            </motion.div>
+                <Stack gap="3" align="center">
+                  <Box color="fg" fontSize="4xl">
+                    <Logo />
+                  </Box>
+                  <Text
+                    fontSize="sm"
+                    fontWeight="medium"
+                    color="fg"
+                    textAlign="center"
+                  >
+                    {name}
+                  </Text>
+                </Stack>
+              </Card.Body>
+            </Card.Root>
+          ),
+        }))}
+      />
 
-            {/* Conveyor Belt Section - Right Side */}
-            <Flex
-              gap={{ base: "8", md: "12", lg: "16" }}
-              justify="center"
-              align="flex-start"
-              flex="1"
-              minW="0"
+      {/* Right Column - Moving Down */}
+      <VerticalMarquee
+        direction="down"
+        speed="25s"
+        gutter="6"
+        items={logoSetB.map(({ name, component: Logo }) => ({
+          id: `right-${name}`,
+          content: (
+            <Card.Root
+              size="sm"
+              minW="160px"
+              w="160px"
+              bg="bg.surface"
+              _hover={{
+                shadow: "md",
+                borderColor: "primary.500",
+              }}
+              transition="all 0.2s ease"
             >
-              {/* Left Column - Moving Up */}
-              <VerticalMarquee
-                direction="up"
-                speed="25s"
-                gutter="6"
-                items={logoSetA.map(({ name, component: Logo }) => ({
-                  id: `left-${name}`,
-                  content: (
-                    <Card.Root
-                      size="sm"
-                      minW="160px"
-                      w="160px"
-                      bg="bg.surface"
-                      _hover={{
-                        shadow: "md",
-                        borderColor: "primary.500",
-                      }}
-                      transition="all 0.2s ease"
-                    >
-                      <Card.Body
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                        p="4"
-                      >
-                        <Stack gap="3" align="center">
-                          <Box color="fg" fontSize="4xl">
-                            <Logo />
-                          </Box>
-                          <Text
-                            fontSize="sm"
-                            fontWeight="medium"
-                            color="fg"
-                            textAlign="center"
-                          >
-                            {name}
-                          </Text>
-                        </Stack>
-                      </Card.Body>
-                    </Card.Root>
-                  ),
-                }))}
-              />
-
-              {/* Right Column - Moving Down */}
-              <VerticalMarquee
-                direction="down"
-                speed="25s"
-                gutter="6"
-                items={logoSetB.map(({ name, component: Logo }) => ({
-                  id: `right-${name}`,
-                  content: (
-                    <Card.Root
-                      size="sm"
-                      minW="160px"
-                      w="160px"
-                      bg="bg.surface"
-                      _hover={{
-                        shadow: "md",
-                        borderColor: "primary.500",
-                      }}
-                      transition="all 0.2s ease"
-                    >
-                      <Card.Body
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                        p="4"
-                      >
-                        <Stack gap="3" align="center">
-                          <Box color="fg" fontSize="4xl">
-                            <Logo />
-                          </Box>
-                          <Text
-                            fontSize="sm"
-                            fontWeight="medium"
-                            color="fg"
-                            textAlign="center"
-                          >
-                            {name}
-                          </Text>
-                        </Stack>
-                      </Card.Body>
-                    </Card.Root>
-                  ),
-                }))}
-              />
-            </Flex>
-          </Flex>
-        </motion.div>
-      </Stack>
-    </Container>
+              <Card.Body
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                p="4"
+              >
+                <Stack gap="3" align="center">
+                  <Box color="fg" fontSize="4xl">
+                    <Logo />
+                  </Box>
+                  <Text
+                    fontSize="sm"
+                    fontWeight="medium"
+                    color="fg"
+                    textAlign="center"
+                  >
+                    {name}
+                  </Text>
+                </Stack>
+              </Card.Body>
+            </Card.Root>
+          ),
+        }))}
+      />
+    </Flex>
   );
 };

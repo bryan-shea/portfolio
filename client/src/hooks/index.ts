@@ -7,7 +7,12 @@
 export { useLocalStorage } from "./useLocalStorage";
 
 // Navigation and scroll hooks
-export { useScrollTo, useScrollPosition, useInViewport } from "./useScroll";
+export {
+  useScrollTo,
+  useScrollPosition,
+  useInViewport,
+  useActiveSection,
+} from "./useScroll";
 
 // Style and UI management hooks
 export {

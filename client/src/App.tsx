@@ -1,15 +1,13 @@
 import { Box } from "@chakra-ui/react";
-import { type ComponentType } from "react";
+import { type ComponentType, useState } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { Hero, Skills, Projects, Journey } from "./sections";
-import { AnimatedSection } from "./components/common";
-import { GlobalControls, NavigationMenu } from "./components/ui";
-import { useColors, type ColorScheme } from "./contexts";
+import { Hero, Projects, Journey } from "./sections";
+import { AnimatedSection, Navbar } from "./components/common";
 import {
   BackgroundManager,
   type BackgroundType,
 } from "./components/backgrounds";
-import { useBackgroundManager } from "./hooks";
+import { useActiveSection } from "./hooks";
 
 /**
  * Configuration interface for portfolio sections
@@ -29,7 +27,6 @@ interface SectionConfig {
  */
 const PORTFOLIO_SECTIONS: SectionConfig[] = [
   { id: "hero", component: Hero, defaultBackground: "particles" },
-  { id: "skills", component: Skills, defaultBackground: "grid" },
   { id: "projects", component: Projects, defaultBackground: "orbs" },
   { id: "journey", component: Journey, defaultBackground: "dots" },
 ];
@@ -39,16 +36,15 @@ const PORTFOLIO_SECTIONS: SectionConfig[] = [
  * Renders all portfolio sections with background options and consistent animations
  */
 const Portfolio = () => {
-  const [globalBackground, setGlobalBackground] =
-    useBackgroundManager<BackgroundType>("grid");
-  const { colorScheme, setColorScheme } = useColors();
+  const [currentBackground, setCurrentBackground] =
+    useState<BackgroundType>("grid");
 
-  const handleBackgroundChange = (newBackground: BackgroundType) => {
-    setGlobalBackground(newBackground);
-  };
+  // Track which section is currently active based on scroll position
+  const sectionIds = PORTFOLIO_SECTIONS.map(section => section.id);
+  const activeSection = useActiveSection(sectionIds);
 
-  const handleColorsChange = (colors: ColorScheme) => {
-    setColorScheme(colors);
+  const handleBackgroundChange = (background: BackgroundType) => {
+    setCurrentBackground(background);
   };
 
   return (
@@ -62,21 +58,17 @@ const Portfolio = () => {
     >
       {/* Global Background - positioned first so it appears behind content */}
       <BackgroundManager
-        key={globalBackground} // Force re-render when background changes
-        initialBackground={globalBackground}
+        initialBackground={currentBackground}
         showSelector={false}
-      />
-
-      {/* Global Controls - Color Mode + Background Selector + Personalization */}
-      <GlobalControls
-        currentBackground={globalBackground}
         onBackgroundChange={handleBackgroundChange}
-        currentColors={colorScheme}
-        onColorsChange={handleColorsChange}
       />
 
-      {/* Navigation Menu - Fixed position navigation for sections */}
-      <NavigationMenu />
+      {/* Navbar - Fixed position navigation with all controls */}
+      <Navbar
+        currentBackground={currentBackground}
+        onBackgroundChange={handleBackgroundChange}
+        activeSection={activeSection}
+      />
 
       {PORTFOLIO_SECTIONS.map(({ id, component: Component }, index) => (
         <Box

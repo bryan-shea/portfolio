@@ -23,15 +23,9 @@ export interface NavigationSection {
 export const navigationSections: NavigationSection[] = [
   {
     id: "hero",
-    name: "About Me",
+    name: "Intro",
     iconName: "LuUser",
     description: "Introduction & overview",
-  },
-  {
-    id: "skills",
-    name: "Skills",
-    iconName: "LuCode",
-    description: "Technical expertise",
   },
   {
     id: "projects",
