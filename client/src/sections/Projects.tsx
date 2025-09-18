@@ -6,7 +6,7 @@ import {
   VStack,
   HStack,
   Badge,
-  Icon,
+  Image,
   Container,
 } from "@chakra-ui/react";
 import { projects } from "../config/projects.data";
@@ -42,17 +42,6 @@ export const Projects = () => {
           >
             Project Showcase
           </Badge>
-
-          <Heading
-            size={{ base: "2xl", md: "4xl" }}
-            color="fg"
-            letterSpacing="tight"
-            bgGradient="linear(to-r, primary.500, purple.500)"
-            bgClip="text"
-            fontWeight="bold"
-          >
-            Featured Projects
-          </Heading>
 
           <Text
             fontSize={{ base: "lg", md: "xl" }}
@@ -126,13 +115,17 @@ export const Projects = () => {
                     transition={{ duration: 0.2 }}
                   >
                     <Box
-                      p="2"
+                      p="1"
                       borderRadius="lg"
-                      bg="primary.50"
-                      color="primary.600"
-                      _dark={{ bg: "primary.900/50", color: "primary.300" }}
+                      bg="bg.surface"
+                      _dark={{ bg: "bg.dark", color: "primary.300" }}
                     >
-                      <Icon as={project.icon} boxSize="5" />
+                      <Image
+                        src={project.icon}
+                        alt={`${project.title} logo`}
+                        boxSize="11"
+                        objectFit="contain"
+                      />
                     </Box>
                   </motion.div>
                   <VStack align="start" gap="1" flex="1">
@@ -146,7 +139,7 @@ export const Projects = () => {
                   color="fg.muted"
                   fontSize="sm"
                   lineHeight="relaxed"
-                  mb="4"
+                  mb={{ base: "4", md: "1" }}
                   flex="1"
                 >
                   {project.description}

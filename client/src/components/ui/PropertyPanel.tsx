@@ -2,12 +2,13 @@ import { Text, Box, Button, Container, Stack, HStack } from "@chakra-ui/react";
 import { LuRotateCcw, LuSparkles } from "react-icons/lu";
 import { useState, useEffect, useCallback } from "react";
 import { PropertySection } from "./property-panel/property-section";
-import { SelectField } from "./property-panel/fields";
+import { SelectField, ColorPaletteField } from "./property-panel/fields";
 import { type BackgroundType } from "../backgrounds";
 import {
   type ColorScheme,
   AVAILABLE_COLOR_PALETTES,
   DEFAULT_COLOR_SCHEME,
+  COLOR_PALETTE_SWATCHES,
 } from "../../config/colors.data";
 
 // Re-export for backward compatibility
@@ -151,10 +152,10 @@ export const PropertyPanelPro: React.FC<PropertyPanelProProps> = ({
   }, [onColorsChange, onBackgroundChange]);
 
   // Transform color palettes to options format
-  const colorPaletteOptions = AVAILABLE_COLOR_PALETTES.map(palette => ({
-    label: palette.displayName,
-    value: palette.name,
-  }));
+  // const colorPaletteOptions = AVAILABLE_COLOR_PALETTES.map(palette => ({
+  //   label: palette.displayName,
+  //   value: palette.name,
+  // }));
 
   // Transform background options to options format
   const backgroundOptions = BACKGROUND_OPTIONS.map(option => ({
@@ -196,11 +197,11 @@ export const PropertyPanelPro: React.FC<PropertyPanelProProps> = ({
           title="Color Palette"
           info="Choose a color scheme for your portfolio"
         >
-          <SelectField
+          <ColorPaletteField
             label="Theme"
             value={tempColors.palette}
             onChange={handleColorPaletteChange}
-            options={colorPaletteOptions}
+            swatches={COLOR_PALETTE_SWATCHES}
             orientation="vertical"
             helperText={
               currentPaletteConfig?.description ||
@@ -238,33 +239,39 @@ export const PropertyPanelPro: React.FC<PropertyPanelProProps> = ({
           />
         </PropertySection>
 
-        {/* Future Customizations Placeholder */}
-        <PropertySection
-          title="Advanced"
-          info="Additional customization options"
-        >
-          <Text fontSize="sm" color="fg.muted" fontStyle="italic" py="4">
-            More customization options coming soon...
-            <br />
-            • Typography settings
-            <br />
-            • Animation preferences
-            <br />• Layout options
-          </Text>
-        </PropertySection>
-
         {/* Reset Action */}
         <Box pt="4" borderTopWidth="1px" borderColor="border.muted">
           <Button
-            variant="outline"
+            variant="plain"
             size="sm"
             onClick={handleReset}
             alignSelf="flex-start"
-            colorPalette="gray"
+            _hover={{
+              color: "fg.muted",
+            }}
           >
             <LuRotateCcw />
             Reset to Defaults
           </Button>
+        </Box>
+
+        {/* Coming Soon CTA */}
+        <Box
+          p="4"
+          rounded="lg"
+          bg="bg.subtle"
+          borderWidth="1px"
+          borderColor="border.muted"
+          textAlign="left"
+        >
+          <Text fontSize="sm" fontWeight="medium" color="fg.default" mb="2">
+            More Options Coming Soon!
+          </Text>
+          <Stack gap="1" fontSize="sm" color="fg.muted">
+            <Text>• Typography settings</Text>
+            <Text>• Animation preferences</Text>
+            <Text>• Layout options</Text>
+          </Stack>
         </Box>
       </Stack>
     </Container>

@@ -7,7 +7,11 @@ import {
   VStack,
   Highlight,
 } from "@chakra-ui/react";
-import { ProfilePicture, TechStackGrid } from "../components/common";
+import {
+  ProfilePicture,
+  TechStackGrid,
+  ContactButtons,
+} from "../components/common";
 import { TypeBlock } from "../components/ui";
 import { MotionWrapper } from "../wrappers";
 import { heroConfig, contactCodeFiles } from "../config";
@@ -21,7 +25,7 @@ export const Hero = () => {
       maxW="8xl"
       py={{ base: "16", md: "20", lg: "32" }}
       px={{ base: "4", md: "6", lg: "8" }}
-      mt={{ base: "8", md: "12", lg: "28" }}
+      mt={{ base: "8", md: "12", lg: "22" }}
       mb={{ base: "8", md: "12", lg: "16" }}
     >
       <Flex
@@ -33,7 +37,7 @@ export const Hero = () => {
       >
         {/* Left Column - Personal Content */}
         <Stack
-          gap={{ base: "8", md: "4", lg: "6" }}
+          gap={{ base: "8", md: "4", lg: "4" }}
           align={{ base: "center", lg: "flex-start" }}
           textAlign={{ base: "center", lg: "left" }}
           flex="1"
@@ -41,7 +45,7 @@ export const Hero = () => {
           justify="center"
         >
           {/* Profile Header */}
-          <Stack gap={"4"} align={{ base: "center", lg: "flex-start" }}>
+          <Stack gap={"6"} align={{ base: "center", lg: "flex-start" }}>
             {/* Profile Picture */}
             <MotionWrapper variant="scale" timing="bounce">
               <ProfilePicture />
@@ -64,7 +68,7 @@ export const Hero = () => {
                     styles={{
                       bgGradient: "to-r",
                       gradientFrom: "primary.400",
-                      gradientTo: "primary.700",
+                      gradientTo: "primary.600",
                       bgClip: "text",
                     }}
                   >
@@ -84,13 +88,18 @@ export const Hero = () => {
 
           {/* Contact Information Code Block */}
           <MotionWrapper variant="slideUp" timing="smooth">
-            <TypeBlock
-              codeFiles={contactCodeFiles}
-              title="Get In Touch"
-              defaultTab="email"
-              size="sm"
-              maxWidth={{ base: "sm", sm: "xl", md: "2xl" }}
-            />
+            <VStack align={{ base: "center", lg: "flex-start" }}>
+              <TypeBlock
+                codeFiles={contactCodeFiles}
+                title="Get In Touch"
+                defaultTab="contact"
+                size="sm"
+                maxWidth={{ base: "sm", sm: "xl", md: "2xl" }}
+              />
+
+              {/* Quick Contact Buttons */}
+              <ContactButtons size="md" gap="0" variant="plain" />
+            </VStack>
           </MotionWrapper>
         </Stack>
 

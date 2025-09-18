@@ -120,8 +120,10 @@ export const TypeBlock = ({
                   px={{ base: "2", md: "3" }}
                   py={{ base: "1", md: "2" }}
                   minW="max-content"
+                  transition="all 0.3s ease-in-out"
                   _hover={{
-                    bg: "bg.subtle",
+                    color: `${colorScheme.palette}.fg`,
+                    transition: "all 0.3s ease-in-out",
                   }}
                   _selected={{
                     bg: `${colorScheme.palette}.subtle`,
@@ -137,15 +139,24 @@ export const TypeBlock = ({
                 variant="ghost"
                 size="2xs"
                 aria-label={`Copy ${title.toLowerCase()} code to clipboard`}
+                border="none"
                 _hover={{
-                  bg: "bg.subtle",
+                  color: `${colorScheme.palette}.fg`,
+                  bg: "transparent",
+                  border: "none",
                 }}
               >
                 <CodeBlock.CopyIndicator />
               </IconButton>
             </CodeBlock.CopyTrigger>
           </CodeBlock.Header>
-          <CodeBlock.Content bg="bg.canvas">
+          <CodeBlock.Content
+            bg="bg.canvas"
+            w="100%"
+            minW={{ base: "full", md: "600px" }}
+            maxW="full"
+            position="relative"
+          >
             {otherTabs.map(file => (
               <Tabs.Content key={file.value} value={file.value} />
             ))}
@@ -153,10 +164,16 @@ export const TypeBlock = ({
               pt="1"
               value={activeTab.value}
               overflow="auto"
-              maxH={{ base: "300px", md: "400px", lg: "500px" }}
+              maxH={{ base: "400px", md: "400px", lg: "500px" }}
+              w="100%"
+              position="relative"
+              p={{ base: 1, md: 0 }}
             >
-              <CodeBlock.Code>
-                <CodeBlock.CodeText />
+              <CodeBlock.Code
+                minW={{ base: "400px", md: "600px" }}
+                w="max-content"
+              >
+                <CodeBlock.CodeText whiteSpace="pre" overflowX="auto" />
               </CodeBlock.Code>
             </Tabs.Content>
           </CodeBlock.Content>

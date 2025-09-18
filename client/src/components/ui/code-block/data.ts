@@ -7,7 +7,7 @@ export const shikiAdapter = createShikiAdapter({
     const { createHighlighter } = await import("shiki");
     return createHighlighter({
       // Only load languages actually used in code blocks to optimize bundle size
-      langs: ["javascript", "tsx", "bash", "python"],
+      langs: ["javascript", "tsx", "bash", "python", "typescript"],
       themes: ["github-light", "github-dark"],
     });
   },

@@ -72,6 +72,16 @@ export const AVAILABLE_COLOR_PALETTES: readonly ColorPaletteConfig[] = [
     displayName: "Ruby Red",
     description: "Bold and powerful with strong presence",
   },
+  {
+    name: "yellow",
+    displayName: "Golden Yellow",
+    description: "Bright and cheerful with optimistic energy",
+  },
+  {
+    name: "cyan",
+    displayName: "Ocean Cyan",
+    description: "Cool and refreshing with aquatic feel",
+  },
 ] as const;
 
 /**
@@ -87,3 +97,39 @@ export interface ColorScheme {
 export const DEFAULT_COLOR_SCHEME: ColorScheme = {
   palette: "blue", // Use the primary blue from our custom theme
 };
+
+/**
+ * Color palette swatch configuration for color picker
+ */
+export interface ColorPaletteSwatch {
+  readonly name: ColorPaletteName;
+  readonly color: string;
+  readonly displayName: string;
+}
+
+/**
+ * Convert color palette configurations to swatch format for ColorPicker
+ * Uses representative colors from each Chakra UI palette
+ */
+export const COLOR_PALETTE_SWATCHES: ReadonlyArray<ColorPaletteSwatch> =
+  AVAILABLE_COLOR_PALETTES.map((palette): ColorPaletteSwatch => {
+    // Use Chakra UI standard color values for each palette
+    const colorMap: Record<ColorPaletteName, string> = {
+      gray: "#6B7280", // gray.500
+      blue: "#3B82F6", // blue.500
+      green: "#10B981", // green.500
+      orange: "#F59E0B", // orange.500
+      purple: "#8B5CF6", // purple.500
+      pink: "#EC4899", // pink.500
+      teal: "#14B8A6", // teal.500
+      red: "#EF4444", // red.500
+      yellow: "#EAB308", // yellow.500
+      cyan: "#06B6D4", // cyan.500
+    };
+
+    return {
+      name: palette.name,
+      color: colorMap[palette.name],
+      displayName: palette.displayName,
+    };
+  });

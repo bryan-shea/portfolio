@@ -49,25 +49,8 @@ export interface TechCategory {
  */
 export const journeyMilestones: JourneyMilestone[] = [
   {
-    id: "apollo-api",
-    year: "2024",
-    title: "Apollo API Orchestration Associate",
-    category: "Apollo GraphQL",
-    description:
-      "Advanced GraphQL concepts including federation, supergraph architecture, and API orchestration.",
-    skills: [
-      "GraphQL Federation",
-      "API Gateway",
-      "Microservices",
-      "Schema Stitching",
-    ],
-    achievement: "API Orchestration Associate",
-    color: "indigo",
-    certImage: ApolloApiCert,
-  },
-  {
     id: "apollo-graph",
-    year: "2024",
+    year: "2025",
     title: "Apollo Graph Associate",
     category: "Apollo GraphQL",
     description:
@@ -84,8 +67,25 @@ export const journeyMilestones: JourneyMilestone[] = [
     certImage: ApolloGraphCert,
   },
   {
+    id: "apollo-api",
+    year: "2025",
+    title: "Apollo API Orchestration Associate",
+    category: "Apollo GraphQL",
+    description:
+      "Advanced GraphQL concepts including federation, supergraph architecture, and API orchestration.",
+    skills: [
+      "GraphQL Federation",
+      "API Gateway",
+      "Microservices",
+      "Schema Stitching",
+    ],
+    achievement: "API Orchestration Associate",
+    color: "indigo",
+    certImage: ApolloApiCert,
+  },
+  {
     id: "dsa",
-    year: "2023",
+    year: "2024",
     title: "Data Structures & Algorithms",
     category: "Udemy",
     description:
@@ -102,7 +102,7 @@ export const journeyMilestones: JourneyMilestone[] = [
   },
   {
     id: "ux-process",
-    year: "2023",
+    year: "2024",
     title: "UX Design Process",
     category: "Google UI/UX",
     description:
@@ -119,7 +119,7 @@ export const journeyMilestones: JourneyMilestone[] = [
   },
   {
     id: "ux-foundations",
-    year: "2023",
+    year: "2024",
     title: "UX Design Foundations",
     category: "Google UI/UX",
     description:

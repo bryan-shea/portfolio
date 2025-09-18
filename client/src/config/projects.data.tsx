@@ -1,4 +1,4 @@
-import { FaShieldAlt, FaRobot, FaTree } from "react-icons/fa";
+import { portfolioImages } from "../assets/portfolio";
 
 export const projects = [
   {
@@ -6,29 +6,41 @@ export const projects = [
     title: "myprojectcar.com",
     subtitle: "Marketplace for Project Cars & Parts",
     description: `
-      Full-stack marketplace connecting automotive enthusiasts with project cars and parts.
-      Implemented advanced search functionality, user authentication, messaging system, and
-      secure payment processing to create a comprehensive ecommerce platform.
+      Full-stack automotive marketplace revolutionizing car restoration projects. Features
+      comprehensive parts marketplace, virtual garage project management, real-time notifications,
+      and integrated shipping. Credits system with free/premium tiers, community features,
+      and transaction management with buyer protection for car enthusiasts.
     `,
-    // include: EasyPost
-    tech: ["React", "Next.js", "TypeScript", "Chakra UI", "SSG", "AWS"],
-    category: "Cybersecurity Consulting",
+    tech: [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "GraphQL",
+      "MongoDB",
+      "Chakra UI",
+      "AWS S3",
+      "EasyPost API",
+      "Stripe",
+      "Docker",
+      "Playwright",
+    ],
+    category: "Automotive Marketplace / Project Management",
     status: "Production",
-    timeline: "≈4 months",
-    team: "Full-Stack Developer",
-    icon: FaShieldAlt,
-    architecture: "Next.js + SSG",
-    userBase: "Enterprise Clients",
-    keyFeature: "Security Focus",
+    timeline: "2024",
+    team: "Full-Stack Developer • UI/UX Designer • System Architect",
+    icon: portfolioImages.MPC.logo,
+    architecture: "Node.js + GraphQL + MongoDB",
+    userBase: "Car Enthusiasts & Restorers",
+    keyFeature: "Virtual Garage Management",
     metrics: [
-      "Comprehensive security assessments",
-      "AI adoption & compliance strategies",
-      "People-first cybersecurity approach",
+      "Smart search by make, model & year",
+      "Real-time notifications & messaging",
+      "Credits system with flexible pricing",
     ],
     highlights: [
-      "Enterprise security consulting",
-      "AI governance frameworks",
-      "Compliance roadmap development",
+      "Comprehensive parts marketplace",
+      "Project management & progress tracking",
+      "EasyPost integration for seamless shipping",
     ],
   },
   {
@@ -36,39 +48,38 @@ export const projects = [
     title: "spscyber.com",
     subtitle: "People-First Cybersecurity & AI Advisory",
     description: `
-	  Corporate website for SPS Cyber, a cybersecurity consulting firm specializing in
-	  security strategy, compliance enablement, and AI adoption guidance. Focused on
-	  delivering people-first solutions and practical roadmaps across industries.
-	`,
-    // include: WebifyUI, GraphQL, Apollo Client
+      Comprehensive digital platform for cybersecurity consultancy specializing in human-
+      centered security approaches. Features interactive service showcases, immersive hero
+      sections with video backgrounds, team carousels, and partnership programs. Complete
+      digital transformation demonstrating innovative people-first methodology.
+    `,
     tech: [
-      "MERN",
-      "Chakra UI",
       "TypeScript",
+      "React",
+      "Chakra UI",
       "Vite",
-      "AWS",
-      "WebifyUI",
-      "GraphQL",
-      "Apollo Client",
+      "Motion/Framer Motion",
+      "Storybook",
+      "Vitest",
+      "Playwright",
     ],
-    category: "Corporate Website / Cybersecurity Consulting",
+    category: "Corporate Website / Digital Platform",
     status: "Production",
-    timeline: "≈6 months",
-    team: "UI/UX Designer & Developer",
-    icon: FaShieldAlt,
-    architecture: "Next.js + SSG",
-    userBase: "Enterprise Clients",
-    keyFeature: "Responsive Design",
+    timeline: "2024",
+    team: "Full-Stack Developer • UI/UX Designer • Frontend Engineer • Motion Designer",
+    icon: portfolioImages.SPS.logo,
+    architecture: "React + Vite + Motion",
+    userBase: "Enterprise Cybersecurity Clients",
+    keyFeature: "Interactive User Experience",
     metrics: [
-      // Swapped unverifiable counts for factual themes:
-      "Security strategy & assessments",
-      "Compliance enablement",
-      "AI adoption guidance across industries",
+      "Interactive service showcases & presentations",
+      "Multi-step contact forms with analytics",
+      "Performance-optimized responsive design",
     ],
     highlights: [
-      "People-first delivery & partnerships",
-      "Multi-industry expertise",
-      "Practical, compliance-aware roadmaps",
+      "Human-centered security methodology",
+      "Immersive video backgrounds & animations",
+      "Team & advisory board carousels",
     ],
   },
   {
@@ -76,37 +87,42 @@ export const projects = [
     title: "fencegpt.com",
     subtitle: "AI Assistant for Fence Professionals",
     description: `
-      AI-powered SaaS platform for fence industry professionals. Integrated OpenAI APIs
-      with LangChain to deliver specialized knowledge base, automated workflows, and team
-      collaboration features. Implemented subscription billing and usage analytics.
+      Specialized AI chatbot revolutionizing the fence industry with accurate, industry-
+      specific guidance. Built with comprehensive knowledge base from leading professionals,
+      combining RAG with deep expertise for cost estimation, material calculations, and
+      installation best practices. Features subscription tiers and team collaboration.
     `,
     tech: [
+      "TypeScript",
       "React",
-      "Node.js",
-      "Chakra UI",
-      "Python",
       "LangChain",
+      "Node.js",
+      "GraphQL",
+      "MongoDB",
+      "Chakra UI",
+      "Apollo Client",
+      "AWS S3",
       "Stripe",
-      "AWS",
+      "Mongoose",
+      "Express",
     ],
     category: "AI SaaS Platform",
     status: "Production",
-    timeline: "≈7 months",
-    team: "Lead Developer",
-    icon: FaRobot,
-    architecture: "Python + OpenAI",
-    userBase: "SaaS Subscribers",
-    keyFeature: "AI Integration",
+    timeline: "2024",
+    team: "Full-Stack Developer • UI/UX Designer",
+    icon: portfolioImages.FenceGPT.logo,
+    architecture: "Node.js + GraphQL + RAG",
+    userBase: "Fence Industry Professionals",
+    keyFeature: "Industry-Specific AI",
     metrics: [
-      // Avoid % accuracy claims unless we can cite them:
-      "Curated industry knowledge base",
-      "Free trial & tiered plans",
-      "Team usage exports & chat retention",
+      "Comprehensive fence industry knowledge base",
+      "Real-time AI assistance & project tools",
+      "Flexible subscription tiers with team features",
     ],
     highlights: [
-      "RAG-based document retrieval",
-      "Custom knowledge base isolation",
-      "Team collaboration features",
+      "RAG-powered industry expertise",
+      "Cost estimation & material calculations",
+      "Project management & collaboration tools",
     ],
   },
   {
@@ -114,29 +130,39 @@ export const projects = [
     title: "waysidefence.com",
     subtitle: "Materials, Fabrication & Installation Services",
     description: `
-      E-commerce platform for fence materials and professional services. Built comprehensive
-      product catalog with quote system, inventory management, and multi-location service
-      coordination. Integrated Stripe for secure payment processing.
+      React/Chakra UI frontend with Node.js/Express GraphQL backend on MongoDB. Features
+      dynamic content modules, admin dashboard with CRUD operations, Ecwid e-commerce
+      integration, mobile-first responsive design, and real-time content management.
+      Comprehensive platform empowering scalable showcase and management capabilities.
     `,
-    tech: ["React", "Next.js", "TypeScript", "Chakra UI", "Stripe", "AWS"],
-    category: "E-Commerce & Services",
+    tech: [
+      "TypeScript",
+      "React",
+      "Chakra UI",
+      "GraphQL",
+      "Apollo Client",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Jest",
+    ],
+    category: "E-Commerce Platform / Content Management",
     status: "Production",
-    timeline: "≈6 months",
-    team: "Full-Stack Developer",
-    icon: FaTree,
-    architecture: "Next.js + Stripe",
-    userBase: "E-commerce Platform",
-    keyFeature: "Payment Processing",
+    timeline: "2023-11-01",
+    team: "Frontend Engineer • Backend Engineer",
+    icon: portfolioImages.Wayside.logo,
+    architecture: "React + GraphQL + MongoDB",
+    userBase: "Fence Industry Clients",
+    keyFeature: "Dynamic Content Management",
     metrics: [
-      // If you want location specifics, keep these if accurate; otherwise use generic:
-      "Bay Shore, NY & Newington, CT locations", // Confirm exact city names if needed
-      "In-house wood, PVC & welding shops",
-      "Wide range of fence styles & accessories",
+      "Dynamic content modules & admin dashboard",
+      "Ecwid e-commerce integration",
+      "Mobile-first responsive design with dark mode",
     ],
     highlights: [
-      "Industry material & supply",
-      "Custom CMS dashboard",
-      "Lead ingestion & management",
+      "Real-time content management system",
+      "Role-based admin access controls",
+      "Integrated quote & inquiry forms",
     ],
   },
 ];

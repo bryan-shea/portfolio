@@ -5,3 +5,5 @@ export { TechStackGrid } from "./TechStackGrid";
 export * as TechLogos from "./tech-logos";
 export * from "./ProfilePicture";
 export { Navbar } from "./navbar/navbar";
+export { ContactButtons } from "./ContactButtons";
+export type { ContactButtonsProps } from "./ContactButtons";

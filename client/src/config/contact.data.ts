@@ -1,6 +1,5 @@
 import { type CodeFile } from "../components/ui/code-block/data";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
-import { MdEmail } from "react-icons/md";
 import { LuTerminal } from "react-icons/lu";
 
 /**
@@ -30,10 +29,10 @@ export interface ContactCodeConfig {
 export const contactInfo: ContactInfo = {
   email: "bryanshea88@gmail.com",
   // phone: "Available upon request", // Phone number intentionally omitted for privacy
-  location: "United States",
+  location: "New York, NY, USA",
   social: {
     github: "https://github.com/bryan-shea",
-    linkedin: "https://linkedin.com/in/bryanshea88",
+    linkedin: "https://www.linkedin.com/in/bryan-shea-79882631b/",
   },
 } as const;
 
@@ -43,19 +42,21 @@ export const contactInfo: ContactInfo = {
  */
 export const contactCodeFiles: readonly CodeFile[] = [
   {
-    title: "Email",
-    value: "email",
-    icon: MdEmail,
-    code: `// Send me an email
-const contact = {
-  email: "${contactInfo.email}",
-  subject: "Let's connect!",
-  message: "Hello Bryan, I'd like to discuss..."
+    title: "Contact",
+    value: "contact",
+    icon: LuTerminal,
+    code: `// Complete contact information
+const contactDetails = {
+	name: "Bryan Shea",
+	email: "${contactInfo.email}",
+	phone: "Available upon request",
+	location: "${contactInfo.location}",
+	availability: "Open to opportunities",
+	responseTime: "Typically within 24 hours",
 };
 
-// Or use mailto link
-window.open(\`mailto:\${contact.email}?subject=\${contact.subject}\`);`,
-    language: "javascript",
+console.log("Let's build something amazing together!");`,
+    language: "typescript",
   },
   {
     title: "GitHub",
@@ -76,45 +77,18 @@ gh api -X PUT /user/following/bryan-shea`,
     title: "LinkedIn",
     value: "linkedin",
     icon: IoLogoLinkedin,
-    code: `"""
-Connect with me on LinkedIn for professional networking
-"""
-
+    code: `
 linkedin_profile = {
-    "url": "${contactInfo.social.linkedin}",
-    "name": "Bryan Shea",
-    "title": "Full Stack Developer",
-    "location": "${contactInfo.location}"
+		"url": "${contactInfo.social.linkedin}",
+		"name": "Bryan Shea",
 }
 
 # Send connection request
 def connect_linkedin(profile):
-    return f"Visit {profile['url']} to connect!"
+		return f"Visit {profile['url']} to connect!"
 
 connect_linkedin(linkedin_profile)`,
     language: "python",
-  },
-  {
-    title: "Contact",
-    value: "contact",
-    icon: LuTerminal,
-    code: `// Complete contact information
-const contactDetails = {
-  name: "Bryan Shea",
-  title: "Full Stack Developer",
-  email: "${contactInfo.email}",
-  ${contactInfo.phone ? `phone: "${contactInfo.phone}",` : '// phone: "Available upon request",'}
-  location: "${contactInfo.location}",
-  social: {
-    github: "${contactInfo.social.github}",
-    linkedin: "${contactInfo.social.linkedin}"
-  },
-  availability: "Open to opportunities",
-  responseTime: "24-48 hours"
-};
-
-console.log("Let's build something amazing together!");`,
-    language: "javascript",
   },
 ] as const;
 
