@@ -3,6 +3,9 @@
  * Provides clean imports for all application configuration data
  */
 
+// Color palette configuration
+export * from "./colors.data";
+
 // Hero section configuration
 export * from "./hero.data";
 
@@ -14,6 +17,9 @@ export * from "./navigation.data";
 
 // Global controls configuration
 export * from "./controls.data";
+
+// Contact information configuration
+export * from "./contact.data";
 
 // Background system configuration
 export * from "./backgrounds.data";

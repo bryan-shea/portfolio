@@ -4,6 +4,15 @@
 
 This is a modern React portfolio website built with TypeScript, Chakra UI v3, Vite, and Framer Motion. The project follows a component-based architecture with strong separation of concerns, comprehensive TypeScript typing, and consistent patterns throughout.
 
+## Workspace Orchestration Framework (WOF)
+
+This repository uses WOF for quality gates and development workflow:
+
+- **Quality Gates**: `pnpm run ci:simple` runs typecheck → lint → format → build pipeline
+- **Workspace**: Single `client/` workspace for React frontend application
+- **Development**: Follow WOF worker guidelines in `.wof/workers/client.yaml`
+- **Routing**: Changes to components/, config/, theme/ trigger client workspace builds
+
 ## Architecture & File Structure
 
 ### Workspace Structure

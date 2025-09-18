@@ -1,35 +1,20 @@
 import {
   Container,
   Flex,
-  HStack,
   Heading,
   Stack,
   Text,
-  Button,
   VStack,
   Highlight,
 } from "@chakra-ui/react";
-import { LuArrowRight, LuCode, LuPalette, LuMail } from "react-icons/lu";
 import { ProfilePicture, TechStackGrid } from "../components/common";
-import { useScrollTo } from "../hooks";
+import { TypeBlock } from "../components/ui";
 import { MotionWrapper } from "../wrappers";
-import { heroConfig } from "../config";
+import { heroConfig, contactCodeFiles } from "../config";
 
 export const Hero = () => {
-  const scrollTo = useScrollTo();
-
-  // Use configuration data for personal info and CTA
-  const { personal, cta } = heroConfig;
-
-  const handleViewWork = () => {
-    scrollTo(cta.primary.target);
-  };
-
-  const handleContact = () => {
-    if (cta.secondary.action === "external") {
-      window.open(cta.secondary.target, "_blank");
-    }
-  };
+  // Use configuration data for personal info
+  const { personal } = heroConfig;
 
   return (
     <Container
@@ -48,18 +33,15 @@ export const Hero = () => {
       >
         {/* Left Column - Personal Content */}
         <Stack
-          gap={{ base: "8", md: "10", lg: "12" }}
+          gap={{ base: "8", md: "4", lg: "6" }}
           align={{ base: "center", lg: "flex-start" }}
           textAlign={{ base: "center", lg: "left" }}
           flex="1"
-          maxW={{ base: "full", lg: "2xl" }}
+          maxW={{ base: "full", lg: "4xl" }}
           justify="center"
         >
           {/* Profile Header */}
-          <Stack
-            gap={{ base: "4", md: "6" }}
-            align={{ base: "center", lg: "flex-start" }}
-          >
+          <Stack gap={"4"} align={{ base: "center", lg: "flex-start" }}>
             {/* Profile Picture */}
             <MotionWrapper variant="scale" timing="bounce">
               <ProfilePicture />
@@ -68,7 +50,7 @@ export const Hero = () => {
             {/* Name and Title */}
             <MotionWrapper variant="slideUp" timing="smooth">
               <VStack
-                gap={{ base: "2", md: "3" }}
+                gap={{ base: "2", md: "4" }}
                 align={{ base: "center", lg: "flex-start" }}
               >
                 <Heading
@@ -100,78 +82,15 @@ export const Hero = () => {
             </MotionWrapper>
           </Stack>
 
-          {/* Bio Section */}
-          <MotionWrapper variant="fadeIn" timing="smooth">
-            <Text
-              fontSize={{ base: "md", md: "lg", lg: "xl" }}
-              color={{
-                _light: "fg.subtle",
-                _dark: "fg.muted",
-              }}
-              lineHeight="relaxed"
-              maxW="xl"
-            >
-              {personal.bio}
-            </Text>
-          </MotionWrapper>
-
-          {/* Call to Action Buttons */}
+          {/* Contact Information Code Block */}
           <MotionWrapper variant="slideUp" timing="smooth">
-            <HStack
-              gap={{ base: "3", md: "4" }}
-              flexDir={{ base: "column", sm: "row" }}
-              w={{ base: "full", sm: "auto" }}
-              justify={{ base: "center", lg: "flex-start" }}
-            >
-              <Button
-                size={{ base: "lg", md: "xl" }}
-                colorPalette="blue"
-                onClick={handleViewWork}
-                px={{ base: "6", md: "8" }}
-                py={{ base: "3", md: "4" }}
-                fontSize={{ base: "md", md: "lg" }}
-                fontWeight="semibold"
-                borderRadius="full"
-                _hover={{
-                  transform: "translateY(-2px)",
-                  shadow: "lg",
-                }}
-                transition="all 0.2s"
-                w={{ base: "full", sm: "auto" }}
-              >
-                <HStack>
-                  <LuCode />
-                  <Text>View My Work</Text>
-                  <LuArrowRight />
-                </HStack>
-              </Button>
-
-              <Button
-                size={{ base: "lg", md: "xl" }}
-                variant="outline"
-                colorPalette="blue"
-                borderColor="blue.500"
-                onClick={handleContact}
-                px={{ base: "6", md: "8" }}
-                py={{ base: "3", md: "4" }}
-                fontSize={{ base: "md", md: "lg" }}
-                fontWeight="semibold"
-                borderRadius="full"
-                _hover={{
-                  transform: "translateY(-2px)",
-                  shadow: "md",
-                  bg: "bg.subtle",
-                }}
-                transition="all 0.2s"
-                w={{ base: "full", sm: "auto" }}
-              >
-                <HStack>
-                  <LuPalette />
-                  <Text>Get In Touch</Text>
-                  <LuMail />
-                </HStack>
-              </Button>
-            </HStack>
+            <TypeBlock
+              codeFiles={contactCodeFiles}
+              title="Get In Touch"
+              defaultTab="email"
+              size="sm"
+              maxWidth={{ base: "sm", sm: "xl", md: "2xl" }}
+            />
           </MotionWrapper>
         </Stack>
 

@@ -19,3 +19,6 @@ export {
   useBackgroundManager,
   useRandomizedStyles,
 } from "./useStyleManagement";
+
+// Context hooks
+export { useBackgrounds } from "./useBackgrounds";

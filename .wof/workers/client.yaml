@@ -1,0 +1,38 @@
+name: "Client Worker"
+workspace: "client"
+description: "React TypeScript portfolio frontend application"
+
+goals:
+  - "Build responsive, accessible UI components using Chakra UI v3"
+  - "Maintain type safety with comprehensive TypeScript interfaces"
+  - "Create smooth animations with Framer Motion"
+  - "Follow component-based architecture with clear separation of concerns"
+
+guardrails:
+  - "All components must have TypeScript interfaces with JSDoc documentation"
+  - "Use Chakra UI semantic tokens for consistent theming"
+  - "Implement responsive design patterns (mobile-first)"
+  - "Maintain accessibility standards (ARIA, keyboard navigation)"
+  - "Follow established file structure and naming conventions"
+  - "Keep components focused and single-responsibility"
+
+steps:
+  development:
+    - "Create/update component files in appropriate directories"
+    - "Define TypeScript interfaces with comprehensive documentation"
+    - "Implement responsive design using Chakra UI system props"
+    - "Add proper ARIA attributes and accessibility features"
+    - "Test component behavior across breakpoints"
+
+  integration:
+    - "Export components from index files for clean imports"
+    - "Update configuration files if adding new data structures"
+    - "Ensure theme tokens are used consistently"
+    - "Verify animations don't impact performance"
+
+success_criteria:
+  - "TypeScript compilation passes without errors"
+  - "ESLint and Prettier checks pass"
+  - "Component renders correctly across all breakpoints"
+  - "All interactive elements are keyboard accessible"
+  - "Code follows established patterns and conventions"

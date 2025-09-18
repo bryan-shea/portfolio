@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { type ComponentType, useState } from "react";
+import { type ComponentType } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Hero, Projects, Journey } from "./sections";
 import { AnimatedSection, Navbar } from "./components/common";
@@ -7,7 +7,7 @@ import {
   BackgroundManager,
   type BackgroundType,
 } from "./components/backgrounds";
-import { useActiveSection } from "./hooks";
+import { useActiveSection, useBackgrounds } from "./hooks";
 
 /**
  * Configuration interface for portfolio sections
@@ -36,16 +36,11 @@ const PORTFOLIO_SECTIONS: SectionConfig[] = [
  * Renders all portfolio sections with background options and consistent animations
  */
 const Portfolio = () => {
-  const [currentBackground, setCurrentBackground] =
-    useState<BackgroundType>("grid");
+  const { currentBackground } = useBackgrounds();
 
   // Track which section is currently active based on scroll position
   const sectionIds = PORTFOLIO_SECTIONS.map(section => section.id);
   const activeSection = useActiveSection(sectionIds);
-
-  const handleBackgroundChange = (background: BackgroundType) => {
-    setCurrentBackground(background);
-  };
 
   return (
     <Box
@@ -60,15 +55,10 @@ const Portfolio = () => {
       <BackgroundManager
         initialBackground={currentBackground}
         showSelector={false}
-        onBackgroundChange={handleBackgroundChange}
       />
 
       {/* Navbar - Fixed position navigation with all controls */}
-      <Navbar
-        currentBackground={currentBackground}
-        onBackgroundChange={handleBackgroundChange}
-        activeSection={activeSection}
-      />
+      <Navbar activeSection={activeSection} />
 
       {PORTFOLIO_SECTIONS.map(({ id, component: Component }, index) => (
         <Box

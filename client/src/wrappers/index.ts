@@ -6,3 +6,5 @@
 export { MotionWrapper } from "./MotionWrapper";
 export { ResponsiveWrapper } from "./ResponsiveWrapper";
 export { SectionWrapper } from "./SectionWrapper";
+export { DrawerWrapper } from "./DrawerWrapper";
+export type { DrawerWrapperProps } from "./DrawerWrapper";

@@ -1,0 +1,61 @@
+# WOF Quality Gates Configuration
+# Maps abstract gates to local commands for this repository
+
+gates:
+  # TypeScript compilation and type checking
+  typecheck:
+    commands:
+      - "pnpm run type-check"
+    description: "Run TypeScript type checking across workspaces"
+
+  # Code linting and formatting
+  lint:
+    commands:
+      - "pnpm run lint"
+      - "pnpm run format:check"
+    description: "Run ESLint and Prettier formatting checks"
+
+  # Application build
+  build:
+    commands:
+      - "pnpm run build"
+    description: "Build the application for production"
+
+  # Code generation (Chakra UI theme types)
+  codegen:
+    commands:
+      - "pnpm run typegen"
+    description: "Generate TypeScript types for Chakra UI theme"
+
+  # Test execution (placeholder - no tests currently configured)
+  test:
+    commands:
+      - "echo 'No tests configured yet'"
+    description: "Run test suites (placeholder)"
+    skip_if_missing: true
+# Additional gate examples for other ecosystems:
+#
+# # Python/Django
+# lint:
+#   commands:
+#     - "black --check ."
+#     - "flake8 ."
+#     - "mypy ."
+#
+# # Node.js/Express
+# test:
+#   commands:
+#     - "npm run test:unit"
+#     - "npm run test:integration"
+#
+# # Go
+# build:
+#   commands:
+#     - "go build ./..."
+#     - "go test -c ./..."
+#
+# # Rust
+# build:
+#   commands:
+#     - "cargo build"
+#     - "cargo test --no-run"

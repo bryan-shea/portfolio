@@ -11,8 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { projects } from "../config/projects.data";
 import { motion } from "framer-motion";
+import { useColors } from "../contexts";
 
 export const Projects = () => {
+  const { colorScheme } = useColors();
   return (
     <Container
       maxW="6xl"
@@ -31,7 +33,7 @@ export const Projects = () => {
             px="4"
             py="2"
             borderRadius="full"
-            colorPalette="primary"
+            colorPalette={colorScheme.palette}
             variant="solid"
             fontSize="sm"
             fontWeight="semibold"
@@ -145,53 +147,10 @@ export const Projects = () => {
                   fontSize="sm"
                   lineHeight="relaxed"
                   mb="4"
-                  //   lineClamp={5}
                   flex="1"
                 >
                   {project.description}
                 </Text>
-
-                {/* Tech Stack */}
-                {/* <VStack gap="3" align="stretch">
-                  <Text
-                    fontSize="xs"
-                    fontWeight="semibold"
-                    color="fg.muted"
-                    textTransform="uppercase"
-                  >
-                    Technologies
-                  </Text>
-                  <Box minHeight="12">
-                    <HStack wrap="wrap" gap="1">
-                      {project.tech.slice(0, 6).map((tech, techIndex) => (
-                        <motion.div
-                          key={tech}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 0.3,
-                            delay: index * 0.1 + 0.3 + techIndex * 0.05,
-                          }}
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          <Badge
-                            size="sm"
-                            variant="outline"
-                            colorPalette="gray"
-                          >
-                            {tech}
-                          </Badge>
-                        </motion.div>
-                      ))}
-                      {project.tech.length > 6 && (
-                        <Badge size="sm" variant="outline" colorPalette="gray">
-                          +{project.tech.length - 6}
-                        </Badge>
-                      )}
-                    </HStack>
-                  </Box>
-                </VStack> */}
               </Box>
 
               {/* Project Highlights */}

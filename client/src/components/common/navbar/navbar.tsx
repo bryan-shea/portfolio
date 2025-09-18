@@ -7,49 +7,29 @@ import {
   HStack,
   IconButton,
   Link,
-  Menu,
-  Portal,
   Button,
   Icon,
   Text,
+  Menu,
+  Portal,
 } from "@chakra-ui/react";
-import { LuGithub, LuMenu, LuPalette, LuChevronDown } from "react-icons/lu";
+import { LuGithub, LuMenu, LuSettings2 } from "react-icons/lu";
 import { ColorModeButton } from "../../ui";
+import { PersonalizeDrawer } from "../../ui/PersonalizeDrawer";
 import { navigationSections } from "../../../config/navigation.data";
-import { type BackgroundType } from "../../backgrounds";
+import { useState } from "react";
 
 /**
  * Props for Navbar component
  */
 interface NavbarProps {
-  /** Current background type */
-  currentBackground?: BackgroundType;
-  /** Callback when background changes */
-  onBackgroundChange?: (background: BackgroundType) => void;
   /** Currently active section ID */
   activeSection?: string;
 }
 
-export const Navbar = ({
-  currentBackground = "none",
-  onBackgroundChange,
-  activeSection,
-}: NavbarProps) => {
-  /**
-   * Available background options for the dropdown
-   */
-  const backgroundOptions = [
-    { type: "particles" as BackgroundType, name: "Particles", icon: "" },
-    { type: "dots" as BackgroundType, name: "Dots", icon: "" },
-    { type: "shapes" as BackgroundType, name: "Shapes", icon: "" },
-    { type: "grid" as BackgroundType, name: "Grid", icon: "" },
-    { type: "orbs" as BackgroundType, name: "Orbs", icon: "" },
-    { type: "network" as BackgroundType, name: "Network", icon: "" },
-  ];
-
-  const currentOption =
-    backgroundOptions.find(option => option.type === currentBackground) ||
-    backgroundOptions[0];
+export const Navbar = ({ activeSection }: NavbarProps) => {
+  // State for PersonalizeDrawer
+  const [isPersonalizeOpen, setIsPersonalizeOpen] = useState(false);
 
   /**
    * Scroll to a specific section smoothly
@@ -103,141 +83,57 @@ export const Navbar = ({
           </HStack>
 
           <HStack hideBelow="lg" align="center" justify="flex-end">
-            <Menu.Root
-              positioning={{
-                placement: "bottom-end",
-                sameWidth: false,
-                offset: { mainAxis: 4 },
-              }}
+            <Button
+              size="sm"
+              variant="outline"
+              colorPalette="gray"
+              onClick={() => setIsPersonalizeOpen(true)}
             >
-              <Menu.Trigger asChild>
-                <Button size="sm" variant="outline" colorPalette="gray">
-                  <Icon as={LuPalette} />
-                  <Text fontSize="sm">
-                    {currentOption.icon} {currentOption.name}
-                  </Text>
-                  <Icon as={LuChevronDown} />
-                </Button>
-              </Menu.Trigger>
-              <Portal>
-                <Menu.Positioner>
-                  <Menu.Content
-                    bg={{
-                      _light: "white/95",
-                      _dark: "gray.900/95",
-                    }}
-                    backdropFilter="blur(10px)"
-                    border="1px solid"
-                    borderColor={{
-                      _light: "gray.200",
-                      _dark: "gray.700",
-                    }}
-                    boxShadow="lg"
-                    minW="160px"
-                  >
-                    {backgroundOptions.map(option => (
-                      <Menu.Item
-                        key={option.type}
-                        value={option.type}
-                        onClick={() => onBackgroundChange?.(option.type)}
-                        cursor="pointer"
-                        _hover={{ bg: "bg.muted" }}
-                      >
-                        <HStack>
-                          <Text fontSize="sm">{option.icon}</Text>
-                          <Text fontSize="sm">{option.name}</Text>
-                        </HStack>
-                      </Menu.Item>
-                    ))}
-                  </Menu.Content>
-                </Menu.Positioner>
-              </Portal>
-            </Menu.Root>
+              <Icon as={LuSettings2} />
+              <Text fontSize="sm">Personalize</Text>
+            </Button>
             <GitHubButton />
             <ColorModeButton size="xs" />
           </HStack>
           <MobileNav
             scrollToSection={scrollToSection}
-            onBackgroundChange={onBackgroundChange}
-            backgroundOptions={backgroundOptions}
             activeSection={activeSection}
+            onPersonalizeOpen={() => setIsPersonalizeOpen(true)}
           />
         </Flex>
       </Container>
+
+      {/* PersonalizeDrawer */}
+      <PersonalizeDrawer
+        isOpen={isPersonalizeOpen}
+        onClose={() => setIsPersonalizeOpen(false)}
+      />
     </Box>
   );
 };
 
 interface MobileNavProps {
   scrollToSection: (sectionId: string) => void;
-  onBackgroundChange?: (background: BackgroundType) => void;
-  backgroundOptions: Array<{
-    type: BackgroundType;
-    name: string;
-    icon: string;
-  }>;
   activeSection?: string;
+  onPersonalizeOpen: () => void;
 }
 
 const MobileNav = ({
   scrollToSection,
-  onBackgroundChange,
-  backgroundOptions,
   activeSection,
+  onPersonalizeOpen,
 }: MobileNavProps) => {
   return (
     <HStack as="nav" hideFrom="lg">
-      <Menu.Root
-        positioning={{
-          placement: "bottom-end",
-          sameWidth: false,
-          offset: { mainAxis: 4 },
-        }}
+      <IconButton
+        size="xs"
+        variant="ghost"
+        aria-label="Personalize"
+        colorPalette="gray"
+        onClick={onPersonalizeOpen}
       >
-        <Menu.Trigger asChild>
-          <IconButton
-            size="xs"
-            variant="ghost"
-            aria-label="Background"
-            colorPalette="gray"
-          >
-            <Icon as={LuPalette} />
-          </IconButton>
-        </Menu.Trigger>
-        <Portal>
-          <Menu.Positioner>
-            <Menu.Content
-              bg={{
-                _light: "white/95",
-                _dark: "gray.900/95",
-              }}
-              backdropFilter="blur(10px)"
-              border="1px solid"
-              borderColor={{
-                _light: "gray.200",
-                _dark: "gray.700",
-              }}
-              boxShadow="lg"
-              minW="160px"
-            >
-              {backgroundOptions.map(option => (
-                <Menu.Item
-                  key={option.type}
-                  value={option.type}
-                  onClick={() => onBackgroundChange?.(option.type)}
-                  cursor="pointer"
-                  _hover={{ bg: "bg.muted" }}
-                >
-                  <HStack>
-                    <Text fontSize="sm">{option.icon}</Text>
-                    <Text fontSize="sm">{option.name}</Text>
-                  </HStack>
-                </Menu.Item>
-              ))}
-            </Menu.Content>
-          </Menu.Positioner>
-        </Portal>
-      </Menu.Root>
+        <Icon as={LuSettings2} />
+      </IconButton>
       <GitHubButton />
       <ColorModeButton size="xs" />
       <Menu.Root

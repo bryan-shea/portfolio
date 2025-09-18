@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "workspaces": {
+    "client": {
+      "path": "client/**",
+      "type": "frontend",
+      "description": "React TypeScript portfolio application"
+    }
+  },
+  "routing": {
+    "scorecard": {
+      "client": {
+        "components": 3,
+        "hooks": 2,
+        "config": 2,
+        "theme": 2,
+        "utils": 1
+      }
+    }
+  },
+  "gates": ["build", "lint", "typecheck", "test", "codegen"],
+  "observability": {
+    "enabled": true,
+    "artifactPath": ".wof/artifacts/"
+  }
+}

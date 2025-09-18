@@ -7,75 +7,16 @@ import {
   useCallback,
 } from "react";
 import type { ReactNode } from "react";
+import {
+  type ColorPaletteName,
+  type ColorPaletteConfig,
+  type ColorScheme,
+  AVAILABLE_COLOR_PALETTES,
+  DEFAULT_COLOR_SCHEME,
+} from "../config/colors.data";
 
-/**
- * Comprehensive color palette interface
- */
-interface ColorPalette {
-  name: string;
-  description: string;
-  primary: {
-    50: string;
-    100: string;
-    200: string;
-    300: string;
-    400: string;
-    500: string;
-    600: string;
-    700: string;
-    800: string;
-    900: string;
-    950: string;
-  };
-  accent: {
-    light: string;
-    dark: string;
-  };
-  preview: {
-    light: string;
-    dark: string;
-  };
-}
-
-/**
- * Color scheme interface for the selected palette
- */
-export interface ColorScheme {
-  palette: ColorPalette;
-}
-
-/**
- * Default color palette (Elegant Gray)
- */
-const DEFAULT_PALETTE: ColorPalette = {
-  name: "Elegant Gray",
-  description: "Sophisticated and timeless with excellent readability",
-  primary: {
-    50: "#f9fafb",
-    100: "#f3f4f6",
-    200: "#e5e7eb",
-    300: "#d1d5db",
-    400: "#9ca3af",
-    500: "#6b7280",
-    600: "#4b5563",
-    700: "#374151",
-    800: "#1f2937",
-    900: "#111827",
-    950: "#030712",
-  },
-  accent: {
-    light: "#f3f4f6",
-    dark: "#374151",
-  },
-  preview: {
-    light: "#6b7280",
-    dark: "#9ca3af",
-  },
-};
-
-const DEFAULT_COLOR_SCHEME: ColorScheme = {
-  palette: DEFAULT_PALETTE,
-};
+// Re-export types for backward compatibility
+export type { ColorPaletteName, ColorPaletteConfig, ColorScheme };
 
 /**
  * Color context interface
@@ -110,9 +51,30 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          // Check if it's the new palette format
-          if (parsed.palette?.primary && parsed.palette?.name) {
+          // Check if it's the new palette format with just a palette name
+          if (
+            typeof parsed.palette === "string" &&
+            AVAILABLE_COLOR_PALETTES.some(p => p.name === parsed.palette)
+          ) {
             return parsed;
+          }
+          // Handle legacy format - map to new format
+          if (parsed.palette && typeof parsed.palette.name === "string") {
+            const legacyName = parsed.palette.name.toLowerCase();
+            // Map legacy names to new palette names
+            const paletteMapping: Record<string, ColorPaletteName> = {
+              "steel gray": "gray",
+              "elegant gray": "gray",
+              "ocean blue": "blue",
+              "forest green": "green",
+              "sunset orange": "orange",
+              "purple magic": "purple",
+              "rose pink": "pink",
+              "emerald teal": "teal",
+              "ruby red": "red",
+            };
+            const mappedPalette = paletteMapping[legacyName] || "blue";
+            return { palette: mappedPalette };
           }
         } catch {
           // Fall back to default if parsing fails
@@ -124,6 +86,7 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
 
   /**
    * Update theme with the selected color palette
+   * Uses Chakra UI's colorPalette system for consistent theming
    */
   const updateTheme = useCallback((colors: ColorScheme) => {
     // Save to localStorage
@@ -131,49 +94,55 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
       localStorage.setItem("portfolio-color-scheme", JSON.stringify(colors));
     }
 
-    // Update CSS custom properties for dynamic theming
+    // Update CSS custom properties for Chakra UI's colorPalette system
     if (typeof document !== "undefined") {
       const root = document.documentElement;
       const { palette } = colors;
 
-      // Primary palette - main brand colors
-      Object.entries(palette.primary).forEach(([shade, color]) => {
-        root.style.setProperty(`--chakra-colors-primary-${shade}`, color);
-      });
+      // Set the global colorPalette for Chakra UI components
+      // This enables components to use colorPalette prop effectively
+      root.style.setProperty(
+        "--chakra-colors-colorPalette",
+        `var(--chakra-colors-${palette})`
+      );
 
-      // Map primary palette to colorPalette tokens for consistent theming
-      Object.entries(palette.primary).forEach(([shade, color]) => {
-        root.style.setProperty(`--chakra-colors-colorPalette-${shade}`, color);
-      });
+      // Map the selected palette to primary for custom styling
+      // This maintains backward compatibility with existing custom styles
+      for (let shade = 50; shade <= 950; shade += 50) {
+        if (shade <= 900 || shade === 950) {
+          root.style.setProperty(
+            `--chakra-colors-primary-${shade}`,
+            `var(--chakra-colors-${palette}-${shade})`
+          );
+        }
+      }
 
-      // Blue as the main interactive color (mapped to primary)
-      Object.entries(palette.primary).forEach(([shade, color]) => {
-        root.style.setProperty(`--chakra-colors-blue-${shade}`, color);
-      });
+      // Set glow effect color using semantic token
+      root.style.setProperty(
+        "--glow-color",
+        `var(--chakra-colors-${palette}-500)`
+      );
 
-      // Special glow effect color
-      root.style.setProperty("--glow-color", palette.primary[500]);
-
-      // Personalized colors for custom components
+      // Update personalized color variables using semantic tokens
       root.style.setProperty(
         "--chakra-colors-personalized-primary",
-        palette.primary[500]
+        `var(--chakra-colors-${palette}-500)`
       );
       root.style.setProperty(
         "--chakra-colors-personalized-primaryHover",
-        palette.primary[600]
+        `var(--chakra-colors-${palette}-600)`
       );
       root.style.setProperty(
         "--chakra-colors-personalized-primaryActive",
-        palette.primary[700]
+        `var(--chakra-colors-${palette}-700)`
       );
       root.style.setProperty(
         "--chakra-colors-personalized-accent",
-        palette.accent.light
+        `var(--chakra-colors-${palette}-100)`
       );
       root.style.setProperty(
         "--chakra-colors-personalized-accentDark",
-        palette.accent.dark
+        `var(--chakra-colors-${palette}-800)`
       );
     }
   }, []);

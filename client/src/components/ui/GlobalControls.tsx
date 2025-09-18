@@ -26,10 +26,9 @@ import {
   LuMoon,
 } from "react-icons/lu";
 import { useColorMode } from "./color-mode";
-import { Personalize } from "./Personalize";
+import { PersonalizeDrawer } from "./PersonalizeDrawer";
 import { BackgroundSelector } from "./BackgroundSelector";
 import { type BackgroundType } from "../backgrounds";
-import { type ColorScheme } from "../../contexts/ColorContext";
 import { motion } from "framer-motion";
 
 /**
@@ -40,10 +39,6 @@ interface GlobalControlsProps {
   currentBackground: BackgroundType;
   /** Callback when background changes */
   onBackgroundChange: (background: BackgroundType) => void;
-  /** Current color scheme */
-  currentColors?: ColorScheme;
-  /** Callback when colors change */
-  onColorsChange?: (colors: ColorScheme) => void;
 }
 
 /**
@@ -70,8 +65,6 @@ interface ControlAction {
 export const GlobalControls: React.FC<GlobalControlsProps> = ({
   currentBackground,
   onBackgroundChange,
-  currentColors,
-  onColorsChange,
 }) => {
   const [isPersonalizeOpen, setIsPersonalizeOpen] = useState(false);
   const [isBackgroundSelectorOpen, setIsBackgroundSelectorOpen] =
@@ -81,12 +74,6 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
 
   // Responsive trigger: full button on md+, compact on mobile
   const isMobile = useBreakpointValue({ base: true, md: false });
-
-  const handleColorsChange = (colors: ColorScheme) => {
-    if (onColorsChange) {
-      onColorsChange(colors);
-    }
-  };
 
   /**
    * Available control actions
@@ -209,14 +196,10 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
       />
 
       {/* Personalize Panel */}
-      {currentColors && (
-        <Personalize
-          currentColors={currentColors}
-          onColorsChange={handleColorsChange}
-          isOpen={isPersonalizeOpen}
-          onClose={() => setIsPersonalizeOpen(false)}
-        />
-      )}
+      <PersonalizeDrawer
+        isOpen={isPersonalizeOpen}
+        onClose={() => setIsPersonalizeOpen(false)}
+      />
     </>
   );
 };

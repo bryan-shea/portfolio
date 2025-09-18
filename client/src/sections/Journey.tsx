@@ -1,5 +1,4 @@
 import {
-  Box,
   Container,
   Heading,
   Text,
@@ -7,14 +6,15 @@ import {
   HStack,
   Badge,
   Icon,
-  SimpleGrid,
   Timeline,
 } from "@chakra-ui/react";
-import { LuGraduationCap, LuCode, LuTrophy } from "react-icons/lu";
+import { LuGraduationCap, LuTrophy } from "react-icons/lu";
 import { motion } from "framer-motion";
-import { journeyMilestones, techCategories } from "../config";
+import { journeyMilestones } from "../config";
+import { useColors } from "../contexts";
 
 export const Journey = () => {
+  const { colorScheme } = useColors();
   return (
     <Container
       maxW="6xl"
@@ -32,7 +32,7 @@ export const Journey = () => {
             px="4"
             py="2"
             borderRadius="full"
-            colorPalette="primary"
+            colorPalette={colorScheme.palette}
             variant="solid"
             fontSize="sm"
             fontWeight="semibold"
@@ -59,89 +59,22 @@ export const Journey = () => {
             maxW="3xl"
             lineHeight="relaxed"
           >
-            From computer science fundamentals to full-stack development
-            mastery—a timeline of continuous learning, hands-on projects, and
-            professional certifications that shaped my technical expertise.
+            From self-directed learning to enterprise-ready solutions—discover
+            how I transformed curiosity into expertise through strategic
+            skill-building, real-world projects, and industry certifications
+            that deliver measurable results.
           </Text>
         </VStack>
       </motion.div>
-
-      <VStack gap="12" mb="12" py={2} px={{ base: "4", md: "6", lg: "8" }}>
-        <SimpleGrid
-          columns={{ base: 1, sm: 2, lg: 4 }}
-          gap="20"
-          w="fit-content"
-        >
-          {techCategories.map((category, index) => (
-            <motion.div
-              key={category.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              style={{ height: "100%" }}
-            >
-              <Box
-                bg="bg.surface"
-                border="2px solid"
-                borderColor="border.darkmode"
-                borderRadius="xl"
-                p={4}
-                textAlign="center"
-                transition="all 0.3s ease"
-                height="100%"
-                display="flex"
-                flexDirection="column"
-                _hover={{
-                  transform: "translateY(-4px)",
-                  borderColor: "primary.500",
-                  boxShadow: "lg",
-                }}
-              >
-                <VStack gap="4" flex="1">
-                  <Badge
-                    size="lg"
-                    variant="solid"
-                    colorPalette="primary"
-                    px="4"
-                    py="2"
-                    borderRadius="full"
-                    fontSize="sm"
-                    fontWeight="semibold"
-                    display="flex"
-                    alignItems="center"
-                    gap="2"
-                  >
-                    <Icon as={LuCode} boxSize="4" />
-                    {category.name}
-                  </Badge>
-
-                  <VStack gap="2" align="stretch" flex="1" justify="flex-start">
-                    {category.technologies.map(tech => (
-                      <Badge
-                        key={tech}
-                        size="md"
-                        variant="surface"
-                        colorPalette="primary"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </VStack>
-                </VStack>
-              </Box>
-            </motion.div>
-          ))}
-        </SimpleGrid>
-      </VStack>
 
       <VStack gap="2" mt="12" py={2} px={{ base: "4", md: "6", lg: "8" }}>
         <Timeline.Root
           size={{ base: "md", md: "xl" }}
           variant="solid"
-          colorPalette="primary"
-          maxW="5xl"
+          colorPalette={colorScheme.palette}
+          maxW="6xl"
           w="full"
+          mx="auto"
         >
           {journeyMilestones.map((milestone, index) => {
             console.log(
@@ -177,19 +110,9 @@ export const Journey = () => {
                   border="2px solid"
                   borderColor="border.darkmode"
                   borderRadius="xl"
-                  p="6"
+                  p={{ base: "4", md: "6" }}
                   position="relative"
                   overflow="hidden"
-                  transition="all 0.3s ease"
-                  _hover={
-                    milestone.certImage
-                      ? {
-                          borderColor: "primary.500",
-                          transform: "translateY(-2px)",
-                          boxShadow: "lg",
-                        }
-                      : {}
-                  }
                   _before={
                     milestone.certImage
                       ? {
@@ -203,9 +126,10 @@ export const Journey = () => {
                           backgroundSize: "contain",
                           backgroundPosition: "right center",
                           backgroundRepeat: "no-repeat",
-                          opacity: 0.1,
+                          opacity: "1",
                           zIndex: 0,
-                          transition: "opacity 0.3s ease",
+                          mixBlendMode: "hue-rotate(90deg)",
+                          display: { base: "none", lg: "block" },
                         }
                       : {}
                   }
@@ -215,7 +139,7 @@ export const Journey = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    style={{ position: "relative", zIndex: 1 }}
+                    style={{ position: "relative", zIndex: 2 }}
                   >
                     <VStack gap="4" align="start" w="full">
                       <VStack gap="4" align="start">
@@ -230,8 +154,10 @@ export const Journey = () => {
                           color="fg.muted"
                           fontSize={{ base: "sm", md: "md" }}
                           truncate
-                          lineClamp={2}
-                          maxW="58%"
+                          lineClamp={"auto"}
+                          overflow="auto"
+                          maxW={{ base: "full", lg: "64%" }}
+                          lineHeight="tall"
                           py={2}
                         >
                           {milestone.description}
