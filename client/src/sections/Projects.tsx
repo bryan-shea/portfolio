@@ -12,12 +12,13 @@ import {
 import { projects } from "../config/projects.data";
 import { motion } from "framer-motion";
 import { useColors } from "../contexts";
+import { ANIMATION_DURATIONS, ANIMATION_VIEWPORT } from "../constants";
 
 export const Projects = () => {
   const { colorScheme } = useColors();
   return (
     <Container
-      maxW="6xl"
+      maxW="8xl"
       py={{ base: "6", md: "12", lg: "16" }}
       px={{ base: "4", md: "6", lg: "8" }}
     >
@@ -25,8 +26,11 @@ export const Projects = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true, amount: ANIMATION_VIEWPORT.amount }}
+        transition={{
+          duration: ANIMATION_DURATIONS.SMOOTH,
+          ease: "easeOut",
+        }}
       >
         <VStack gap="1" textAlign="center" mb="12">
           <Badge
@@ -57,7 +61,7 @@ export const Projects = () => {
       </motion.div>
 
       {/* Projects Grid */}
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="8" w="full">
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="10" w="full">
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
@@ -65,15 +69,15 @@ export const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{
-              duration: 0.3,
-              delay: index * 0.1,
+              duration: ANIMATION_DURATIONS.FAST,
+              delay: index * ANIMATION_DURATIONS.STAGGER_DELAY,
               ease: "easeOut",
             }}
             whileHover={{
               y: -8,
               scale: 1.01,
               transition: {
-                duration: 0.3,
+                duration: ANIMATION_DURATIONS.FAST,
                 ease: [0.25, 0.46, 0.45, 0.94],
               },
             }}
@@ -112,7 +116,7 @@ export const Projects = () => {
                 <HStack gap="2" mb="4">
                   <motion.div
                     whileHover={{ rotate: 10, scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: ANIMATION_DURATIONS.QUICK }}
                   >
                     <Box
                       p="1"

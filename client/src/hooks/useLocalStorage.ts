@@ -1,47 +1,43 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 /**
- * Custom hook for managing localStorage with type safety and SSR compatibility
- * @param key - The localStorage key
- * @param initialValue - The initial value if no stored value exists
- * @returns [storedValue, setValue] - Current value and setter function
+ * Custom hook for localStorage with automatic JSON serialization
+ * @param key - localStorage key
+ * @param initialValue - Initial value if nothing in localStorage
+ * @returns [storedValue, setValue] - Current value and setter
  */
 export function useLocalStorage<T>(
   key: string,
   initialValue: T
 ): [T, (value: T | ((val: T) => T)) => void] {
-  // Initialize with initialValue to handle SSR
-  const [storedValue, setStoredValue] = useState<T>(initialValue);
-
-  // Load value from localStorage on mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const item = window.localStorage.getItem(key);
-        if (item) {
-          setStoredValue(JSON.parse(item));
-        }
-      } catch (error) {
-        console.warn(`Error reading localStorage key "${key}":`, error);
-      }
+  // State to store our value
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === "undefined") {
+      return initialValue;
     }
-  }, [key]);
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error(`Error reading localStorage key "${key}":`, error);
+      return initialValue;
+    }
+  });
 
+  // Return a wrapped version of useState's setter function that persists the new value to localStorage
   const setValue = (value: T | ((val: T) => T)) => {
     try {
       // Allow value to be a function so we have the same API as useState
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
-
       // Save state
       setStoredValue(valueToStore);
-
-      // Save to localStorage
+      // Save to local storage
       if (typeof window !== "undefined") {
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
     } catch (error) {
-      console.warn(`Error setting localStorage key "${key}":`, error);
+      console.error(`Error setting localStorage key "${key}":`, error);
     }
   };
 

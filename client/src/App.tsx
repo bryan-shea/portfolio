@@ -43,14 +43,7 @@ const Portfolio = () => {
   const activeSection = useActiveSection(sectionIds);
 
   return (
-    <Box
-      as="main"
-      minH="100vh"
-      w="full"
-      bg="bg.default"
-      overflow="hidden"
-      position="relative"
-    >
+    <Box as="main" minH="100vh" w="full" bg="bg.default" position="relative">
       {/* Global Background - positioned first so it appears behind content */}
       <BackgroundManager
         initialBackground={currentBackground}

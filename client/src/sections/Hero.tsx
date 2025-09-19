@@ -14,12 +14,9 @@ import {
 } from "../components/common";
 import { TypeBlock } from "../components/ui";
 import { MotionWrapper } from "../wrappers";
-import { heroConfig, contactCodeFiles } from "../config";
+import { heroConfig, contactCodeConfig } from "../config";
 
 export const Hero = () => {
-  // Use configuration data for personal info
-  const { personal } = heroConfig;
-
   return (
     <Container
       maxW="8xl"
@@ -37,7 +34,7 @@ export const Hero = () => {
       >
         {/* Left Column - Personal Content */}
         <Stack
-          gap={{ base: "8", md: "4", lg: "4" }}
+          gap={{ base: "8", md: "2" }}
           align={{ base: "center", lg: "flex-start" }}
           textAlign={{ base: "center", lg: "left" }}
           flex="1"
@@ -45,7 +42,7 @@ export const Hero = () => {
           justify="center"
         >
           {/* Profile Header */}
-          <Stack gap={"6"} align={{ base: "center", lg: "flex-start" }}>
+          <Stack gap={"3"} align={{ base: "center", lg: "flex-start" }}>
             {/* Profile Picture */}
             <MotionWrapper variant="scale" timing="bounce">
               <ProfilePicture />
@@ -62,17 +59,21 @@ export const Hero = () => {
                   fontWeight="bold"
                   letterSpacing={{ base: "-0.02em", lg: "-0.025em" }}
                   lineHeight={{ base: "1.1", md: "1.05" }}
+                  color="fg"
                 >
                   <Highlight
-                    query={personal.name.split(" ")}
+                    query={heroConfig.name}
                     styles={{
                       bgGradient: "to-r",
-                      gradientFrom: "primary.400",
-                      gradientTo: "primary.600",
+                      gradientFrom: "primary.600",
+                      gradientVia: "primary.500",
+                      gradientTo: "primary.400",
                       bgClip: "text",
+                      fontSize: { base: "xl", md: "2xl", lg: "3xl" },
+                      fontWeight: "bold",
                     }}
                   >
-                    {personal.name}
+                    {heroConfig.name}
                   </Highlight>
                 </Heading>
                 <Text
@@ -80,7 +81,7 @@ export const Hero = () => {
                   color="fg.muted"
                   fontWeight="medium"
                 >
-                  {personal.title}
+                  {heroConfig.title}
                 </Text>
               </VStack>
             </MotionWrapper>
@@ -90,7 +91,7 @@ export const Hero = () => {
           <MotionWrapper variant="slideUp" timing="smooth">
             <VStack align={{ base: "center", lg: "flex-start" }}>
               <TypeBlock
-                codeFiles={contactCodeFiles}
+                codeFiles={contactCodeConfig.codeFiles}
                 title="Get In Touch"
                 defaultTab="contact"
                 size="sm"

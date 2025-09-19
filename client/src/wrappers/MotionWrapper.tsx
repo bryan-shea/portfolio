@@ -5,7 +5,8 @@ import {
   type VariantLabels,
 } from "framer-motion";
 import { forwardRef } from "react";
-import { animationVariants, transitions, type AnimationTiming } from "../utils";
+import { animationVariants, type AnimationTiming } from "../utils";
+import { useAnimationProps } from "../hooks";
 
 /**
  * Props for the MotionWrapper component
@@ -42,6 +43,9 @@ export const MotionWrapper = forwardRef<HTMLDivElement, MotionWrapperProps>(
     },
     ref
   ) => {
+    // Use the animation props hook to get consistent transition
+    const animationConfig = useAnimationProps(variant, timing);
+
     // Use custom animation if provided, otherwise use variant
     const selectedVariant = animationVariants[variant];
     const motionProps = animation || selectedVariant;
@@ -63,7 +67,9 @@ export const MotionWrapper = forwardRef<HTMLDivElement, MotionWrapperProps>(
             ? motionProps.exit
             : undefined
         }
-        transition={transitions[timing]}
+        transition={animationConfig.transition}
+        viewport={animationConfig.viewport}
+        whileInView={animationConfig.whileInView}
         {...props}
       >
         {children}

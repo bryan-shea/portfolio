@@ -14,23 +14,36 @@ import {
   AVAILABLE_COLOR_PALETTES,
   DEFAULT_COLOR_SCHEME,
 } from "../config/colors.data";
+import { STORAGE_KEYS, storageUtils } from "../constants";
+import { useThemeManipulation } from "../hooks/useThemeManipulation";
 
 // Re-export types for backward compatibility
 export type { ColorPaletteName, ColorPaletteConfig, ColorScheme };
 
 /**
- * Color context interface
+ * Color state context interface - for read-only color data
  */
-interface ColorContextType {
+interface ColorStateContextType {
   colorScheme: ColorScheme;
+}
+
+/**
+ * Color actions context interface - for color-related actions
+ */
+interface ColorActionsContextType {
   setColorScheme: (colors: ColorScheme) => void;
   updateTheme: (colors: ColorScheme) => void;
 }
 
 /**
- * Color context
+ * Separate contexts for state and actions to prevent unnecessary re-renders
  */
-const ColorContext = createContext<ColorContextType | undefined>(undefined);
+const ColorStateContext = createContext<ColorStateContextType | undefined>(
+  undefined
+);
+const ColorActionsContext = createContext<ColorActionsContextType | undefined>(
+  undefined
+);
 
 /**
  * Color provider props
@@ -40,14 +53,16 @@ interface ColorProviderProps {
 }
 
 /**
- * Color provider component
- * Manages dynamic color themes throughout the application
+ * Optimized color provider component
+ * Uses separate contexts for state and actions to minimize re-renders
  */
 export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
+  const { updateTheme: updateThemeDOM } = useThemeManipulation();
+
   const [colorScheme, setColorScheme] = useState<ColorScheme>(() => {
     // Try to load from localStorage
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("portfolio-color-scheme");
+      const saved = storageUtils.getItem(STORAGE_KEYS.COLOR_SCHEME);
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -86,66 +101,20 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
 
   /**
    * Update theme with the selected color palette
-   * Uses Chakra UI's colorPalette system for consistent theming
+   * Uses the theme manipulation hook for DOM updates
    */
-  const updateTheme = useCallback((colors: ColorScheme) => {
-    // Save to localStorage
-    if (typeof window !== "undefined") {
-      localStorage.setItem("portfolio-color-scheme", JSON.stringify(colors));
-    }
-
-    // Update CSS custom properties for Chakra UI's colorPalette system
-    if (typeof document !== "undefined") {
-      const root = document.documentElement;
-      const { palette } = colors;
-
-      // Set the global colorPalette for Chakra UI components
-      // This enables components to use colorPalette prop effectively
-      root.style.setProperty(
-        "--chakra-colors-colorPalette",
-        `var(--chakra-colors-${palette})`
-      );
-
-      // Map the selected palette to primary for custom styling
-      // This maintains backward compatibility with existing custom styles
-      for (let shade = 50; shade <= 950; shade += 50) {
-        if (shade <= 900 || shade === 950) {
-          root.style.setProperty(
-            `--chakra-colors-primary-${shade}`,
-            `var(--chakra-colors-${palette}-${shade})`
-          );
-        }
+  const updateTheme = useCallback(
+    (colors: ColorScheme) => {
+      // Save to localStorage
+      if (typeof window !== "undefined") {
+        storageUtils.setJSON(STORAGE_KEYS.COLOR_SCHEME, colors);
       }
 
-      // Set glow effect color using semantic token
-      root.style.setProperty(
-        "--glow-color",
-        `var(--chakra-colors-${palette}-500)`
-      );
-
-      // Update personalized color variables using semantic tokens
-      root.style.setProperty(
-        "--chakra-colors-personalized-primary",
-        `var(--chakra-colors-${palette}-500)`
-      );
-      root.style.setProperty(
-        "--chakra-colors-personalized-primaryHover",
-        `var(--chakra-colors-${palette}-600)`
-      );
-      root.style.setProperty(
-        "--chakra-colors-personalized-primaryActive",
-        `var(--chakra-colors-${palette}-700)`
-      );
-      root.style.setProperty(
-        "--chakra-colors-personalized-accent",
-        `var(--chakra-colors-${palette}-100)`
-      );
-      root.style.setProperty(
-        "--chakra-colors-personalized-accentDark",
-        `var(--chakra-colors-${palette}-800)`
-      );
-    }
-  }, []);
+      // Apply theme changes to DOM
+      updateThemeDOM(colors);
+    },
+    [updateThemeDOM]
+  );
 
   const handleSetColorScheme = useCallback(
     (colors: ColorScheme) => {
@@ -160,30 +129,71 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
     updateTheme(colorScheme);
   }, [updateTheme, colorScheme]);
 
-  const contextValue: ColorContextType = useMemo(
+  // Separate context values for state and actions
+  const stateValue: ColorStateContextType = useMemo(
     () => ({
       colorScheme,
+    }),
+    [colorScheme]
+  );
+
+  const actionsValue: ColorActionsContextType = useMemo(
+    () => ({
       setColorScheme: handleSetColorScheme,
       updateTheme,
     }),
-    [colorScheme, handleSetColorScheme, updateTheme]
+    [handleSetColorScheme, updateTheme]
   );
 
   return (
-    <ColorContext.Provider value={contextValue}>
-      {children}
-    </ColorContext.Provider>
+    <ColorStateContext.Provider value={stateValue}>
+      <ColorActionsContext.Provider value={actionsValue}>
+        {children}
+      </ColorActionsContext.Provider>
+    </ColorStateContext.Provider>
   );
 };
 
 /**
- * Hook to use color context
+ * Hook to use color state (read-only)
+ * Only causes re-renders when color scheme changes
  */
 // eslint-disable-next-line react-refresh/only-export-components
-export const useColors = (): ColorContextType => {
-  const context = useContext(ColorContext);
+export const useColorScheme = (): ColorScheme => {
+  const context = useContext(ColorStateContext);
   if (!context) {
-    throw new Error("useColors must be used within a ColorProvider");
+    throw new Error("useColorScheme must be used within a ColorProvider");
+  }
+  return context.colorScheme;
+};
+
+/**
+ * Hook to use color actions
+ * Doesn't cause re-renders when color scheme changes
+ */
+// eslint-disable-next-line react-refresh/only-export-components
+export const useColorActions = (): ColorActionsContextType => {
+  const context = useContext(ColorActionsContext);
+  if (!context) {
+    throw new Error("useColorActions must be used within a ColorProvider");
   }
   return context;
+};
+
+/**
+ * Hook to use both color state and actions (backward compatibility)
+ * Use useColorScheme() and useColorActions() for better performance
+ */
+// eslint-disable-next-line react-refresh/only-export-components
+export const useColors = (): ColorStateContextType &
+  ColorActionsContextType => {
+  const state = useColorScheme();
+  const actions = useColorActions();
+  return useMemo(
+    () => ({
+      colorScheme: state,
+      ...actions,
+    }),
+    [state, actions]
+  );
 };

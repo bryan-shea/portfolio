@@ -7,3 +7,4 @@ export * from "./ProfilePicture";
 export { Navbar } from "./navbar/navbar";
 export { ContactButtons } from "./ContactButtons";
 export type { ContactButtonsProps } from "./ContactButtons";
+export { JourneyProgressPanel } from "./JourneyProgressPanel";

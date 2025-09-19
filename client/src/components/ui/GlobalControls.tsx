@@ -12,10 +12,10 @@ import {
   Text,
   VStack,
   Box,
-  useBreakpointValue,
   IconButton,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useResponsiveValue } from "../../hooks";
 import {
   LuPalette,
   LuImage,
@@ -73,7 +73,7 @@ export const GlobalControls: React.FC<GlobalControlsProps> = ({
   const { toggleColorMode, colorMode } = useColorMode();
 
   // Responsive trigger: full button on md+, compact on mobile
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useResponsiveValue({ base: true, md: false });
 
   /**
    * Available control actions

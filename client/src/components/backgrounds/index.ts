@@ -10,4 +10,3 @@ export { SubtleGrid } from "./SubtleGrid";
 export { GradientOrbs } from "./GradientOrbs";
 export { NetworkNodes } from "./NetworkNodes";
 export { BackgroundManager, type BackgroundType } from "./BackgroundManager";
-export { BackgroundShowcase } from "./BackgroundShowcase";

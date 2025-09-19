@@ -82,7 +82,7 @@ export const AVAILABLE_COLOR_PALETTES: readonly ColorPaletteConfig[] = [
     displayName: "Ocean Cyan",
     description: "Cool and refreshing with aquatic feel",
   },
-] as const;
+];
 
 /**
  * Color scheme interface using Chakra UI color system

@@ -1,8 +1,14 @@
-export { ColorProvider, useColors } from "./ColorContext";
+export {
+  ColorProvider,
+  useColors,
+  useColorScheme,
+  useColorActions,
+} from "./ColorContext";
 export type { ColorScheme } from "./ColorContext";
 
-export { BackgroundProvider } from "./BackgroundContext";
 export {
-  BackgroundContext,
-  type BackgroundContextType,
-} from "./background.context";
+  BackgroundProvider,
+  useBackgrounds,
+  useCurrentBackground,
+  useBackgroundActions,
+} from "./BackgroundContext";

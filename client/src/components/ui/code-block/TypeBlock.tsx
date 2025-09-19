@@ -173,7 +173,12 @@ export const TypeBlock = ({
                 minW={{ base: "400px", md: "600px" }}
                 w="max-content"
               >
-                <CodeBlock.CodeText whiteSpace="pre" overflowX="auto" />
+                <CodeBlock.CodeText
+                  whiteSpace="pre"
+                  overflowX="auto"
+                  fontSize={"md"}
+                  lineHeight="relaxed"
+                />
               </CodeBlock.Code>
             </Tabs.Content>
           </CodeBlock.Content>

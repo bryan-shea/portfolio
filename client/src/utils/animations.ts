@@ -2,6 +2,8 @@
  * Animation configuration and utilities
  */
 
+import { MOTION_TRANSITIONS } from "../constants";
+
 /**
  * Common animation variants for framer-motion
  */
@@ -48,12 +50,7 @@ export const animationVariants = {
 /**
  * Common transition configurations
  */
-export const transitions = {
-  smooth: { duration: 0.6, ease: "easeOut" },
-  quick: { duration: 0.3, ease: "easeOut" },
-  slow: { duration: 1.0, ease: "easeOut" },
-  bounce: { type: "spring", stiffness: 300, damping: 20 },
-} as const;
+export const transitions = MOTION_TRANSITIONS;
 
 /**
  * Utility function to create consistent animation props

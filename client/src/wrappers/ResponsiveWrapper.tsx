@@ -1,6 +1,7 @@
 import { Box, type BoxProps } from "@chakra-ui/react";
 import { type ReactNode } from "react";
 import { type ResponsiveValue } from "../utils";
+import { useResponsiveValue } from "../hooks";
 
 /**
  * Props for the ResponsiveWrapper component
@@ -35,11 +36,15 @@ export const ResponsiveWrapper = ({
   fullHeight = false,
   ...props
 }: ResponsiveWrapperProps) => {
+  // Use our responsive hook for consistent value resolution
+  const resolvedMaxWidth = useResponsiveValue(maxWidth);
+  const resolvedPadding = useResponsiveValue(padding);
+
   return (
     <Box
-      maxW={maxWidth}
-      px={padding}
-      py={padding}
+      maxW={resolvedMaxWidth}
+      px={resolvedPadding}
+      py={resolvedPadding}
       mx={centered ? "auto" : undefined}
       h={fullHeight ? "100vh" : undefined}
       minH={fullHeight ? "100vh" : undefined}

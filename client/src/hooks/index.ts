@@ -14,11 +14,43 @@ export {
   useActiveSection,
 } from "./useScroll";
 
+// Journey progress tracking
+export {
+  useJourneyProgress,
+  useJourneyScrollProgress,
+} from "./useJourneyProgress";
+export type { JourneyProgress } from "./useJourneyProgress";
+
 // Style and UI management hooks
 export {
   useBackgroundManager,
   useRandomizedStyles,
 } from "./useStyleManagement";
 
-// Context hooks
-export { useBackgrounds } from "./useBackgrounds";
+// Animation and motion hooks
+export {
+  useAnimationProps,
+  useStaggerAnimation,
+  useResponsiveAnimation,
+  type MotionProps,
+} from "./useAnimationProps";
+
+// Responsive design hooks
+export {
+  useResponsiveValue,
+  useResponsiveBoolean,
+  useResponsiveNumber,
+  useResponsiveString,
+} from "./useResponsiveValue";
+
+// Theme management hooks
+export { useThemeManipulation } from "./useThemeManipulation";
+
+// Background orchestration hooks
+export {
+  useBackgroundOrchestrator,
+  type BackgroundOption,
+} from "./useBackgroundOrchestrator";
+
+// Context hooks (re-exported for convenience)
+export { useBackgrounds } from "../contexts";

@@ -16,7 +16,7 @@ import {
 import { LuGithub, LuMenu, LuSettings2 } from "react-icons/lu";
 import { ColorModeButton } from "../../ui";
 import { PersonalizeDrawer } from "../../ui/PersonalizeDrawer";
-import { navigationSections } from "../../../config/navigation.data";
+import { navigationSections } from "../../../config";
 import { useState } from "react";
 
 /**
@@ -30,6 +30,11 @@ interface NavbarProps {
 export const Navbar = ({ activeSection }: NavbarProps) => {
   // State for PersonalizeDrawer
   const [isPersonalizeOpen, setIsPersonalizeOpen] = useState(false);
+
+  // Filter navigation sections to only show internal sections
+  const internalSections = navigationSections.filter(
+    section => !section.isExternal
+  );
 
   /**
    * Scroll to a specific section smoothly
@@ -62,7 +67,7 @@ export const Navbar = ({ activeSection }: NavbarProps) => {
         <Flex height="16" align="center" gap="4" minW={0}>
           <HStack as="nav" flex="1" gap="8">
             <HStack hideBelow="lg" gap="8">
-              {navigationSections.map(section => {
+              {internalSections.map(section => {
                 const isActive = section.id === activeSection;
                 return (
                   <Link
@@ -99,6 +104,7 @@ export const Navbar = ({ activeSection }: NavbarProps) => {
             scrollToSection={scrollToSection}
             activeSection={activeSection}
             onPersonalizeOpen={() => setIsPersonalizeOpen(true)}
+            navigationSections={internalSections}
           />
         </Flex>
       </Container>
@@ -116,12 +122,21 @@ interface MobileNavProps {
   scrollToSection: (sectionId: string) => void;
   activeSection?: string;
   onPersonalizeOpen: () => void;
+  navigationSections: readonly {
+    id: string;
+    name: string;
+    iconName: string;
+    description: string;
+    isExternal?: boolean;
+    href?: string;
+  }[];
 }
 
 const MobileNav = ({
   scrollToSection,
   activeSection,
   onPersonalizeOpen,
+  navigationSections,
 }: MobileNavProps) => {
   return (
     <HStack as="nav" hideFrom="lg">

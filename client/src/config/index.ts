@@ -3,29 +3,17 @@
  * Provides clean imports for all application configuration data
  */
 
-// Color palette configuration
+// Color palette configuration (complex, kept separate)
 export * from "./colors.data";
 
-// Hero section configuration
-export * from "./hero.data";
-
-// Skills and tech stack configuration
-export * from "./skills.data";
-
-// Navigation configuration
-export * from "./navigation.data";
-
-// Global controls configuration
-export * from "./controls.data";
-
-// Contact information configuration
-export * from "./contact.data";
-
-// Background system configuration
+// Background system configuration (complex, kept separate)
 export * from "./backgrounds.data";
 
-// Project data configuration
+// Project data configuration (large JSX content, kept separate)
 export * from "./projects.data";
 
-// Journey/timeline configuration
-export * from "./journey.data";
+// Application content configuration (consolidated)
+export * from "./app.config";
+
+// User interface configuration (consolidated)
+export * from "./ui.config";

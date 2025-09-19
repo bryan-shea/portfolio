@@ -112,7 +112,7 @@ export const backgroundDefaults = {
   storageKey: "portfolio-background",
   /** Fallback background if stored value is invalid */
   fallbackBackground: "grid" as BackgroundType,
-} as const;
+};
 
 /**
  * Background categories for organization
@@ -127,7 +127,7 @@ export const backgroundCategories = {
   highPerformance: backgroundOptions
     .filter(bg => bg.performanceImpact && bg.performanceImpact >= 4)
     .map(bg => bg.type),
-} as const;
+};
 
 /**
  * Background selector configuration
@@ -150,4 +150,4 @@ export const backgroundSelectorConfig = {
     borderRadius: "md",
     showPerformanceInfo: true,
   },
-} as const;
+};
