@@ -12,6 +12,9 @@ export * from "./backgrounds.data";
 // Project data configuration (large JSX content, kept separate)
 export * from "./projects.data";
 
+// Navigation configuration (footer links, page navigation)
+export * from "./navigation.data";
+
 // Application content configuration (consolidated)
 export * from "./app.config";
 

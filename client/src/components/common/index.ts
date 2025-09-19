@@ -8,3 +8,4 @@ export { Navbar } from "./navbar/navbar";
 export { ContactButtons } from "./ContactButtons";
 export type { ContactButtonsProps } from "./ContactButtons";
 export { JourneyProgressPanel } from "./JourneyProgressPanel";
+export { Footer } from "./Footer";

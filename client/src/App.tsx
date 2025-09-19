@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { type ComponentType } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Hero, Projects, Journey } from "./sections";
-import { AnimatedSection, Navbar } from "./components/common";
+import { AnimatedSection, Navbar, Footer } from "./components/common";
 import {
   BackgroundManager,
   type BackgroundType,
@@ -70,6 +70,9 @@ const Portfolio = () => {
           </AnimatedSection>
         </Box>
       ))}
+
+      {/* Footer - Positioned at the bottom of all sections */}
+      <Footer />
     </Box>
   );
 };
