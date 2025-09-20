@@ -37,10 +37,10 @@ export interface HeroConfig {
  */
 export const heroConfig: HeroConfig = {
   name: "Bryan Shea",
-  title: "Full Stack Developer",
-  subtitle: "Building Modern Web Applications",
+  title: "Full-Stack Software Engineer",
+  subtitle: "Crafting End-to-End Solutions",
   description:
-    "Passionate developer focused on creating innovative solutions with React, TypeScript, Node.js, and GraphQL. I transform ideas into scalable, user-centric applications.",
+    "Full-stack engineer specializing in modern web technologies and scalable architectures. I build complete solutions from database design to user interfaces using React, TypeScript, Node.js, and GraphQL.",
   callToAction: "Let's Build Something Amazing",
 };
 
