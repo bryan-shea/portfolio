@@ -187,9 +187,9 @@ export const PropertyPanelPro: React.FC<PropertyPanelProProps> = ({
               Personalization
             </Text>
           </HStack>
-          <Text color="fg.muted" fontSize="sm">
-            Customize your portfolio's appearance and style
-          </Text>
+		  <Text color="fg.muted" fontSize="sm">
+			Personalize your viewing experience
+		  </Text>
         </Box>
 
         {/* Color Palette Section */}
